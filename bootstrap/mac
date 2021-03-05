@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+#
+# Idempotently set up macOS
+#
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+export PATH="${DOTFILES}/bin:${PATH}"
+
+if ! [[ "$OSTYPE" == *"arwin"* ]]; then
+  __kz_err "This script is for Darwin only"
+  exit 1
+fi
+
+# ============================================================================
+# Check prerequisites
+# ============================================================================
+
+__kz_require "brew" || {
+  __kz_err "Install brew as described on https://brew.sh"
+  exit 1
+}
