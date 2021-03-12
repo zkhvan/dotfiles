@@ -70,14 +70,16 @@ _bootstrap_shell() {
   _zsh_path="${KZ_BREW_PREFIX}/bin/zsh"
   [[ -x "$_zsh_path" ]] || {
     __kz_err "Install zsh from brew, then try again."
-    exit 1
+    return 1
   }
 
   _user_shell="$(dscl . -read "/Users/${USER}" UserShell)"
-  if [[ "$_user_shell" != "UserShell: ${_zsh_path}" ]]; then
+
+  if [[ "${_user_shell}" == "UserShell: ${_zsh_path}" ]]; then
     __kz_ok "Already using brewed zsh"
   else
     sudo dscl . -create "/Users/${USER}" UserShell "${_zsh_path}"
+    __kz_ok "Set user shell to brewed zsh using dscl"
   fi
 }
 _bootstrap_shell || {
