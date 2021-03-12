@@ -22,7 +22,7 @@ source "${DOTFILES}/lib/pretty.bash"
 export PATH="${DOTFILES}/bin:${PATH}"
 
 if [[ -z "$KZ_BREW_PREFIX" ]]; then
-  source "${DOTFILES}/shell/os-darwin"
+  source "${DOTFILES}/shell/os-darwin.sh"
 fi
 
 # ============================================================================
