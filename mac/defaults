@@ -41,6 +41,9 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 30
 
+# Disable press-and-hold for alternative keys
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
 # ----------------------------------------------------------------------------
 # Monitor
 # ----------------------------------------------------------------------------
