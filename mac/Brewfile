@@ -2,4 +2,11 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
+brew "fzf"
+brew "git"
+brew "jq"
+brew "ripgrep"
+brew "tmux"
 brew "zsh"
+
+cask "iterm2"
