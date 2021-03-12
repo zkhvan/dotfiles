@@ -321,9 +321,6 @@ sudo mdutil -E / > /dev/null
 # Terminal
 # ----------------------------------------------------------------------------
 
-# https://github.com/postmodern/chruby/issues/196#issuecomment-23826171
-[[ -f "/etc/zshenv" ]] && mv /etc/zshenv /etc/zprofile
-
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 

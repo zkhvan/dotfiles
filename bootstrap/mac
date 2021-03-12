@@ -7,17 +7,22 @@
 # Initialize script and dependencies
 # ============================================================================
 
+if ! [[ "$OSTYPE" == *"arwin"* ]]; then
+  __kz_err "This script is for Darwin only"
+  exit 1
+fi
+
 if [[ -z "$DOTFILES" ]]; then
   cd -- "$(dirname "$0")/.." || exit 1
   DOTFILES="$PWD"
 fi
+
 source "${DOTFILES}/lib/helpers.sh"
 source "${DOTFILES}/lib/pretty.bash"
 export PATH="${DOTFILES}/bin:${PATH}"
 
-if ! [[ "$OSTYPE" == *"arwin"* ]]; then
-  __kz_err "This script is for Darwin only"
-  exit 1
+if [[ -z "$KZ_BREW_PREFIX" ]]; then
+  source "${DOTFILES}/shell/os-darwin"
 fi
 
 # ============================================================================
@@ -28,3 +33,51 @@ __kz_require "brew" || {
   __kz_err "Install brew as described on https://brew.sh"
   exit 1
 }
+
+# ============================================================================
+# zsh
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Fix macos default configuration for zsh
+# See https://github.com/postmodern/chruby/issues/196#issuecomment-23826171
+# ----------------------------------------------------------------------------
+if [[ -f /etc/zshenv ]] && ! [[ -f /etc/zprofile ]]; then
+  __kz_status "Moving /etc/zshenv to /etc/zprofile (sudo)"
+  sudo mv /etc/zshenv /etc/zprofile
+else
+  __kz_ok "/etc/zshenv not present"
+fi
+
+# ----------------------------------------------------------------------------
+# Use zsh by default
+# The /etc/shells method is for TTY users, Darwin can just read from dscl
+# https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+# ----------------------------------------------------------------------------
+
+_bootstrap_shell() {
+  local _user_shell
+  local _zsh_path
+  __kz_status "Setting user shell to brewed zsh using dscl"
+
+  _zsh_path="${KZ_BREW_PREFIX}/bin/zsh"
+  if [[ -x "$_zsh_path" ]]; then
+    __kz_err "Install zsh from brew, then try again."
+    exit 1
+  fi
+
+  _user_shell="$(dscl . -read "/Users/${USER}" UserShell)"
+  if [[ "$_user_shell" != "UserShell: ${_zsh_path}" ]]; then
+    __kz_ok "Already using brewed zsh"
+  else
+    sudo dscl . -create "/Users/${USER}" UserShell "${_zsh_path}"
+  fi
+}
+_bootstrap_shell || {
+  __kz_warn "Could not update the user's shell to ${_zsh_path}"
+  __kz_warn_ "Check the brew installation and refer to"
+  __kz_warn_ "https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/"
+}
+
+# ============================================================================
+
