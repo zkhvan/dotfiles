@@ -68,10 +68,10 @@ _bootstrap_shell() {
   __kz_status "Setting user shell to brewed zsh using dscl"
 
   _zsh_path="${KZ_BREW_PREFIX}/bin/zsh"
-  if [[ -x "$_zsh_path" ]]; then
+  [[ -x "$_zsh_path" ]] || {
     __kz_err "Install zsh from brew, then try again."
     exit 1
-  fi
+  }
 
   _user_shell="$(dscl . -read "/Users/${USER}" UserShell)"
   if [[ "$_user_shell" != "UserShell: ${_zsh_path}" ]]; then

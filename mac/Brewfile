@@ -1,1 +1,5 @@
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/services"
+
 brew "zsh"
