@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#
+# bin/kz-symlink
+#
+# symlink helper function for dotfiles
+# $1 - source file in $DOTFILES, assuming ${HOME}/.dotfiles
+# $2 - target file relative to $HOME
+# ============================================================================
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/pretty.bash"
+
+__kz_symlinking() {
+  printf '\033[0;32m==> OK:   \033[0;35m%s\033[0;m -> %s\033[0;m\n' "$1" "$2"
+}
+
+# ============================================================================
+# Main
+# ============================================================================
+
+__kz_symlink() {
+  local _source_path="${DOTFILES}/${1}"
+  local _full_target_path="${HOME}/${2}"
+  local _target_directory
+
+  kz-same "${_source_path}" "${_full_target_path}"
+  local result=$?
+
+  if (( result == 0 )); then
+    return
+  elif (( result == 10 )); then
+    __kz_status "Found different ${_full_target_path}"
+    if [[ -z "${CI}" ]]; then
+      read -p "          Overwrite? [y/N] " -r
+      if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
+        __kz_warn "Skipped ${_full_target_path}"
+        return
+      fi
+    else
+      __kz_ok_ "CI run: skipping ${_full_target_path}"
+      return
+    fi
+    # OVERWRITE!
+  elif (( result != 20 )); then
+    # Could not determine status
+    return
+  fi
+
+  __kz_symlinking "${_full_target_path}" "${_source_path}"
+
+  _target_directory="$(dirname "${_full_target_path}")"
+  kz-maybemkdir "$_target_directory" || return 1
+  ln -fns "${_source_path}" "${_full_target_path}"
+}
+
+__kz_symlink "$@"

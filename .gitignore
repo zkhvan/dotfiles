@@ -1,0 +1,20 @@
+# managed
+node_modules/
+tmux/plugins/
+!tmux/plugins/tpm
+
+# secrets
+local/
+logs/
+zsh/.zplugin
+
+# cache + logs
+.bash_history
+.lesshst
+.tox
+.zcache
+.zcompdump*
+.zhistory
+.zsh_history
+.zshrc.zwc
+*.log

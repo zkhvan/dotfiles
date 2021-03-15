@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#
+# bin/kz-same
+#
+# $1 - source file path
+# $2 - destination file path
+# ============================================================================
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+
+# ============================================================================
+# Main
+# ============================================================================
+
+__kz_same() {
+  local _source_path="${1}"
+  local _target_path="${2}"
+
+  if [[ -f "${_target_path}" ]] || [[ -d "${_target_path}" ]]; then
+    local _resolved_path
+
+    if __kz_has "realpath"; then
+      _source_path=$(realpath "${_source_path}")
+      _resolved_path=$(realpath "${_target_path}")
+    elif __kz_has "readlink" && [[ "${OSTYPE}" == *'arwin'* ]]; then
+      _source_path=$(readlink "${_source_path}")
+      _resolved_path=$(readlink "${_target_path}")
+    else
+      __kz_err "${_target_path} exists but unable to determine if it is properly linked."
+      # Error codes reference: http://www.tldp.org/LDP/abs/html/exitcodes.html
+      return 126
+    fi
+
+    [[ "${_resolved_path}" == "${_source_path}" ]] && {
+      __kz_status "${_target_path} already linked to ${_resolved_path}"
+      return 0
+    }
+
+    __kz_warn "${_target_path} not linked to ${_resolved_path}"
+    return 10
+  fi
+
+  # Does not exist
+  __kz_status "${_target_path} not found"
+  return 20
+}
+
+__kz_same "$@"

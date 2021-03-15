@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+#
+# Basic symlinks, safe to run on any system
+#
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+export PATH="${DOTFILES}/bin:${PATH}"
+
+# ============================================================================
+# Create paths (slow)
+# ============================================================================
+
+mkdir -p -- "${HOME}/.cache"
+mkdir -p -- "${HOME}/.config"
+
+# Mirror root in ~/.local
+mkdir -p -- "${HOME}/.local/bin"
+
+# ============================================================================
+# Main
+# ============================================================================
+
+__symlink() {
+  __kz_status "Symlinking dotfiles"
+
+  # REQUIRED in ~/
+  kz-symlink "shell/dot.profile" \
+    ".profile"
+
+  # XDG-compatible, not linux specific
+  #kz-symlink "coc/extensions/dot.npmrc" \
+  #  ".config/coc/extensions/.npmrc"
+  #kz-symlink "git/dot.gitconfig" \
+  #  ".config/git/config"
+  #kz-symlink "git/dot.gitignore" \
+  #  ".config/git/ignore"
+  #[ ! -d "$FNM_DIR" ] &&
+  #  kz-symlink "node/default-packages" \
+  #  ".config/nvm/default-packages"
+  kz-symlink "tmux/tmux.conf" \
+    ".config/tmux/tmux.conf"
+
+  # (n)vim / intellij ideavim
+  #kz-symlink "vim" \
+  #  ".vim"
+  #kz-symlink "vim" \
+  #  ".config/nvim"
+  #kz-symlink "ideavim/dot.ideavimrc" \
+  #  ".ideavimrc"
+
+  case "$OSTYPE" in
+  *arwin*)
+    #kz-symlink "mac/hammerspoon" \
+    #  ".hammerspoon"
+    kz-symlink "mac/dot.hushlogin" \
+      ".hushlogin"
+    #kz-symlink "mac/dot.mackup.cfg" \
+    #  ".mackup.cfg"
+    #kz-symlink "mac/LaunchAgents/dotfiles.plist" \
+    #  "Library/LaunchAgents/dotfiles.plist"
+    #kz-symlink "mac/redshift.conf" \
+    #  ".config/redshift/redshift.conf"
+    ;;
+  linux*)
+    #kz-symlink "linux/terminator/config" \
+    #  ".config/terminator/config"
+    ;;
+  esac
+
+  # Shell
+  #kz-symlink "bash/dot.bashrc" \
+  #  ".bashrc"
+  #kz-symlink "bash/dot.bash_profile" \
+  #  ".bash_profile"
+  kz-symlink "zsh/dot.zshenv" \
+    ".zshenv"
+
+  __kz_status "Done! [symlink.sh]"
+}
+
+__symlink
