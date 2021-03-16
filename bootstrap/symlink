@@ -51,10 +51,10 @@ __symlink() {
     ".config/tmux/tmux.conf"
 
   # (n)vim / intellij ideavim
-  #kz-symlink "vim" \
-  #  ".vim"
-  #kz-symlink "vim" \
-  #  ".config/nvim"
+  kz-symlink "vim" \
+    ".vim"
+  kz-symlink "vim" \
+    ".config/nvim"
   #kz-symlink "ideavim/dot.ideavimrc" \
   #  ".ideavimrc"
 
