@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+
+# ============================================================================
+
+__kz_has 'pyenv' || {
+  __kz_err 'pyenv is not installed'
+  exit 1
+}
+
+__mac_pyenv_install() {
+  local product_version
+  local product_minor
+  product_version="$(sw_vers -productVersion)"
+  product_minor="${product_version%.*}"
+
+  SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX${product_minor}.sdk" \
+    MACOSX_DEPLOYMENT_TARGET="$product_minor" \
+    pyenv install "$1"
+}
+
+__create_neovim_venv() {
+  local __versions
+  __versions=$(pyenv versions)
+
+  local __venvs
+  __venvs=$(pyenv virtualenvs)
+
+  local name="$1"
+  local version="$2"
+
+  if grep -q "$name" <<< "$__venvs"; then
+    __kz_ok "${name} exists"
+
+  elif ! grep -q "$version" <<< "$__versions"; then
+    if [[ "$OSTYPE" == *'arwin'* ]]; then
+      __mac_pyenv_install "$version" || return 1
+    else
+      pyenv install "$version" || return 1
+    fi
+  fi
+
+  __kz_status "Creating ${name} and installing pynvim"
+  pyenv uninstall neovim3
+  pyenv virtualenv "$version" "$name" \
+    && pyenv activate "$name" \
+    && python -m pip install --upgrade pip \
+    && python -m pip install pynvim \
+    && pyenv deactivate
+}
+
+__main() {
+  local p3="$1"
+
+  if [[ -z "$p3" ]]; then
+    __kz_usage "$0 3.7.7"
+    return 1
+  fi
+
+  source "${DOTFILES}/shell/python.sh"
+
+  __kz_echo "\$PYENV_ROOT=${PYENV_ROOT}"
+
+  readonly virtualenvwrapperdest="$(pyenv root)/plugins/pyenv-virtualenvwrapper"
+  if [[ ! -d "$virtualenvwrapperdest" ]]; then
+    __kz_status "pyenv-virtualenvwrapper plugin installation"
+    git clone \
+      https://github.com/pyenv/pyenv-virtualenvwrapper.git \
+      "$virtualenvwrapperdest"
+  fi
+
+  __kz_status "pyenv-virtualenv setup"
+  __kz_echo "desired python3: ${p3}"
+
+  __create_neovim_venv "neovim3" "$p3"
+}
+
+__main "$@"
