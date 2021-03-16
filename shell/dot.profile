@@ -11,8 +11,8 @@
 export KZ_SOURCE="${KZ_SOURCE} -> dot.profile {"
 [ -z "$KZ_INIT" ] && {
   export KZ_INIT=1
-  . "${HOME}/.dotfiles/shell/vars.sh"
-  . "${DOTFILES}/shell/path.sh" # depends on vars
+  source "${HOME}/.dotfiles/shell/vars.sh"
+  source "${DOTFILES}/shell/path.sh" # depends on vars
 
   # ============================================================================
   # Local path -- everything after the path setting this may use "command" to
