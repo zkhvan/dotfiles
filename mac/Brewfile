@@ -3,6 +3,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
 brew "fzf"
+brew "git-delta"
 brew "git"
 brew "jq"
 brew "ripgrep"

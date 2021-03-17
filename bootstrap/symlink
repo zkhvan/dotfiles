@@ -40,10 +40,10 @@ __symlink() {
   # XDG-compatible, not linux specific
   #kz-symlink "coc/extensions/dot.npmrc" \
   #  ".config/coc/extensions/.npmrc"
-  #kz-symlink "git/dot.gitconfig" \
-  #  ".config/git/config"
-  #kz-symlink "git/dot.gitignore" \
-  #  ".config/git/ignore"
+  kz-symlink "git/dot.gitconfig" \
+    ".config/git/config"
+  kz-symlink "git/dot.gitignore" \
+    ".config/git/ignore"
   #[ ! -d "$FNM_DIR" ] &&
   #  kz-symlink "node/default-packages" \
   #  ".config/nvm/default-packages"
