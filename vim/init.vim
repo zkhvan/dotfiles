@@ -105,6 +105,6 @@ endif
 
 " =============================================================================
 
-" execute 'source ' . g:kz_nvim_dir . '/vimrc'
+execute 'source ' . g:kz_nvim_dir . '/vimrc'
 
 " vim: sw=2 :
