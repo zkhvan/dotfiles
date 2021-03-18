@@ -7,8 +7,14 @@ let g:kz_nvim_dir = fnamemodify(resolve(expand('$MYVIMRC')), ':p:h')
 " GUI editors
 " ============================================================================
 
-if exists('g:fvim_loaded')
-  set termguicolors
+if exists('g:vv')
+  VVset windowheight=100%
+  VVset windowwidth=40%
+  VVset windowleft=0
+  VVset windowtop=0
+  VVset fontfamily=JetBrainsMonoNerdFontCompleteM-Regular
+  VVset fontsize=12
+  VVset lineheight=1.30
 endif
 
 " ============================================================================
