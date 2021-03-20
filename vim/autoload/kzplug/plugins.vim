@@ -114,6 +114,17 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'AndrewRadev/splitjoin.vim'
 
   " ==========================================================================
+  " Editing keys
+  " ==========================================================================
+
+  " filetype custom [[ and ]] jumping
+  Plug 'arp242/jumpy.vim'
+
+  Plug 'svermeulen/vim-yoink', PlugIf(has('nvim'))
+
+  Plug 'bootleq/vim-cycle', { 'on': [ '<Plug>Cycle' ] }
+
+  " ==========================================================================
   " Visual
   " ==========================================================================
 
