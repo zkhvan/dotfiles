@@ -26,6 +26,20 @@ alias down='cd -- "${XDG_DOWNLOAD_DIR}"'
 alias tree='tree -CF'
 
 # ----------------------------------------------------------------------------
+# editors
+# ----------------------------------------------------------------------------
+
+alias ehosts='se /etc/hosts'
+alias evr='e "${VDOTDIR}/vimrc"'
+alias evp='e "${VDOTDIR}/autoload/kzplug/plugins.vim"'
+alias eze='e "${ZDOTDIR}/dot.zshenv"'
+alias ezl='e "${LDOTDIR}/zshrc"'
+alias ezp='e "${ZDOTDIR}/zplugin.zsh"'
+alias ezr='e "${ZDOTDIR}/.zshrc"'
+alias esa='e "${DOTFILES}/shell/aliases.sh"'
+alias ega='e "${DOTFILES}/git/aliases.gitconfig"'
+
+# ----------------------------------------------------------------------------
 # git
 # ----------------------------------------------------------------------------
 
