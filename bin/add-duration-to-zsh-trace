@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+__add_duration_to_zsh_trace() {
+  local _source_path="${1}"
+
+  awk 'NR > 1 { print $1 - prev, $0 } { prev = $1 }' < "${_source_path}"
+}
+
+__add_duration_to_zsh_trace "$@"
