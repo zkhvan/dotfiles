@@ -92,7 +92,6 @@ autoload -Uz add-zsh-hook
 source "${ZDOTDIR}/prompt-vcs.zsh"
 source "${ZDOTDIR}/prompt-vimode.zsh"
 source "${ZDOTDIR}/prompt.zsh"
-source "${ZDOTDIR}/title.zsh"
 
 # ============================================================================
 # Plugins
