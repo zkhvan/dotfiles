@@ -13,7 +13,7 @@ source "${DOTFILES}/lib/helpers.sh"
 
 #source "${DOTFILES}/shell/go.sh"
 #source "${DOTFILES}/shell/java.sh"
-#source "${DOTFILES}/shell/node.sh"
+source "${DOTFILES}/shell/node.sh"
 #source "${DOTFILES}/shell/php.sh"
 source "${DOTFILES}/shell/python.sh"
 #source "${DOTFILES}/shell/ruby.bash"
