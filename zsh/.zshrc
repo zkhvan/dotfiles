@@ -209,33 +209,6 @@ bindkey '^[[6~' down-history
 bindkey '^K' forward-word
 
 # ============================================================================
-# Custom widget: fzf
-# ============================================================================
-
-__kzfzfbranch() {
-  if git rev-parse --git-dir >/dev/null 2>&1; then
-    fbr
-    zle accept-line
-  fi
-}
-
-# <C-b> to open git branch menu
-if __kz_has "fzf"; then
-  zle     -N      __kzfzfbranch
-  bindkey '^B'    __kzfzfbranch
-fi
-
-# ============================================================================
-# Custom widget: toggle iterm2 profile
-# ============================================================================
-
-if [ -n "$ITERM_PROFILE" ]; then
-  # <C-p> to toggle profile
-  zle     -N   proftoggle
-  bindkey '^P' proftoggle
-fi
-
-# ============================================================================
 # Completion settings
 # Order by * specificity
 # ============================================================================
