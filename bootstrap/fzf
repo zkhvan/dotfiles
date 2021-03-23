@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -o errexit -o nounset
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+
+__bootstrap_fzf() {
+  local _installer
+
+  if [[ -x "${KZ_BREW_PREFIX}/opt/fzf/install" ]]; then
+    __kz_status "fzf was installed via brew, re-running installer"
+    _installer="${KZ_BREW_PREFIX}/opt/fzf/install"
+  else
+    __kz_err "fzf is not installed"
+    return 1
+  fi
+
+  # Install/update shell extensions
+  if [[ -n "${_installer}" ]]; then
+    __kz_status "Updating fzf shell extensions"
+    "${_installer}" --xdg --key-bindings --completion --no-update-rc ||
+      return 1
+  fi
+}
+
+__bootstrap_fzf "$@"

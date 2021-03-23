@@ -9,9 +9,6 @@ KZ_SOURCE="${KZ_SOURCE} -> .zshrc {"
 
 source "${HOME}/.dotfiles/shell/dot.profile"
 
-# dedupe these path arrays (they shadow PATH, FPATH, etc)
-typeset -gU cdpath path fpath manpath
-
 # ============================================================================
 # nocorrect aliases
 # These may be re-aliased later (e.g. rm=trash from trash-cli node module)
@@ -201,11 +198,41 @@ bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
 # ----------------------------------------------------------------------------
-# Keybindings: Plugin - zsh-autosuggestions
+# Keybindings: Movement, also triggers zsh-autosuggest partials
 # ----------------------------------------------------------------------------
 
-# native forward-word in insert mode to partially accept autosuggestion
-bindkey '^K' forward-word
+bindkey '^e' vi-forward-word-end
+bindkey '^w' vi-forward-word
+
+# ============================================================================
+# FZF keybindings
+# ============================================================================
+
+if __kz_has "fzf"; then
+  if __kz_source "${XDG_CONFIG_HOME}/fzf/fzf.zsh" || {
+    # linux package managers throw it here
+    __kz_source "/usr/share/fzf/completion.zsh"
+    __kz_source "/usr/share/fzf/key-bindings.zsh"
+  }; then
+    KZ_SOURCE="${KZ_SOURCE} -> fzf"
+  fi
+
+  # <C-b> to open git branch menu and switch to one
+  # __kzfzfbranch() {
+  #   fbr
+  #   zle accept-line
+  # }
+  # zle     -N      __kzfzfbranch
+  # bindkey '^B'    __kzfzfbranch
+
+  # <A-w> to open git worktree list and cd into one
+  # __kzfzfworktree() {
+  #   cd "$(fwt)"
+  #   zle accept-line
+  # }
+  # zle     -N      __kzfzfworktree
+  # bindkey '^[w'   __kzfzfworktree
+fi
 
 # ============================================================================
 # Completion settings
@@ -295,8 +322,12 @@ fi
 # Local: can add more zplugins here
 # ============================================================================
 
-. "${DOTFILES}/shell/after.sh"
+source "${DOTFILES}/shell/after.sh"
+
 __kz_source "${LDOTDIR}/zshrc"
+
+# dedupe these path arrays (they shadow PATH, FPATH, etc)
+typeset -gU cdpath path fpath manpath
 
 # ============================================================================
 # End profiling
