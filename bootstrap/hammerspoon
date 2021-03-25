@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if ! [[ "$OSTYPE" == *"arwin"* ]]; then
+  __kz_err "This script is for Darwin only"
+  exit 1
+fi
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+
+# ============================================================================
+# Main
+# ============================================================================
+
+_bootstrap_hammerspoon() {
+  __kz_status "Setting hammerspoon config"
+
+  defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+}
+
+_bootstrap_hammerspoon "$@"
