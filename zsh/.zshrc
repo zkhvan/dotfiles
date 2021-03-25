@@ -20,6 +20,33 @@ alias rm="nocorrect rm"
 alias mkdir="nocorrect mkdir"
 
 # ============================================================================
+# zinit
+# ============================================================================
+
+__kz_has 'git' && {
+  declare -A ZINIT
+  ZINIT[HOME_DIR]="${XDG_DATA_HOME}/zinit"
+
+  # part of zinit's install, found by compaudit
+  mkdir -p "${ZINIT[HOME_DIR]}" && chmod g-rwX "${ZINIT[HOME_DIR]}"
+
+  kz_zinit_dest="${ZINIT[HOME_DIR]}/bin"
+  kz_zinit_script="${kz_zinit_dest}/zinit.zsh"
+  __kz_source "$kz_zinit_script" || {
+    # install if needed
+    command git clone https://github.com/zdharma/zinit "${kz_zinit_dest}" &&
+      __kz_source "$kz_zinit_script"
+  }
+  unset kz_zinit_dest
+  unset kz_zinit_script
+
+  __kz_source "${ZDOTDIR}/zinit.zsh" && {
+    autoload -Uz _zinit && (( ${+_comps} )) && _comps[zinit]=_zinit
+    alias unzinit='rm -rf "${ZINIT[HOME_DIR]}"'
+  }
+}
+
+# ============================================================================
 # Options
 # In the order of `man zshoptions`
 # ============================================================================
