@@ -5,7 +5,12 @@ hs.window.animationDuration = 0
 hs.grid.MARGINX = 0
 hs.grid.MARGINY = 0
 hs.grid.GRIDWIDTH = 10
-hs.grid.GRIDHEIGHT = 10 
+hs.grid.GRIDHEIGHT = 10
+
+-- Maximize window
+hs.hotkey.bind(hyper, "F", function()
+  hs.grid.maximizeWindow(hs.window.focusedWindow())
+end)
 
 -- Shift window on grid
 hs.hotkey.bind({"ctrl", "alt"}, "left", function()
