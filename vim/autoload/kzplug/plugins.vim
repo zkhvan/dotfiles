@@ -160,6 +160,32 @@ function! kzplug#plugins#LoadAll() abort
   Plug g:kz#vim_dir . '/mine/vim-hr'
 
   " ==========================================================================
+  " Completion
+  " ==========================================================================
+
+  " --------------------------------------------------------------------------
+  " Completion engine
+  " --------------------------------------------------------------------------
+
+  " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+  let g:coc_global_extensions = [
+        \  'coc-calc',
+        \  'coc-css',
+        \  'coc-diagnostic',
+        \  'coc-docthis',
+        \  'coc-git',
+        \  'coc-html',
+        \  'coc-json',
+        \  'coc-markdownlint',
+        \  'coc-prettier',
+        \  'coc-snippets',
+        \  'coc-tsserver',
+        \  'coc-vimlsp',
+        \  'coc-yaml',
+        \]
+  Plug 'neoclide/coc.nvim', WithCompl({ 'branch': 'release' })
+
+  " ==========================================================================
   " Visual
   " ==========================================================================
 
