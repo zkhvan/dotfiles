@@ -135,6 +135,14 @@ function! kzplug#plugins#LoadAll() abort
   " used for line bubbling commands (instead of unimpared!)
   Plug 'matze/vim-move'
 
+  Plug 'kana/vim-operator-user'
+  " gcc to toggle comment
+  Plug 'tyru/caw.vim', { 'on': [ '<Plug>(caw' ] }
+  " gs(a/r/d) to modify surrounding the pending operator
+  Plug 'rhysd/vim-operator-surround', { 'on': [ '<Plug>(operator-surround' ] }
+  " <Leader>c to toggle PascalCase/snak_e the pending operator
+  Plug 'tyru/operator-camelize.vim', { 'on': [ '<Plug>(operator-camelize' ] }
+
   " HR with <Leader>f[CHAR]
   Plug g:kz#vim_dir . '/mine/vim-hr'
 
