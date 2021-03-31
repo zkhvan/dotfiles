@@ -124,6 +124,9 @@ function! kzplug#plugins#LoadAll() abort
 
   Plug 'bootleq/vim-cycle', { 'on': [ '<Plug>Cycle' ] }
 
+  " HR with <Leader>f[CHAR]
+  Plug g:kz#vim_dir . '/mine/vim-hr'
+
   " ==========================================================================
   " Visual
   " ==========================================================================
