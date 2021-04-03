@@ -21,7 +21,6 @@ endfunction
 
 for s:obj in [
       \   'indent',
-      \   'line',
       \   'url',
       \   'xmlattr',
       \ ]
