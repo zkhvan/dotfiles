@@ -164,6 +164,14 @@ function! kzplug#plugins#LoadAll() abort
   " ==========================================================================
 
   " --------------------------------------------------------------------------
+  " Snippet engine
+  " Now using coc-snippets
+  " --------------------------------------------------------------------------
+
+  " Provides some ultisnips snippets for use with neosnippet or coc-snippets
+  Plug 'honza/vim-snippets', WithCompl()
+
+  " --------------------------------------------------------------------------
   " Completion engine
   " --------------------------------------------------------------------------
 
@@ -186,11 +194,91 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'neoclide/coc.nvim', WithCompl({ 'branch': 'release' })
 
   " ==========================================================================
-  " Visual
+  " Language: bash/shell/zsh
   " ==========================================================================
+
+  Plug 'chrisbra/vim-sh-indent'
+  Plug 'chrisbra/vim-zsh'
+
+  " ==========================================================================
+  " Language: Git
+  " ==========================================================================
+
+  " creates gitconfig, gitcommit, rebase
+  " provides :DiffGitCached in gitcommit file type
+  " vim 7.4-77 ships with 2013 version, this is newer
+  Plug 'tpope/vim-git'
+
+  " show diff when editing a COMMIT_EDITMSG
+  let g:committia_open_only_vim_starting = 0
+  let g:committia_use_singlecolumn       = 'always'
+  Plug 'rhysd/committia.vim'
+
+  " ==========================================================================
+  " Language: JavaScript and derivatives, JSON
+  " ==========================================================================
+
+  Plug 'neoclide/jsonc.vim'
+
+  " TypeScript
+  Plug 'HerringtonDarkholme/yats.vim'
+
+  " ----------------------------------------
+  " Syntax
+  " ----------------------------------------
+
+  " Common settings for vim-javascript, vim-jsx-improve
+  " let g:javascript_plugin_flow = 0
+  let g:javascript_plugin_jsdoc = 1
+
+  Plug 'pangloss/vim-javascript'
+
+  " ----------------------------------
+  " JSX
+  " ----------------------------------
+
+  " Offers inline code highlighting in JSX blocks, as well as vim-jsx's hi
+  Plug 'maxmellon/vim-jsx-pretty'
+
+  " ==========================================================================
+  " Language: Markdown, Pandoc
+  " ==========================================================================
+
+  " Override vim included markdown ft* and syntax
+  " The git repo has a newer syntax file than the one that ships with vim
+  " I'm using jumpy.vim for [[ and ]]
+  let g:no_markdown_maps = 1
+  Plug 'tpope/vim-markdown'
+
+  " after/syntax for GitHub emoji, checkboxes
+  Plug 'rhysd/vim-gfm-syntax'
+
+  " ==========================================================================
+  " UI -- load last!
+  " ==========================================================================
+
+  Plug 'delphinus/vim-auto-cursorline', PlugIf(exists('*timer_start'))
 
   Plug 'nathanaelkane/vim-indent-guides'
 
   Plug 'osyo-manga/vim-over', { 'on': [ 'OverCommandLine' ] }
+
+  " --------------------------------------------------------------------------
+  " Quickfix window
+  " --------------------------------------------------------------------------
+
+  Plug 'blueyed/vim-qf_resize'
+
+  Plug 'romainl/vim-qf'
+
+  " --------------------------------------------------------------------------
+  " Window events
+  " --------------------------------------------------------------------------
+
+  Plug 'wellle/visual-split.vim', { 'on': [
+        \   'VSResize', 'VSSplit',
+        \   'VSSplitAbove', 'VSSplitBelow',
+        \   '<Plug>(Visual-Split',
+        \ ] }
 
 endfunction
