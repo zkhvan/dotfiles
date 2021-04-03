@@ -313,11 +313,11 @@ set ignorecase
 if exists('+tagcase') && has('patch-7.4.2230') | set tagcase=followscs | endif
 set smartcase
 
-" if !empty(kz#grepper#Get().command)
-"   let &g:grepprg = kz#grepper#Get().command . ' '
-"         \ . join(kz#grepper#Get().options, ' ')
-"   let &g:grepformat = kz#grepper#Get().format
-" endif
+if !empty(kz#grepper#Get().command)
+  let &g:grepprg = kz#grepper#Get().command . ' '
+        \ . join(kz#grepper#Get().options, ' ')
+  let &g:grepformat = kz#grepper#Get().format
+endif
 
 " ----------------------------------------------------------------------------
 " Syntax

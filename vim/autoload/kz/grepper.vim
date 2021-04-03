@@ -1,6 +1,6 @@
 " autoload/kz/grepper.vim
 
-let s:ignore = expand($DOTFILES) . '/' . 'ag/dot.ignore'
+let s:ignore = expand($DOTFILES) . '/' . 'ignore/dot.ignore'
 
 " Cached
 function! kz#grepper#Get() abort
