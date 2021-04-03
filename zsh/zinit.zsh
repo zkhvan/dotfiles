@@ -67,7 +67,7 @@ zinit lucid from'gh-r' as'program' for \
   mv'shfmt* -> shfmt'       '@mvdan/sh'         \
   \
   mv'zoxide* -> zoxide' \
-  atload'eval "$(zoxide init --no-aliases zsh)" && alias j=__zoxide_z' \
+  atload'eval "$(zoxide init --no-aliases zsh)" && alias j=__zoxide_z && alias ji=__zoxide_zi' \
   'ajeetdsouza/zoxide' \
   \
   mv'ripgrep* -> rg' pick'rg/rg' \
