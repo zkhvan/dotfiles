@@ -82,7 +82,7 @@ nnoremap <silent> gsc :<C-U>CocCommand git.showCommit<CR>
 autocmd kzcoc FileType
       \ javascript,javascriptreact,typescript,typescriptreact,json,graphql
       \ nmap <silent> <A-=>
-      \   :<C-u>CocCommand prettier.formatFile<CR>
+      \   :<C-U>CocCommand prettier.formatFile<CR>
       "\   :CocCommand eslint.executeAutofix<CR>
 
 " coc-snippets

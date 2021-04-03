@@ -1,0 +1,129 @@
+{
+  // Using vim-css-color instead since it is more accurate 2020-01-14
+  "coc.preferences.colorSupport": false,
+
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+
+  "coc.preferences.enableFloatHighlight": false,
+
+  // Do it manually
+  "coc.preferences.extensionUpdateCheck": "never",
+
+  // Don't try to run on files larger than this. Reduced from 10mb
+  "coc.preferences.maxFileSize": "1MB",
+
+  // Hide the super noisy Actions, # of References etc virtualText that
+  // appears at end of lines
+  "codeLens.enable": false,
+
+  "diagnostic.checkCurrentLine": false,
+  "diagnostic.displayByAle": false,
+  "diagnostic.enable": true,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.enableSign": true,
+  "diagnostic.errorSign": "⚑",
+  "diagnostic.highlightOffset": 1000,
+  "diagnostic.hintSign": "⚑",
+  "diagnostic.infoSign": "⚑",
+  "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "diagnostic.level": "hint",
+  "diagnostic.messageTarget": "float",
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextPrefix": "» ",
+  "diagnostic.warningSign": "⚑",
+
+  "suggest.echodocSupport": true,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.snippetIndicator": " ⭐︎",
+  "suggest.timeout": 2000, // down from 5000
+
+  // =========================================================================
+  // Language Servers
+  // =========================================================================
+
+  "languageserver": {},
+
+  // =========================================================================
+  // coc-css
+  // =========================================================================
+
+  // Using coc-diagnostic + stylelint instead
+  "css.validate": false,
+
+  // =========================================================================
+  // coc-diagnostic
+  // =========================================================================
+
+  "diagnostic-languageserver.enable": true,
+  "diagnostic-languageserver.filetypes": {
+    // "vim": [ "vint" ],
+    // "css": [ "stylelint" ],
+    // "dockerfile": [ "hadolint" ],
+    // "markdown": [ "markdownlint" ]
+    // neomake is still better for shellcheck and bashate since we can read
+    // shebang first
+  },
+  // Most already defined
+  // https://github.com/iamcco/coc-diagnostic/blob/master/src/config.ts
+  //"diagnostic-languageserver.linters"
+
+  // =========================================================================
+  // coc-docthis
+  // =========================================================================
+
+  "docthis.returnsTag": false,
+  "docthis.includeMemberOfOnClassMembers": false,
+  "docthis.inferTypesFromNames": true,
+
+  // =========================================================================
+  // coc-git
+  // =========================================================================
+
+  // "true" makes things real slow
+  "git.addGBlameToBufferVar": false,
+
+  "git.enableGutters": true,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+
+  // =========================================================================
+  // coc-prettier
+  // =========================================================================
+
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": false,
+  "prettier.semi": true,
+  "prettier.useTabs": false,
+  "prettier.proseWrap": "preserve",
+  "prettier.arrowParens": "always",
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "prettier.statusItemText": "<ᴀ-=> ᴘʀᴇᴛᴛɪᴇʀ",
+
+  // =========================================================================
+  // coc-tssserver - typescript typings support, js and ts lang server
+  // Validation is disabled in favor of coc-eslint
+  // https://github.com/neoclide/coc-tsserver#configuration-options
+  // =========================================================================
+
+  "typescript.validate.enable": true,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.updateImportsOnFileMove.enable": false,
+
+  "javascript.validate.enable": true,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.updateImportsOnFileMove.enable": false,
+
+  // =========================================================================
+  // coc-angular
+  // =========================================================================
+  "angular.experimental-ivy": false,
+  "angular.enable-experimental-ivy-prompt": false
+}
