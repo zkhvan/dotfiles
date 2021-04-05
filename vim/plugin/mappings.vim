@@ -33,6 +33,8 @@ nnoremap  <silent><special>  <Leader>evp
       \ :<C-U>execute 'edit ' . g:vdotdir . '/autoload/kzplug/plugins.vim'<CR>
 nnoremap  <silent><special>  <Leader>evm
       \ :<C-U>execute 'edit ' . g:vdotdir . '/plugin/mappings.vim'<CR>
+nnoremap  <silent><special>  <Leader>ega
+      \ :<C-U>execute 'edit ' . expand($DOTFILES) . '/git/aliases.gitconfig'<CR>
 
 " ============================================================================
 " Buffer manip
