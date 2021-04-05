@@ -13,7 +13,7 @@
 
 	ci          = commit
 	ca          = commit --amend --no-edit
-	cm          = commit -m
+	cm          = commit --edit -m
 
 	lasttag     = describe --tags --abbrev=0
 
