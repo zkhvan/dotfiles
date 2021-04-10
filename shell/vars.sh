@@ -78,6 +78,17 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 # ============================================================================
 
 # ----------------------------------------------------------------------------
+# ansible
+# https://docs.ansible.com/ansible/latest/reference_appendices/config.html
+# ----------------------------------------------------------------------------
+
+export ANSIBLE_CONFIG_PATH_DIR="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_SSH_CONTROL_PATH_DIR="${ANSIBLE_CONFIG_PATH_DIR}/cp"
+export ANSIBLE_LOCAL_TEMP="${ANSIBLE_CONFIG_PATH_DIR}/tmp"
+export ANSIBLE_GALAXY_TOKEN_PATH="${ANSIBLE_CONFIG_PATH_DIR}/galaxy_token"
+export ANSIBLE_PERSISTENT_CONTROL_PATH_DIR="${ANSIBLE_CONFIG_PATH_DIR}/pc"
+
+# ----------------------------------------------------------------------------
 # for rsync and cvs
 # ----------------------------------------------------------------------------
 
@@ -127,3 +138,6 @@ export NVIM_LISTEN_ADDRESS=localhost:90210
 
 # yarn cache
 export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"
+
+# macos security bypass
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
