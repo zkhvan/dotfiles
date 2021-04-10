@@ -134,7 +134,7 @@ export MANPAGER="$PAGER"
 
 # neovim
 export NVIM_PYTHON_LOG_FILE="${DOTFILES}/logs/nvim_python.log"
-export NVIM_LISTEN_ADDRESS=localhost:90210
+# export NVIM_LISTEN_ADDRESS=localhost:90210
 
 # yarn cache
 export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"

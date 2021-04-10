@@ -271,6 +271,8 @@ function! kzplug#plugins#LoadAll() abort
 
   Plug 'romainl/vim-qf'
 
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
   " --------------------------------------------------------------------------
   " Window events
   " --------------------------------------------------------------------------
