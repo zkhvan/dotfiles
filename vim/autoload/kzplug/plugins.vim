@@ -194,6 +194,13 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'neoclide/coc.nvim', WithCompl({ 'branch': 'release' })
 
   " ==========================================================================
+  " Language: ansible config
+  " ==========================================================================
+
+  " ft specific stuff only
+  Plug 'pearofducks/ansible-vim'
+
+  " ==========================================================================
   " Language: bash/shell/zsh
   " ==========================================================================
 
