@@ -38,3 +38,11 @@ PATH="$KZ_SYSTEM_PATH"
 # For Mojave, we'll have /usr/local/bin twice. In zsh at least this gets
 # deduped.
 PATH="/usr/local/bin:/usr/local/sbin:${KZ_SYSTEM_PATH}"
+
+# ----------------------------------------------------------------------------
+# Languages
+# ----------------------------------------------------------------------------
+
+# dotnet -- DOTNET_* is in shell/vars.sh
+PATH="${DOTNET_INSTALL_DIR}:${PATH}"
+PATH="${DOTNET_TOOLS_DIR}:${PATH}"

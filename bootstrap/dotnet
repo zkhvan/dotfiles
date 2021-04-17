@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# ----------------------------------------------------------------------------
+# TODO: Automate dotnet-install usage
+#
+# $ dotnet-install --channel LTS
+# $ dotnet-install --channel 5.0
+

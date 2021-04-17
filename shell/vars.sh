@@ -114,6 +114,13 @@ export PAGER='less'
 # docker
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
+# dotnet
+export DOTNET_INSTALL_DIR="${XDG_DATA_HOME}/dotnet"
+export DOTNET_ROOT="${DOTNET_INSTALL_DIR}"
+export DOTNET_TOOLS_DIR="${DOTNET_INSTALL_DIR}/tools"
+export DOTNET_CLI_TELEMETRY_OPTOUT="1"
+export DOTNET_NOLOGO="1"
+
 # less
 # -F quit if one screen (default)
 # -N line numbers
