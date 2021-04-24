@@ -55,8 +55,8 @@ __symlink() {
     ".vim"
   kz-symlink "vim" \
     ".config/nvim"
-  #kz-symlink "ideavim/dot.ideavimrc" \
-  #  ".ideavimrc"
+  kz-symlink "idea/dot.ideavimrc" \
+    ".ideavimrc"
 
   case "$OSTYPE" in
   *arwin*)
