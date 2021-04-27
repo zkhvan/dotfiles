@@ -122,6 +122,8 @@ function! kzplug#plugins#LoadAll() abort
 
   Plug 'svermeulen/vim-yoink', PlugIf(has('nvim'))
 
+  Plug 'godlygeek/tabular', { 'on': [ 'Tabularize' ] }
+
   Plug 'bootleq/vim-cycle', { 'on': [ '<Plug>Cycle' ] }
 
   Plug 'machakann/vim-highlightedyank'
