@@ -14,6 +14,7 @@
 	ci          = commit
 	ca          = commit --amend --no-edit
 	cm          = commit --edit -m
+	cf          = commit --fixup
 
 	lasttag     = describe --tags --abbrev=0
 

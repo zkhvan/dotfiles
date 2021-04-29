@@ -53,6 +53,7 @@
 	commentchar = ";"
 	ignorecase = false
 	pager = delta
+	hooksPath = "~/.dotfiles/git/hooks"
 
 [diff]
 	compactionHeuristic = true
@@ -75,6 +76,7 @@
 
 [rebase]
 	stat = true
+	autosquash = true
 
 [rerere]
 	enabled = 1
