@@ -49,6 +49,8 @@ __symlink() {
   #  ".config/nvm/default-packages"
   kz-symlink "tmux/tmux.conf" \
     ".config/tmux/tmux.conf"
+  kz-symlink "local/tmuxp" \
+   ".config/tmuxp"
 
   # (n)vim / intellij ideavim
   kz-symlink "vim" \
