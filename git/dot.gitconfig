@@ -39,6 +39,9 @@
 # Repo settings and command options
 # ============================================================================
 
+[init]
+	defaultBranch = develop
+
 [blame]
 	date = short
 	showEmail = true
