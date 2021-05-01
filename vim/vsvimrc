@@ -1,0 +1,108 @@
+"------------------------------------------------------------
+" Modeline: vim: set sw=4 ts=4 sts=4 et tw=79 foldlevel=0 foldmethod=marker spell:
+"------------------------------------------------------------
+" Usability options {{{1
+"
+" Print the line number in front of each line.
+set nonumber
+
+" When there is a previous search pattern, highlight all its matches.
+set hlsearch
+
+" indentation options
+" Note: smartindent is seriously outdated. cindent, even, is unnecessary.
+" Let the filetype plugins do the work.
+set expandtab
+set shiftwidth=4
+set tabstop=4
+
+" Minimal number of screen lines to keep above and below the cursor.
+set scrolloff=3
+
+" Remove the status line for VsVim
+set laststatus=0
+
+" Allow specified keys that move the cursor left/right to move to the
+" previous/next line when the cursor is on the first/last character in the
+" line.
+set whichwrap=b,s,<,>,[,]
+
+set nowrap
+
+" Influences the working of <BS>, <Del>, CTRL-W and CTRL-U in Insert
+" mode.
+" value     effect
+" indent    allow backspacing over autoindent
+" eol       allow backspacing over line breaks (join lines)
+" start     allow backspacing over the start of insert; CTRL-W and CTRL-U
+"           stop once at the start of insert.
+set backspace=indent,eol,start
+
+" Ignore case in search patterns. Override the 'ignorecase' option if the
+" search pattern contains upper case characters.
+set ignorecase smartcase
+
+" VsVim will use the clipboard register '*' for all yank, delete,
+" change and put operations which would normally go to the unnamed register.
+set clipboard=unnamed
+
+"------------------------------------------------------------
+" Mappings {{{1
+"
+
+nmap o A<CR>
+nmap O ko
+
+nmap S ddO
+nmap cc S
+
+nmap Y y$
+
+nmap zl :vsc Edit.ScrollColumnRight<CR>
+nmap zh :vsc Edit.ScrollColumnLeft<CR>
+
+nmap <C-l> zlzlzlzlzlzlzlzlzlzl
+nmap <C-h> zhzhzhzhzhzhzhzhzhzh
+
+nmap <Esc><Esc> :nohl<CR>
+nmap <Leader>r :vsc SQL.TSqlEditorToggleResultsPane<CR>
+
+nmap gi :vsc ReSharper.ReSharper_GotoImplementations<CR>
+nmap gr :vsc ReSharper.ReSharper_GotoUsage<CR>
+nmap gt :vsc ReSharper.ReSharper_NavigateTo<CR>
+
+" Mappings due to VsVim
+nmap <Leader>ra :vsc TestExplorer.RunAllTests<CR>
+nmap <Leader>rt :vsc TestExplorer.RunAllTestsInContext<CR>
+nmap <Leader>rl :vsc TestExplorer.RepeatLastRun<CR>
+nmap <Leader>da :vsc TestExplorer.DebugAllTests<CR>
+nmap <Leader>dt :vsc TestExplorer.DebugAllTestsInContext<CR>
+
+" Mappings due to R#
+nmap <Leader>[s :vsc SolutionExplorer.SyncWithActiveDocument<CR>
+nmap <Leader>nf :vsc SolutionExplorer.SyncWithActiveDocument<CR>
+
+nmap <Leader>g/ :vsc ReSharper.ReSharper_GotoText<CR>
+nmap <Leader>gt :vsc ReSharper.ReSharper_GotoType<CR>
+nmap <Leader>gr :vsc ReSharper.ReSharper_GotoRecentFiles<CR>
+nmap <Leader>gf :vsc ReSharper.ReSharper_GotoFile<CR>
+nmap <Leader>gm :vsc ReSharper.ReSharper_GotoFileMember<CR>
+nmap <Leader>gs :vsc ReSharper.ReSharper_GotoSymbol<CR>
+
+nmap <Leader>ur :vsc ReSharper.ReSharper_UnitTestRunFromContext<CR>
+nmap <Leader>ud :vsc ReSharper.ReSharper_UnitTestDebugContext<CR>
+nmap <Leader>ul :vsc ReSharper.ReSharper_UnitTestRunSolution<CR>
+nmap <Leader>uy :vsc ReSharper.ReSharper_UnitTestRunCurrentSession<CR>
+nmap <Leader>uh :vsc ReSharper.ReSharper_CoverTestsInCurrentContext<CR>
+nmap <Leader>uu :vsc ReSharper.ReSharper_UnitTestSessionRepeatPreviousRun<CR>
+nmap <Leader>ua :vsc ReSharper.ReSharper_UnitTestSessionAppendTests<CR>
+nmap <Leader>un :vsc ReSharper.ReSharper_UnitTestSessionNewSession<CR>
+
+nmap <Leader>bs :vsc Build.BuildSelection<CR>
+nmap <Leader>ba :vsc Build.BuildSolution<CR>
+
+nmap <Leader>wp :vsc Window.PinTab<CR>
+nmap <Leader>wc :vsc OtherContextMenus.EasyMDIToolWindow.CloseAllButPinned<CR>
+nmap <Leader>wc :vsc Window.CloseAllButPinned<CR>
+
+"------------------------------------------------------------
