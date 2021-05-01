@@ -96,6 +96,14 @@ nnoremap <silent><special>   <Leader>..
       \ :<C-U>cd! ..<CR>
 
 " ============================================================================
+" Helper methods for diff
+" ============================================================================
+
+nnoremap  <special>   <Leader>d0  :<C-U>let buf=bufnr('%') \| exec 'bufdo diffoff' \| exec 'b' buf<CR>
+nnoremap  <special>   <Leader>d1  :<C-U>windo diffthis<CR>
+nnoremap  <special>   <Leader>d2  :<C-U>windo diffupdate<CR>
+
+" ============================================================================
 " Editing
 " ============================================================================
 
