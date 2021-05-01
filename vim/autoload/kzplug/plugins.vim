@@ -262,6 +262,8 @@ function! kzplug#plugins#LoadAll() abort
   " after/syntax for GitHub emoji, checkboxes
   Plug 'rhysd/vim-gfm-syntax'
 
+  Plug 'ferrine/md-img-paste.vim'
+
   " ==========================================================================
   " UI -- load last!
   " ==========================================================================
