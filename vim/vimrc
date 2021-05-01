@@ -404,6 +404,8 @@ if g:kz_autoinstall_vim_plug
   endif
 endif
 
+command! -nargs=? WD call kz#write#WriteWithDate(<q-args>)
+
 " ============================================================================
 " Autocommands
 " ============================================================================
