@@ -104,7 +104,7 @@ if kz#grepper#Get().command ==# 'rg'
         \   'rg --color=always --column --line-number --no-heading '
         \     . '--hidden --smart-case '
         \     . '--no-ignore-vcs '
-        \     . '--ignore-file "${DOTFILES}/ag/dot.ignore" '
+        \     . '--ignore-file "${DOTFILES}/ignore/dot.ignore" '
         \     . shellescape(<q-args>),
         \   1,
         \   <bang>0 ? s:grepper_full : s:grepper_half,
