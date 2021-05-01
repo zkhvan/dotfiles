@@ -472,6 +472,12 @@ augroup kzrestoreposition
   autocmd BufWinEnter * call kz#RestorePosition()
 augroup END
 
+augroup kzxmlfolding
+  autocmd!
+  autocmd FileType xml let g:xml_syntax_folding=1
+  autocmd FileType xml setlocal foldmethod=syntax
+augroup END
+
 " ============================================================================
 " Security
 " ============================================================================
