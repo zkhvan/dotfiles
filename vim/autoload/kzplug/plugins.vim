@@ -48,7 +48,12 @@ function! kzplug#plugins#LoadAll() abort
   " ==========================================================================
 
   Plug 'mhartington/oceanic-next'
-  Plug 'davidosomething/vim-colors-meh'
+
+  if isdirectory(g:kz#vim_dir . '/mine/vim-colors-meh')
+    Plug g:kz#vim_dir . '/mine/vim-colors-meh'
+  else
+    Plug 'davidosomething/vim-colors-meh'
+  endif
 
   " ==========================================================================
   " Embedded filetype support
