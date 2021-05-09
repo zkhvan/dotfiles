@@ -123,7 +123,7 @@ __alias_ls() {
   alias l="ls $__single_column $__almost_all"
   # shellcheck disable=SC2139
   alias ll="l $__long"
-  # shit
-  alias kk='ll'
+  # reverse chronological
+  alias lr="ll -tUr"
 }
 __alias_ls
