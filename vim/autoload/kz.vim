@@ -264,7 +264,7 @@ function! kz#TwoSpace() abort
 endfunction
 
 function! kz#FourSpace() abort
-  setlocal expandtab shiftwidth=4 softtabstop=4
+  setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 endfunction
 
 function! kz#TwoTabs() abort
