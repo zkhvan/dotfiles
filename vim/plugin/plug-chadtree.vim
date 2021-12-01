@@ -13,6 +13,7 @@ noremap <Leader>no :CHADopen<CR>
 noremap <Leader>nf :CHADopen --always-focus<CR>
 
 let g:chadtree_settings = {
+      \   'options.polling_rate': 10.0,
       \   'view.width': 60,
       \ }
 
