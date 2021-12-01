@@ -20,7 +20,7 @@ table.insert(mods, require("window.gridy"))
 table.insert(mods, require("window.throw"))
 
 print "== reload"
-hs.hotkey.bind(hyper, "R", function()
+hs.hotkey.bind(hyper, "0", function()
   for _, mod in ipairs(mods) do
     if type(mod) == "table" and mod["destructor"] then
       print("== destroying " .. mod["name"])
