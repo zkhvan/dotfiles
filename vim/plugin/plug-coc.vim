@@ -85,6 +85,11 @@ autocmd kzcoc FileType
       \   :<C-U>CocCommand prettier.formatFile<CR>
       "\   :CocCommand eslint.executeAutofix<CR>
 
+autocmd kzcoc FileType
+      \ xml
+      \ nmap <silent> <A-=>
+      \   <Plug>(coc-format)
+
 " coc-snippets
 imap <C-f> <Plug>(coc-snippets-expand-jump)
 
