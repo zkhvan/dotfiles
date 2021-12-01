@@ -65,7 +65,9 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> gh <Plug>(coc-declaration)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Leader>t <Plug>(coc-type-definition)
+nmap <silent> <Leader>r <Plug>(coc-rename)
 
 " Formatting
 nmap <silent> <Leader>= <Plug>(coc-format-selected)
