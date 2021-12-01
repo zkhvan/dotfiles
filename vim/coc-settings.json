@@ -12,6 +12,9 @@
   // Don't try to run on files larger than this. Reduced from 10mb
   "coc.preferences.maxFileSize": "1MB",
 
+  // Use vim's native quickfix
+  "coc.preferences.useQuickfixForLocations": true,
+
   // Hide the super noisy Actions, # of References etc virtualText that
   // appears at end of lines
   "codeLens.enable": false,
