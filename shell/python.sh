@@ -16,6 +16,10 @@ unset PYTHONPATH
 # init once
 export PYENV_ROOT="${XDG_CONFIG_HOME}/pyenv"
 PATH="${PYENV_ROOT}/bin:${PATH}"
+
+# shims (fails silently if bin is not found)
+eval "$(pyenv init --path 2>/dev/null)"
+
 __kz_has 'pyenv' && {
   KZ_SOURCE="${KZ_SOURCE} -> pyenv"
   eval "$(pyenv init -)"
