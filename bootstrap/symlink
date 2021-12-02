@@ -66,6 +66,8 @@ __symlink() {
       ".config/hammerspoon"
     kz-symlink "mac/dot.hushlogin" \
       ".hushlogin"
+    kz-symlink "./mac/karabiner-elements/karabiner.json" \
+      ".config/karabiner/karabiner.json"
     #kz-symlink "mac/dot.mackup.cfg" \
     #  ".mackup.cfg"
     #kz-symlink "mac/LaunchAgents/dotfiles.plist" \
