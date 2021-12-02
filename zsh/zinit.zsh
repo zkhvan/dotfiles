@@ -106,6 +106,6 @@ zinit lucid wait for \
 
 # don't add wait, messes with zsh-autosuggest
 zinit lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" for \
-  'zdharma/fast-syntax-highlighting'
+  'zdharma-continuum/fast-syntax-highlighting'
 
 KZ_SOURCE="${KZ_SOURCE} }"

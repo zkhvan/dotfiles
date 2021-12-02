@@ -34,7 +34,7 @@ __kz_has 'git' && {
   kz_zinit_script="${kz_zinit_dest}/zinit.zsh"
   __kz_source "$kz_zinit_script" || {
     # install if needed
-    command git clone https://github.com/zdharma/zinit "${kz_zinit_dest}" &&
+    command git clone https://github.com/zdharma-continuum/zinit "${kz_zinit_dest}" &&
       __kz_source "$kz_zinit_script"
   }
   unset kz_zinit_dest
