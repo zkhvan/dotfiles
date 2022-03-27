@@ -13,7 +13,9 @@ noremap <Leader>no :CHADopen<CR>
 noremap <Leader>nf :CHADopen --always-focus<CR>
 
 let g:chadtree_settings = {
-      \   'options.polling_rate': 10.0,
+      \   'keymap.toggle_version_control': [','],
+      \   'options.polling_rate': 2.0,
+      \   'options.version_control.enable': v:false,
       \   'view.width': 60,
       \ }
 
