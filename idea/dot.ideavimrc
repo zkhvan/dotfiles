@@ -27,6 +27,7 @@ nnoremap gi             :action ReSharperGotoImplementation<CR>
 nnoremap gr             :action ShowUsages<CR>
 nnoremap gt             :action ReSharperNavigateTo<CR>
 
+nnoremap <Leader>r      :action RenameElement<CR>
 nnoremap <Leader>gt     :action SearchEverywhere<CR>
 nnoremap <Leader>gm     :action FileStructurePopup<CR>
 
