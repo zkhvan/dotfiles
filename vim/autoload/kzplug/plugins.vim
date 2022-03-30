@@ -196,8 +196,8 @@ function! kzplug#plugins#LoadAll() abort
         \  'coc-snippets',
         \  'coc-tsserver',
         \  'coc-vimlsp',
-        \  'coc-yaml',
         \  'coc-xml',
+        \  'coc-yaml',
         \]
   Plug 'neoclide/coc.nvim', WithCompl({ 'branch': 'release' })
 
