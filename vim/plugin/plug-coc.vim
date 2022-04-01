@@ -21,6 +21,10 @@ autocmd kzcoc FileType css,less,scss
 let g:coc_snippet_next = '' "'<C-f>'
 let g:coc_snippet_prev = '' "'<C-b>'
 
+if exists('+tagfunc')
+  set tagfunc=CocTagFunc
+endif
+
 " --------------------------------------------------------------------------
 " Utils
 " --------------------------------------------------------------------------
@@ -90,7 +94,7 @@ autocmd kzcoc FileType
       "\   :CocCommand eslint.executeAutofix<CR>
 
 autocmd kzcoc FileType
-      \ xml
+      \ xml,go
       \ nmap <silent> <A-=>
       \   <Plug>(coc-format)
 

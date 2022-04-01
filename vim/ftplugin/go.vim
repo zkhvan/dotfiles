@@ -1,3 +1,3 @@
 " ftplugin/go.vim
 
-call kz#FourSpace()
+call kz#FourTabs()
