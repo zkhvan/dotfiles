@@ -39,8 +39,9 @@ export FORGIT_GI_REPO_LOCAL="${XDG_DATA_HOME}/forgit/gi/repos/dvcs/gitignore"
 # fzf-git -- `` compl for git commands
 zinit lucid for \
   'zkhvan/forgit' \
-  'torifat/npms' \
-  'Aloxaf/fzf-tab'
+  'torifat/npms'
+
+# zinit light 'Aloxaf/fzf-tab'
 
 # ----------------------------------------------------------------------------
 # Misc
