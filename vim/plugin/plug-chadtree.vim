@@ -16,6 +16,7 @@ let g:chadtree_settings = {
       \   'keymap.toggle_version_control': [','],
       \   'options.polling_rate': 2.0,
       \   'options.version_control.enable': v:false,
+      \   'options.close_on_open': v:true,
       \   'view.width': 60,
       \ }
 
