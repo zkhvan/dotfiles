@@ -7,6 +7,7 @@ hs.grid.MARGINY = 0
 
 hs.grid.setGrid('6x6', '1680x1050');
 hs.grid.setGrid('12x19.75', '3840x1600');
+hs.grid.setGrid('10.75x18', '3440x1440');
 
 -- Maximize window
 hs.hotkey.bind(hyper, "F", function()
