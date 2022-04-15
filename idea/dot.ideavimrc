@@ -79,7 +79,8 @@ vnoremap <A-=>          :action ReformatCode<CR>
 nnoremap <Leader>uu     :action RiderUnitTestQuickListPopupAction<CR>
 nnoremap <Leader>ur     :action RiderUnitTestRunContextAction<CR>
 nnoremap <Leader>ud     :action RiderUnitTestDebugContextAction<CR>
-nnoremap <Leader>uc     :action RiderUnitTestRunCurrentSessionAction<CR>
+nnoremap <Leader>uc     :action RiderUnitTestCoverContextAction<CR>
+nnoremap <Leader>us     :action RiderUnitTestRunCurrentSessionAction<CR>
 
 " ============================================================================
 " Mode and env
