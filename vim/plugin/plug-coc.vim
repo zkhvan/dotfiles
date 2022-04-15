@@ -89,13 +89,13 @@ nnoremap <silent> gsc :<C-U>CocCommand git.showCommit<CR>
 " coc-prettier
 autocmd kzcoc FileType
       \ javascript,javascriptreact,typescript,typescriptreact,json,graphql
-      \ nmap <silent> <A-=>
+      \ nmap <buffer><silent> <A-=>
       \   :<C-U>CocCommand prettier.formatFile<CR>
       "\   :CocCommand eslint.executeAutofix<CR>
 
 autocmd kzcoc FileType
       \ xml,go
-      \ nmap <silent> <A-=>
+      \ nmap <buffer><silent> <A-=>
       \   <Plug>(coc-format)
 
 " coc-snippets
