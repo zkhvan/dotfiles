@@ -32,7 +32,7 @@ zinit lucid as'program' for \
 # Binary release in archive, from GitHub-releases page.
 # After automatic unpacking it provides program "fzf".
 ! __kz_has fzf && zinit lucid from'gh-r' as'program' for \
-  'junegunn/fzf-bin'
+  'junegunn/fzf'
 
 export forgit_ignore='fgi'
 export FORGIT_GI_REPO_LOCAL="${XDG_DATA_HOME}/forgit/gi/repos/dvcs/gitignore"
