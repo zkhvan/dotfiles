@@ -75,6 +75,9 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Leader>t <Plug>(coc-type-definition)
 nmap <silent> <Leader>r <Plug>(coc-rename)
 
+" Search workspace symbols.
+nmap <silent><nowait> <Leader>gt  :<C-u>CocList -I symbols<cr>
+
 " Formatting
 nmap <silent> <Leader>= <Plug>(coc-format-selected)
 vmap <silent> <Leader>= <Plug>(coc-format-selected)
