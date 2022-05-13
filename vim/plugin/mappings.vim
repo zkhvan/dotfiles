@@ -168,6 +168,14 @@ nnoremap  <special> <Leader>ws  :<C-U>call kz#whitespace#clean()<CR>
 " nnoremap            *           m`:<C-U>keepjumps normal! *``<CR>
 nnoremap  <silent>  *           :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
+" ----------------------------------------------------------------------------
+" Runners
+" ----------------------------------------------------------------------------
+
+nnoremap  <Leader>Rn   :%!node -p<CR>
+vnoremap  <Leader>Rn   :!node -p<CR>
+vnoremap  <Leader>RN   :w !node -p \| pbcopy<CR><CR>
+
 " ============================================================================
 " Visual
 " ============================================================================
