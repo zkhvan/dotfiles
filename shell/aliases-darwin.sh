@@ -30,4 +30,4 @@ alias chrome='open -a "Google Chrome.app"'
 # Networking
 # ----------------------------------------------------------------------------
 
-alias localhost-alias='echo 127.0.{1,2}.{1..6} | xargs -n 1 -I{} sudo ifconfig lo0 alias {} 255.255.255.0'
+alias localhost-alias='echo 127.0.{1,2}.{1..8} | xargs -n 1 -I{} sudo ifconfig lo0 alias {} 255.255.255.0'
