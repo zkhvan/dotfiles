@@ -7,6 +7,7 @@
 [[ -n "$TMUX" ]] && KZ_SOURCE="${KZ_SOURCE} -> ____TMUX____ {"
 KZ_SOURCE="${KZ_SOURCE} -> .zshrc {"
 
+source "${HOME}/.dotfiles/lib/helpers.sh"
 source "${HOME}/.dotfiles/shell/dot.profile"
 
 # ============================================================================
