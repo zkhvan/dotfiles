@@ -9,7 +9,8 @@ RUN DEBIAN_FRONTEND=NONINTERACTIVE \
   apt-get update && \
   apt-get install -y \
     coreutils curl git libuser rsync sudo zsh \
-    autoconf bash libncurses-dev file
+    autoconf bash libncurses-dev file unzip bzip2 \
+    neovim
 
 COPY . .dotfiles
 
