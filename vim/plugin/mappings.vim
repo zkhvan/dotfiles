@@ -24,9 +24,19 @@ noremap   gs    <NOP>
 " https://vi.stackexchange.com/questions/7859/workaround-for-q-to-q-while-quitting-in-vim
 command! Q q
 
+" Closest
 nnoremap  <silent><special>  <Leader>ecr
       \ :<C-U>call kz#edit#EditClosest('README.md')<CR>
 
+" Notes
+nnoremap  <silent><special>  <Leader>ent
+      \ :<C-U>execute 'edit ' . expand($HOME) . '/Google\ Drive/Notes/TODO.md'<CR>
+nnoremap  <silent><special>  <Leader>ens
+      \ :<C-U>execute 'edit ' . expand($HOME) . '/Google\ Drive/Notes/Scratchpad'<CR>
+nnoremap  <silent><special>  <Leader>enn
+      \ :<C-U>execute 'edit ' . expand($HOME) . '/Google\ Drive/Notes/' . strftime('%Y-%m-%d') . '.md'<CR>
+
+" Dotfiles
 nnoremap  <silent><special>  <Leader>evr
       \ :<C-U>execute 'edit ' . g:vdotdir . '/vimrc'<CR>
 nnoremap  <silent><special>  <Leader>evp
