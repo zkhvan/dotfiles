@@ -188,6 +188,7 @@ function! kzplug#plugins#LoadAll() abort
         \  'coc-css',
         \  'coc-diagnostic',
         \  'coc-docthis',
+        \  'coc-eslint',
         \  'coc-git',
         \  'coc-go',
         \  'coc-html',

@@ -117,6 +117,10 @@
   "javascript.preferences.quoteStyle": "single",
   "javascript.updateImportsOnFileMove.enable": false,
 
+  // =========================================================================
+  // coc-eslint
+  // =========================================================================
+  "eslint.alwaysShowStatus": true,
 
   // =========================================================================
   // coc-markdownlint

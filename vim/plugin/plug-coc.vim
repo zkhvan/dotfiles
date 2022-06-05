@@ -89,6 +89,9 @@ nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
 nnoremap <silent> gsc :<C-U>CocCommand git.showCommit<CR>
 
+" coc-eslint
+nnoremap <silent> <Leader>cl :<C-U>CocCommand eslint.lintProject<CR>
+
 " coc-prettier
 autocmd kzcoc FileType
       \ javascript,javascriptreact,typescript,typescriptreact,json,graphql
