@@ -458,6 +458,7 @@ hi! link CocErrorSign       dkoSignError
 hi! link CocWarningSign     dkoSignWarning
 hi! link CocInfoSign        dkoSignInfo
 hi! link CocHintSign        dkoSignMessage
+hi! link CocFadeOut         Ignore
 
 " ============================================================================
 " QuickFix
