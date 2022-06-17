@@ -32,6 +32,9 @@
   "diagnostic.virtualTextPrefix": "» ",
   "diagnostic.warningSign": "⚑",
 
+  // Opt-in semantic token support from LSP servers.
+  "semanticTokens.filetypes": ["bicep"],
+
   "suggest.minTriggerInputLength": 1,
   "suggest.snippetIndicator": " ⭐︎",
   "suggest.timeout": 2000, // down from 5000
