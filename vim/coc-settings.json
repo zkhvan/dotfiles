@@ -43,7 +43,14 @@
   // Language Servers
   // =========================================================================
 
-  "languageserver": {},
+  "languageserver": {
+    "bicep": {
+      "command": "dotnet",
+      "args": ["/Users/zkhvan/Downloads/bicep/Bicep.LangServer.dll"],
+      "filetypes": ["bicep"],
+      "rootPatterns": [".git/"]
+    }
+  },
 
   // =========================================================================
   // coc-css
@@ -135,5 +142,7 @@
   // =========================================================================
   // coc-powershell
   // =========================================================================
-  "powershell.integratedConsole.showOnStartup": false
+  "powershell.integratedConsole.showOnStartup": false,
+  "markdown-preview-enhanced.liveUpdate": true,
+  "markdown-preview-enhanced.previewTheme": "github-light.css"
 }
