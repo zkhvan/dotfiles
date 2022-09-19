@@ -4,6 +4,7 @@ nplugged/
 plugged/
 plug/
 vendor/
+vimspector/gadgets
 
 # cache
 *.*~

@@ -6,21 +6,14 @@ augroup kzvimspector
   autocmd!
 augroup END
 
-function! DelveStrategy(cmd)
-  let testName = matchlist(a:cmd, '\v-run ''(.*)\$''')[1]
-  call vimspector#LaunchWithSettings( #{ configuration: 'test', TestName: testName } )
-endfunction
-
 let s:cpo_save = &cpoptions
 set cpoptions&vim
+
+let g:vimspector_base_dir = g:kz_nvim_dir . '/vimspector'
 
 let g:vimspector_enable_mappings = 'HUMAN'
 
 let g:vimspector_install_gadgets = ['delve']
-
-let g:test#custom_strategies = {
-      \ 'delve': function('DelveStrategy')
-      \ }
 
 " for normal mode - the word under the cursor
 nmap <Leader>di <Plug>VimspectorBalloonEval
