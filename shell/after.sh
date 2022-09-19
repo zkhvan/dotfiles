@@ -30,7 +30,7 @@ __kz_prefer 'trash' && alias rm=trash
 # prefer ripgrep
 if __kz_has 'rg'; then
   grepper="rg --glob ''"
-  grepargs="--files --ignore-file \"${DOTFILES}/ignore/dot.ignore\""
+  grepargs="--files --hidden --ignore-file \"${DOTFILES}/ignore/dot.ignore\""
   alias ag='rg --hidden --smart-case --ignore-file "${DOTFILES}/ignore/dot.ignore"'
 elif __kz_has "ag"; then
   grepper='ag'
