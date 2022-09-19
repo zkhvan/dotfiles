@@ -238,6 +238,11 @@ function! kzplug#plugins#LoadAll() abort
   let g:committia_use_singlecolumn       = 'always'
   Plug 'rhysd/committia.vim'
 
+  " Provides nice tree diff/merge view
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'sindrets/diffview.nvim'
+
   " ==========================================================================
   " Language: JavaScript and derivatives, JSON
   " ==========================================================================
@@ -276,6 +281,8 @@ function! kzplug#plugins#LoadAll() abort
 
   " after/syntax for GitHub emoji, checkboxes
   Plug 'rhysd/vim-gfm-syntax'
+
+  Plug 'jakewvincent/mkdnflow.nvim'
 
   Plug 'ferrine/md-img-paste.vim'
 

@@ -1,7 +1,10 @@
 {
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
 
-  "coc.preferences.enableFloatHighlight": false,
+  "coc.preferences.floatActions": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "go"
+  ],
 
   // Do it manually
   "coc.preferences.extensionUpdateCheck": "never",
@@ -11,6 +14,12 @@
 
   // Use vim's native quickfix
   "coc.preferences.useQuickfixForLocations": true,
+
+  "list.insertMappings": {
+    "<A-v>": "eval:@@",
+    "<C-x>": "action:split",
+    "<C-v>": "action:vsplit"
+  },
 
   // Hide the super noisy Actions, # of References etc virtualText that
   // appears at end of lines
@@ -43,7 +52,15 @@
   // Language Servers
   // =========================================================================
 
-  "languageserver": {},
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  },
 
   // =========================================================================
   // coc-css
@@ -98,7 +115,6 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.bracketSpacing": true,
-  "prettier.jsxBracketSameLine": false,
   "prettier.semi": true,
   "prettier.useTabs": false,
   "prettier.proseWrap": "preserve",
@@ -129,11 +145,19 @@
   // coc-markdownlint
   // =========================================================================
   "markdownlint.config": {
-    "MD013": false
+    "MD013": false,
+    "MD024": false
   },
 
   // =========================================================================
   // coc-powershell
   // =========================================================================
-  "powershell.integratedConsole.showOnStartup": false
+  // "powershell.integratedConsole.showOnStartup": false,
+
+  // =========================================================================
+  // coc-yaml
+  // =========================================================================
+  "yaml.schemas": {
+    "kubernetes": "k8s/*.yaml"
+  }
 }

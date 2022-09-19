@@ -16,7 +16,7 @@ function! kz#write#WriteWithDate(...) abort
         \ strftime("%Y-%m-%d")
         \ . ( empty(l:filename)
         \   ? l:extension
-        \   : '_' . fnamemodify(l:filename, ':r') . l:extension
+        \   : '-' . fnamemodify(l:filename, ':r') . l:extension
         \ )
         \ , ' ')
 

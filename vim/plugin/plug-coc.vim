@@ -75,10 +75,16 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Leader>t <Plug>(coc-type-definition)
 nmap <silent> <Leader>r <Plug>(coc-rename)
 
+autocmd kzcoc FileType
+      \ go,typescript,typescriptreact
+      \ nmap <buffer><silent> gd
+      \   <C-]>
+
 " Search workspace symbols.
 nmap <silent><nowait> <Leader>gt  :<C-u>CocList -I symbols<cr>
 
 " Formatting
+nmap <silent> <A-=> <Plug>(coc-format)
 nmap <silent> <Leader>= <Plug>(coc-format-selected)
 vmap <silent> <Leader>= <Plug>(coc-format-selected)
 
@@ -88,13 +94,15 @@ nmap <silent> <Leader>bc <Plug>(coc-calc-result-replace)
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
 nnoremap <silent> gsc :<C-U>CocCommand git.showCommit<CR>
+nnoremap <silent> <Leader>gs :<C-U>CocCommand git.chunkStage<CR>
+nnoremap <silent> <Leader>gu :<C-U>CocCommand git.chunkUnstage<CR>
 
 " coc-eslint
 nnoremap <silent> <Leader>cl :<C-U>CocCommand eslint.lintProject<CR>
 
 " coc-prettier
 autocmd kzcoc FileType
-      \ javascript,javascriptreact,typescript,typescriptreact,json,graphql
+      \ javascript,javascriptreact,typescript,typescriptreact,json,graphql,yaml
       \ nmap <buffer><silent> <A-=>
       \   :<C-U>CocCommand prettier.formatFile<CR>
       "\   :CocCommand eslint.executeAutofix<CR>
