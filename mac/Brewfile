@@ -13,3 +13,6 @@ brew "zsh"
 
 cask "iterm2"
 cask "hammerspoon"
+cask "alt-tab"
+
+cask "font-jetbrains-mono-nerd-font"
