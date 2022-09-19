@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "runtime.version": "Lua 5.4",
+  "completion.enable": true,
+  "diagnostics.globals": ["hs", "hyper", "althyper"],
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs"
+  ]
+}
+

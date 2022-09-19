@@ -17,16 +17,8 @@ hs.hotkey.bind(hyper, 's', function()
   hs.application.launchOrFocus("Slack")
 end)
 
-hs.hotkey.bind(hyper, 't', function()
-  hs.application.launchOrFocus("Microsoft Teams")
-end)
-
-hs.hotkey.bind(hyper, 'w', function()
-  hs.application.launchOrFocus("TR-W6073763")
-end)
-
-hs.hotkey.bind(hyper, 'r', function()
-  hs.application.launchOrFocus("Rider")
+hs.hotkey.bind(hyper, 'z', function()
+  hs.toggleConsole()
 end)
 
 return nil
