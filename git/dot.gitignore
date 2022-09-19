@@ -109,6 +109,7 @@ cscope.po.out
 .padawan/
 .phpcomplete_extended/
 .vim/
+.vimspector.json
 *.orig
 *.sublime-project
 *.sublime-workspace
