@@ -1,5 +1,11 @@
 " after/ftplugin/markdown.vim
 "
+
+call kz#TwoSpace()
+
+setlocal wrap
+setlocal linebreak
+setlocal breakindent
 setlocal nomodeline
 setlocal spell
 
