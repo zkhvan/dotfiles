@@ -7,7 +7,16 @@ export KZ_SOURCE="${KZ_SOURCE} -> shell/os-darwin.zsh"
 # ============================================================================
 
 # Assume brew is in normal location, don't check for it
-export KZ_BREW_PREFIX="/usr/local"
+if [[ "$(/usr/bin/uname -m)" == "arm64" ]]
+then
+  export KZ_BREW_PREFIX="/opt/homebrew"
+
+  fpath=(${KZ_BREW_PREFIX}/share/zsh/site-functions $fpath)
+
+  PATH="${KZ_BREW_PREFIX}/bin:${PATH}"
+else
+  export KZ_BREW_PREFIX="/usr/local"
+fi
 
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
