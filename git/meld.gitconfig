@@ -1,0 +1,21 @@
+[diff]
+	tool = meld
+
+[difftool "meld"]
+	cmd = meld \"$LOCAL\" \"$REMOTE\"
+
+# Use $BASE as starting point for merged output
+[mergetool "meld-base"]
+	cmd = meld \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"
+
+# Use $MERGED as starting point for merged output
+[mergetool "meld-merged"]
+	cmd = meld \"$LOCAL\" \"$MERGED\" \"$REMOTE\" --output \"$MERGED\"
+
+[mergetool "meld"]
+	cmd = meld \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"
+
+[merge]
+	tool = meld
+
+# vim: ft=gitconfig :
