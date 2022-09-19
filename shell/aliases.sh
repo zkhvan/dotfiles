@@ -44,6 +44,7 @@ alias ezp='e "${ZDOTDIR}/zplugin.zsh"'
 alias ezr='e "${ZDOTDIR}/.zshrc"'
 alias esa='e "${DOTFILES}/shell/aliases.sh"'
 alias ega='e "${DOTFILES}/git/aliases.gitconfig"'
+alias egl='e "${LDOTDIR}/gitconfig"'
 
 # ----------------------------------------------------------------------------
 # git
