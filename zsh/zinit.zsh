@@ -63,17 +63,12 @@ zinit lucid from'gh-r' as'program' for \
   atclone'cp -vf fd/fd.1 $ZPFX/share/man/man1' atpull'%atclone' \
   '@sharkdp/fd' \
   \
-  mv'jq* -> jq'             'stedolan/jq' \
   mv'nvim-ctrl* -> nvctl'   'chmln/nvim-ctrl'   \
   mv'shfmt* -> shfmt'       '@mvdan/sh'         \
   \
   mv'zoxide* -> zoxide' \
   atload'eval "$(zoxide init --no-aliases zsh)" && alias j=__zoxide_z && alias ji=__zoxide_zi' \
   'ajeetdsouza/zoxide' \
-  \
-  mv'ripgrep* -> rg' pick'rg/rg' \
-  atclone'cp -vf rg/doc/rg.1 $ZPFX/share/man/man1' atpull'%atclone' \
-  'BurntSushi/ripgrep'
 
 zinit lucid for \
   'OMZP::cp' \
