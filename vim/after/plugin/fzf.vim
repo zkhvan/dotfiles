@@ -170,6 +170,7 @@ set cpoptions&vim
 nnoremap  <silent><special>   <Leader>gb   :<C-U>FZFBuffers<CR>
 nnoremap  <silent><special>   <Leader>gc   :<C-U>FZFCommands<CR>
 nnoremap  <silent><special>   <Leader>gf   :<C-U>FZFFiles<CR>
+nnoremap  <silent><special>   <Leader>gF   :<C-U>FZFGFiles<CR>
 nnoremap  <silent><special>   <Leader>gg   :<C-U>FZFGrepper!<CR>
 nnoremap  <silent><special>   <Leader>gp   :<C-U>FZFProject<CR>
 nnoremap  <silent><special>   <Leader>gv   :<C-U>FZFVim<CR>
