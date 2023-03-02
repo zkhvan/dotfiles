@@ -80,6 +80,7 @@
 [rebase]
 	stat = true
 	autosquash = true
+	updateRefs = true
 
 [rerere]
 	enabled = 1
