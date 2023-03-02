@@ -24,7 +24,7 @@ zstyle ':vcs_info:git*' actionformats     '%F{magenta}(%m %F{red}→%F{magenta} 
 
 # Show untracked files
 #
-# @see <https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples#L155>
+# @see <https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples#L163>
 # @see <http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#vcs_005finfo-Quickstart>
 # $1 message variable name
 # $2 formats/actionformats
