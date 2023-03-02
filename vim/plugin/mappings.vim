@@ -80,6 +80,9 @@ imap      <special>   <S-Down>    <C-o><S-Down>
 imap      <special>   <S-Left>    <C-o><S-Left>
 imap      <special>   <S-Right>   <C-o><S-Right>
 
+nnoremap <C-W><C-V>f :exec "vert norm <C-V><C-W>f"<CR>
+nnoremap <C-W><C-V>] :exec "vert norm <C-V><C-W>]"<CR>
+
 " ============================================================================
 " Mode and env
 " ============================================================================

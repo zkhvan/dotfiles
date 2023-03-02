@@ -46,3 +46,8 @@ snippet research
 	| [File] |       |
 	
 	[File]: ./README.md
+
+snippet hugo-alert
+	{{< alert title="${1:Note}" color="${2:info}" >}}
+	${3}
+	{{< /alert >}}

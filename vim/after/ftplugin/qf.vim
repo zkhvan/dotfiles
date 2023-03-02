@@ -14,11 +14,13 @@ setlocal nobuflisted
 nnoremap  <buffer>    Q   q
 
 " Open result in new tab
-nnoremap  <buffer>    t   <C-w><CR><C-w>T
+" nnoremap  <buffer>    t   <C-w><CR><C-w>T
 
 if kzplug#Exists('vim-qf')
   nmap <buffer> { <Plug>(qf_previous_file)
   nmap <buffer> } <Plug>(qf_next_file)
+
+  let g:qf_mapping_ack_style = 1
 endif
 
 " ============================================================================

@@ -14,6 +14,8 @@ noremap <Leader>nf :CHADopen --always-focus<CR>
 
 let g:chadtree_settings = {
       \   'keymap.toggle_version_control': [','],
+      \   'keymap.delete': [],
+      \   'keymap.trash': ['d', 't'],
       \   'options.polling_rate': 2.0,
       \   'options.version_control.enable': v:false,
       \   'options.close_on_open': v:true,

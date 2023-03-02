@@ -4,6 +4,7 @@
     "Run Current Directory": {
       "adapter": "delve",
       "configuration": {
+        "debugAdapter": "dlv-dap",
         "request": "launch",
         "program": "${fileDirname}",
         "mode": "debug",
@@ -13,6 +14,7 @@
     "Attach Current Dir (Local)": {
       "adapter": "delve",
       "configuration": {
+        "debugAdapter": "dlv-dap",
         "request": "attach",
         "program": "${fileDirname}",
         "remotePath": "${fileDirname}",
@@ -26,6 +28,7 @@
     "Attach Current Dir (Remote)": {
       "adapter": "delve",
       "configuration": {
+        "debugAdapter": "dlv-dap",
         "request": "attach",
         "program": "${fileDirname}",
         "remotePath": "${fileDirname}",
@@ -40,6 +43,7 @@
     "test": {
       "adapter": "delve",
       "configuration": {
+        "debugAdapter": "dlv-dap",
         "request": "launch",
         "program": "${fileDirname}",
         "mode": "test",

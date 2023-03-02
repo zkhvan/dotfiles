@@ -2,9 +2,7 @@
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
 
   "coc.preferences.floatActions": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "go"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["go"],
 
   // Do it manually
   "coc.preferences.extensionUpdateCheck": "never",
@@ -75,12 +73,35 @@
 
   "diagnostic-languageserver.enable": true,
   "diagnostic-languageserver.filetypes": {
+    "markdown": ["markdownlint", "vale"]
     // "vim": [ "vint" ],
     // "css": [ "stylelint" ],
     // "dockerfile": [ "hadolint" ],
     // "markdown": [ "markdownlint" ]
     // neomake is still better for shellcheck and bashate since we can read
     // shebang first
+  },
+  "diagnostic-languageserver.linters": {
+    "vale": {
+      "command": "vale",
+      "debounce": 100,
+      "args": ["--no-exit", "--output", "JSON", "--ext", ".md"],
+      "sourceName": "vale",
+      "parseJson": {
+        "errorsRoot": "stdin.md",
+        "line": "Line",
+        "column": "Span[0]",
+        "endLine": "Line",
+        "endColumn": "Span[1]",
+        "message": "${Message}\n${Link}",
+        "security": "Severity"
+      },
+      "securities": {
+        "error": "error",
+        "warning": "warning",
+        "suggestion": "info"
+      }
+    }
   },
   // Most already defined
   // https://github.com/iamcco/coc-diagnostic/blob/master/src/config.ts
@@ -142,12 +163,23 @@
   "eslint.alwaysShowStatus": true,
 
   // =========================================================================
+  // coc-lua
+  // =========================================================================
+  "lua.checkForUpdates": "disabled",
+
+  // =========================================================================
   // coc-markdownlint
   // =========================================================================
   "markdownlint.config": {
     "MD013": false,
     "MD024": false
   },
+
+  // =========================================================================
+  // coc-go
+  // =========================================================================
+  "go.tags": {},
+  "go.checkForUpdates": "disabled",
 
   // =========================================================================
   // coc-powershell

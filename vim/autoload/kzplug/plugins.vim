@@ -88,6 +88,10 @@ function! kzplug#plugins#LoadAll() abort
   let g:git_messenger_max_popup_height = 24
   Plug 'rhysd/git-messenger.vim', PlugIf(exists('*nvim_win_set_config'))
 
+  " Swap windows without ruining layout
+  " <Leader>ww on both windows to swap them
+  Plug 'wesQ3/vim-windowswap'
+
   " Add file manip commands like Remove, Move, Rename, SudoWrite
   " Do not lazy load, tracks buffers
   Plug 'tpope/vim-eunuch'
@@ -168,6 +172,10 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'mattn/vim-textobj-url', { 'on': [ '<Plug>(textobj-url' ] }
   " - b     for any block type (parens, braces, quotes, ltgt)
   Plug 'rhysd/vim-textobj-anyblock'
+  " - h     for markdown headers
+  " - f     for markdown code blocks
+  " - m     for markdown text blocks
+  Plug 'coachshea/vim-textobj-markdown'
 
   " HR with <Leader>f[CHAR]
   Plug g:kz#vim_dir . '/mine/vim-hr'
@@ -190,6 +198,7 @@ function! kzplug#plugins#LoadAll() abort
 
   " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
   let g:coc_global_extensions = [
+        \  '@yaegassy/coc-marksman',
         \  'coc-calc',
         \  'coc-css',
         \  'coc-diagnostic',
@@ -270,6 +279,11 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'maxmellon/vim-jsx-pretty'
 
   " ==========================================================================
+  " Language: Jupyter
+  " ==========================================================================
+  Plug 'goerz/jupytext.vim'
+
+  " ==========================================================================
   " Language: Markdown, Pandoc
   " ==========================================================================
 
@@ -282,9 +296,12 @@ function! kzplug#plugins#LoadAll() abort
   " after/syntax for GitHub emoji, checkboxes
   Plug 'rhysd/vim-gfm-syntax'
 
-  Plug 'jakewvincent/mkdnflow.nvim'
+  " Plug 'jakewvincent/mkdnflow.nvim'
+  Plug 'mickael-menu/zk-nvim'
 
   Plug 'ferrine/md-img-paste.vim'
+
+  Plug 'dhruvasagar/vim-table-mode'
 
   " ==========================================================================
   " Language: Powershell
