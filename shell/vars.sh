@@ -139,6 +139,9 @@ export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd
 export MANWIDTH=88
 export MANPAGER="$PAGER"
 
+# jupyter
+export JUPYTER_PATH="${XDG_DATA_HOME}/jupyter"
+
 # neovim
 export NVIM_PYTHON_LOG_FILE="${DOTFILES}/logs/nvim_python.log"
 # export NVIM_LISTEN_ADDRESS=localhost:90210
