@@ -48,6 +48,7 @@ function! kzplug#plugins#LoadAll() abort
   " ==========================================================================
 
   Plug 'nvim-treesitter/nvim-treesitter', PlugIf(has('nvim'), {'do': ':TSUpdate'})
+  Plug 'nvim-treesitter/playground', PlugIf(has('nvim'))
 
   " ==========================================================================
   " Colorscheme
@@ -153,8 +154,10 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'matze/vim-move'
 
   Plug 'kana/vim-operator-user'
-  " gcc to toggle comment
-  Plug 'tyru/caw.vim', { 'on': [ '<Plug>(caw' ] }
+  " gcc to toggle comment, not supporting treesitter...
+  " Plug 'tyru/caw.vim', { 'on': [ '<Plug>(caw' ] }
+  Plug 'numToStr/Comment.nvim'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   " gs(a/r/d) to modify surrounding the pending operator
   Plug 'rhysd/vim-operator-surround', { 'on': [ '<Plug>(operator-surround' ] }
   " <Leader>c to toggle PascalCase/snak_e the pending operator
@@ -217,7 +220,7 @@ function! kzplug#plugins#LoadAll() abort
         \  'coc-xml',
         \  'coc-yaml',
         \]
-  Plug 'neoclide/coc.nvim', WithCompl({ 'branch': 'release' })
+  Plug 'neoclide/coc.nvim', WithCompl({ 'branch': 'master', 'do': 'yarn install --frozen-lockfile' })
 
   " ==========================================================================
   " Language: ansible config
