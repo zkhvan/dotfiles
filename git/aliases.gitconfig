@@ -40,8 +40,10 @@
 	lg          = l --graph
 	lb          = log --abbrev-commit --oneline --decorate --all --graph
 	lbg         = log --abbrev-commit           --decorate --all --graph
-	new         = lg        @{u}..
-	news        = lg --stat	@{u}..
+	lu          = lg        @{u}..
+	lus         = lg --stat	@{u}..
+	new         = "!f() { git lg        $(git main-branch).. \"$@\"; }; f"
+	news        = "!f() { git lg --stat $(git main-branch).. \"$@\"; }; f"
 
 	m           = merge
 
@@ -80,6 +82,9 @@
 	reword      = "!f() { GIT_SEQUENCE_EDITOR='sed -i -e 1s/^pick/reword/' git rebase -i \"$@\"^; }; f"
 	edit        = "!f() { GIT_SEQUENCE_EDITOR='sed -i -e 1s/^pick/edit/' git rebase -i \"$@\"^; }; f"
 	dsf         = "!f() { [ -z \"$GIT_PREFIX\" ] || cd -- \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+
+	main-branch     = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+	main-branch-set = remote set-head origin --auto
 
 	diff-check-indent-tab   = "git -c core.whitespace=indent-with-non-tab diff --check"
 	diff-check-indent-space = "git -c core.whitespace=tab-in-indent diff --check"
