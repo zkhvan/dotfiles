@@ -439,6 +439,11 @@ augroup kzcoloredit
   autocmd BufWritePost */colors/*.vim so <afile>
 augroup END
 
+augroup kzhelm
+  autocmd!
+  autocmd BufRead,BufNewFile */template/*.yaml set ft=helm
+augroup END
+
 " Read only mode (un)mappings
 augroup kzreadonly
   autocmd!
