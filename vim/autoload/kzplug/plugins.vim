@@ -245,6 +245,9 @@ function! kzplug#plugins#LoadAll() abort
   " vim 7.4-77 ships with 2013 version, this is newer
   Plug 'tpope/vim-git'
 
+  " Show commit contents during rebase
+  Plug 'hotwatermorning/auto-git-diff'
+
   " show diff when editing a COMMIT_EDITMSG
   let g:committia_open_only_vim_starting = 0
   let g:committia_use_singlecolumn       = 'always'
