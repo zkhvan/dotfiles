@@ -57,6 +57,13 @@
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {},
       "settings": {}
+    },
+    "zk": {
+      "command": "zk",
+      "args": ["lsp"],
+      "filetypes": ["markdown"],
+      "initializationOptions": {},
+      "settings": {}
     }
   },
 
@@ -73,7 +80,7 @@
 
   "diagnostic-languageserver.enable": true,
   "diagnostic-languageserver.filetypes": {
-    "markdown": ["markdownlint", "vale"]
+    "markdown": ["markdownlint"]
     // "vim": [ "vint" ],
     // "css": [ "stylelint" ],
     // "dockerfile": [ "hadolint" ],

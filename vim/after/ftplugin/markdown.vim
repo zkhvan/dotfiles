@@ -22,7 +22,7 @@ if exists('$ITERM_PROFILE') || has('gui_macvim')
         \ :<C-U>MarkdownPreview<CR>
 
   nnoremap  <silent><buffer><special>  <Leader>mn
-        \ :<C-U>exec printf('silent !open %s/%s', 'http://localhost:8080', fnamemodify(expand("%"), ":~:.:r"))<CR>
+        \ :<C-U>exec printf('silent !open %s/%s', 'http://localhost:3000', fnamemodify(expand("%"), ":~:.:r"))<CR>
 
   " https://stackoverflow.com/questions/4525261/getting-relative-paths-in-vim
   " echo fnamemodify(expand("%"), ":~:.")
@@ -64,9 +64,6 @@ EOF
       \ input('Search: ') .
       \ '" }'<CR>
     vmap <silent> <Leader>zf :<C-U>'<,'>ZkMatch<CR>
-
-    " Open the daily note
-    nmap <silent> <Leader>zd :<C-U>ZkDaily<CR>
   endif
 endif
 

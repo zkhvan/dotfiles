@@ -26,6 +26,15 @@ zk.setup({
       name = "zk",
       -- on_attach = ...
       -- etc, see `:h vim.lsp.start_client()`
+      handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+          vim.lsp.diagnostic.on_publish_diagnostics,
+          {
+            -- Disable virtual text
+            virtual_text = false,
+          }
+        ),
+      },
     },
 
     -- automatically attach buffers in a zk notebook that match the given filetypes
@@ -33,15 +42,19 @@ zk.setup({
       enabled = true,
       filetypes = { "markdown" },
     },
+
   },
 })
 
 commands.add("ZkDaily", function(options)
   local date = os.date("%Y-%m-%d")
-  options = vim.tbl_extend("force", { title = date, template = "daily-journal.md" }, options or {})
+  options = vim.tbl_extend("force", { title = date, template = "daily.md", group = "log", dir = "log" }, options or {})
   zk.new(options)
 end)
 EOF
+
+" Open the daily note
+nmap <silent> <Leader>zd :<C-U>ZkDaily<CR>
 
 let &cpoptions = s:cpo_save
 unlet s:cpo_save
