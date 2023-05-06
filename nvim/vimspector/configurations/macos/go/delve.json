@@ -1,0 +1,55 @@
+{
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+  "configurations": {
+    "Run Current Directory": {
+      "adapter": "delve",
+      "configuration": {
+        "debugAdapter": "dlv-dap",
+        "request": "launch",
+        "program": "${fileDirname}",
+        "mode": "debug",
+        "dlvToolPath": "dlv"
+      }
+    },
+    "Attach Current Dir (Local)": {
+      "adapter": "delve",
+      "configuration": {
+        "debugAdapter": "dlv-dap",
+        "request": "attach",
+        "program": "${fileDirname}",
+        "remotePath": "${fileDirname}",
+        "cwd": "${fileDirname}",
+        "mode": "local",
+        "dlvToolPath": "dlv",
+        "processId": "${PID}",
+        "trace": "verbose"
+      }
+    },
+    "Attach Current Dir (Remote)": {
+      "adapter": "delve",
+      "configuration": {
+        "debugAdapter": "dlv-dap",
+        "request": "attach",
+        "program": "${fileDirname}",
+        "remotePath": "${fileDirname}",
+        "cwd": "${fileDirname}",
+        "mode": "remote",
+        "dlvToolPath": "dlv",
+        "trace": "verbose",
+        "host": "localhost",
+        "port": 4321
+      }
+    },
+    "test": {
+      "adapter": "delve",
+      "configuration": {
+        "debugAdapter": "dlv-dap",
+        "request": "launch",
+        "program": "${fileDirname}",
+        "mode": "test",
+        "args": ["-test.run", "${TestName}"],
+        "dlvToolPath": "dlv"
+      }
+    }
+  }
+}

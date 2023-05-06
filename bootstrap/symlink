@@ -55,7 +55,7 @@ __symlink() {
   # (n)vim / intellij ideavim
   kz-symlink "vim" \
     ".vim"
-  kz-symlink "vim" \
+  kz-symlink "nvim" \
     ".config/nvim"
   kz-symlink "idea/dot.ideavimrc" \
     ".ideavimrc"
