@@ -14,6 +14,7 @@ __kz_prefer 'nvim' && {
 
   export EDITOR='nvim'
   export VISUAL='nvim'
+  export VDORDIR="${XDG_CONFIG_HOME}/nvim"
 }
 
 # ============================================================================

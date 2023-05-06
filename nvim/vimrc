@@ -27,7 +27,7 @@ let g:kz_use_fzf = v:version >= 704 && exists('&autochdir')
 let g:kz_fzf_float = 0 && has('nvim-0.4')
 
 " Fallback for vims with no env access
-let g:vdotdir = empty($VDOTDIR) ? expand('$HOME/.vim') : $VDOTDIR
+let g:vdotdir = empty($VDOTDIR) ? expand('$XDG_DATA_HOME/nvim') : $VDOTDIR
 
 " ============================================================================
 " My defaults
