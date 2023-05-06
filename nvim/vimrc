@@ -419,10 +419,8 @@ augroup kzlines
   autocmd!
   if kzplug#IsLoaded('coc.nvim')
     autocmd User CocNvimInit ++nested call kzline#Init()
-  elseif has('nvim')
-    autocmd VimEnter * ++nested call kzline#Init()
   else
-    autocmd VimEnter * nested call kzline#Init()
+    autocmd VimEnter * ++nested call kzline#Init()
   endif
 augroup END
 

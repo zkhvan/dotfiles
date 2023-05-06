@@ -16,7 +16,7 @@ let g:loaded_kz = 1
 
 let g:kz#vim_dir = fnamemodify(resolve(expand('$MYVIMRC')), ':p:h')
 let g:kz#plug_dir = '/vendor/'
-let g:kz#plug_absdir = g:kz#vim_dir . g:kz#plug_dir
+let g:kz#plug_absdir = expand('$XDG_DATA_HOME') . '/nvim' . g:kz#plug_dir
 
 " ============================================================================
 " General VimL utility functions

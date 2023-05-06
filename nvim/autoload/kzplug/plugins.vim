@@ -23,7 +23,7 @@ function! kzplug#plugins#LoadAll() abort
 
   " Fix CursorHold
   " https://github.com/neovim/neovim/issues/12587
-  Plug 'antoinemadec/FixCursorHold.nvim', PlugIf(has('nvim'))
+  Plug 'antoinemadec/FixCursorHold.nvim', PlugIf(!has('nvim-0.8'))
 
   " ==========================================================================
   " Vim debugging
@@ -47,8 +47,8 @@ function! kzplug#plugins#LoadAll() abort
   " Tree Sitter
   " ==========================================================================
 
-  Plug 'nvim-treesitter/nvim-treesitter', PlugIf(has('nvim'), {'do': ':TSUpdate'})
-  Plug 'nvim-treesitter/playground', PlugIf(has('nvim'))
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/playground'
 
   " ==========================================================================
   " Colorscheme
@@ -136,7 +136,7 @@ function! kzplug#plugins#LoadAll() abort
   " filetype custom [[ and ]] jumping
   Plug 'arp242/jumpy.vim'
 
-  Plug 'svermeulen/vim-yoink', PlugIf(has('nvim'))
+  Plug 'svermeulen/vim-yoink'
 
   Plug 'godlygeek/tabular', { 'on': [ 'Tabularize' ] }
 
