@@ -1,6 +1,6 @@
 " plugin/plug-vimspector.vim
 
-if !kzplug#Exists('zk-nvim') | finish | endif
+if !kzplug#IsLoaded('zk-nvim') | finish | endif
 
 augroup kzzknvim
   autocmd!
