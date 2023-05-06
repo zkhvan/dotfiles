@@ -1,6 +1,6 @@
 " autoload/kz.vim
 "
-" vimrc and debugging helper funtions
+" init.vim and debugging helper funtions
 "
 
 " ============================================================================

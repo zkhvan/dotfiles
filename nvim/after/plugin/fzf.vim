@@ -61,7 +61,7 @@ function! s:GetFzfVimSource() abort
         \   'syntax',
         \ ], ',') . '}/**/*.{lua,vim}', 0, 1)
   let l:runtime_files = globpath(g:kz#vim_dir, '*.{lua,vim}', 0, 1)
-  let l:rcfiles = globpath(g:kz#vim_dir, '*vimrc', 0, 1)
+  let l:rcfiles = globpath(g:kz#vim_dir, '*init.vim', 0, 1)
   return l:runtime_dirs_files + l:runtime_files + l:rcfiles
 endfunction
 

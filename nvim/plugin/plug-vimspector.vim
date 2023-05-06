@@ -9,7 +9,7 @@ augroup END
 let s:cpo_save = &cpoptions
 set cpoptions&vim
 
-let g:vimspector_base_dir = g:kz_nvim_dir . '/vimspector'
+let g:vimspector_base_dir = g:vdotdir . '/vimspector'
 
 let g:vimspector_enable_mappings = 'HUMAN'
 

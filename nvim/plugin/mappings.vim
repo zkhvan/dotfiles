@@ -37,8 +37,6 @@ nnoremap  <silent><special>  <Leader>enn
       \ :<C-U>execute 'edit ' . expand($HOME) . '/Google\ Drive/Notes/' . strftime('%Y-%m-%d') . '.md'<CR>
 
 " Dotfiles
-nnoremap  <silent><special>  <Leader>evr
-      \ :<C-U>execute 'edit ' . g:vdotdir . '/vimrc'<CR>
 nnoremap  <silent><special>  <Leader>evp
       \ :<C-U>execute 'edit ' . g:vdotdir . '/autoload/kzplug/plugins.vim'<CR>
 nnoremap  <silent><special>  <Leader>evm
