@@ -62,5 +62,7 @@ autocmd kznvimtreesitter FileType
       \ terraform,hcl
       \ setlocal foldmethod=expr | setlocal foldexpr=nvim_treesitter#foldexpr()
 
+nnoremap <silent> zs :<C-U>Inspect<CR>
+
 let &cpoptions = s:cpo_save
 unlet s:cpo_save

@@ -36,13 +36,6 @@ function! kzplug#plugins#LoadAll() abort
   let g:bufferize_command = 'tabnew'
   Plug 'AndrewRadev/bufferize.vim', { 'on': [ 'Bufferize' ] }
 
-  " Required by Inspecthi, don't lazy
-  Plug 'cocopon/colorswatch.vim'
-
-  silent! nunmap zs
-  nnoremap <silent> zs :<C-U>Inspecthi<CR>
-  Plug 'cocopon/inspecthi.vim', { 'on': [ 'Inspecthi' ] }
-
   " ==========================================================================
   " Tree Sitter
   " ==========================================================================
