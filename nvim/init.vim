@@ -14,52 +14,18 @@ let g:kz_is_iterm = $TERM_PROGRAM ==# 'iTerm.app'
 
 " Plugin settings
 let g:kz_autoinstall_vim_plug = executable('git')
-let g:kz_use_completion = has('nvim-0.3') && executable('node')
-let g:kz_use_fzf = v:version >= 704 && exists('&autochdir')
-let g:kz_fzf_float = 0 && has('nvim-0.4')
+let g:kz_use_completion = executable('node')
+let g:kz_use_fzf = exists('&autochdir')
+let g:kz_fzf_float = 0
 
 " Fallback for vims with no env access
 let g:vdotdir = empty($VDOTDIR) ? expand('$XDG_DATA_HOME/nvim') : $VDOTDIR
 
 " ============================================================================
-
-let g:loaded_ruby_provider = 0
-let g:loaded_node_provider = 0
-
-" ============================================================================
-" Python setup
-" Skips if python is not installed in a pyenv virtualenv
-" ============================================================================
-
-function! s:FindExecutable(paths) abort
-  for l:path in a:paths
-    let l:executable = glob(expand(l:path))
-    if !empty(l:executable) && executable(l:executable)
-      return l:executable
-    endif
-  endfor
-  return ''
-endfunction
-
-" disable python 2
-let g:loaded_python_provider = 0
-
-" python 3
-let s:pyenv_py3 = s:FindExecutable([
-      \   '$PYENV_ROOT/versions/neovim3/bin/python',
-      \   '/usr/bin/python3',
-      \ ])
-if !empty(s:pyenv_py3)
-  let g:python3_host_prog = s:pyenv_py3
-else
-  let g:loaded_python3_provider = 2
-endif
-
-
-" ============================================================================
 " Settings
 " ============================================================================
 
+lua require('providers') -- load providers first
 lua require('opt')
 lua require('builtin-syntax')
 lua require('builtin-plugins')
