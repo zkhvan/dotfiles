@@ -199,5 +199,12 @@
   // =========================================================================
   "yaml.schemas": {
     "kubernetes": "k8s/*.yaml"
-  }
+  },
+
+  // =========================================================================
+  // coc-sumneko-lua
+  // =========================================================================
+  "sumneko-lua.enableNvimLuaDev": true,
+  "sumneko-lua.checkUpdate": false,
+  "Lua.workspace.checkThirdParty": false,
 }

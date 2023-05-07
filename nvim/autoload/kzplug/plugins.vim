@@ -211,7 +211,7 @@ function! kzplug#plugins#LoadAll() abort
         \  'coc-go',
         \  'coc-html',
         \  'coc-json',
-        \  'coc-lua',
+        \  'coc-sumneko-lua',
         \  'coc-markdownlint',
         \  'coc-prettier',
         \  'coc-snippets',
