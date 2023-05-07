@@ -117,3 +117,15 @@ autocmd('TextYankPost', {
   end,
   group = uiGroup,
 })
+
+local writingGroup = augroup('kzautomkdir')
+autocmd({ 'BufWritePre', 'FileWritePre' }, {
+  desc = 'Create missing parent directories on write',
+  callback = function(args)
+    local dir = vim.fs.dirname(args.file)
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, 'p')
+    end
+  end,
+  group = writingGroup,
+})
