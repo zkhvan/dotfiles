@@ -71,38 +71,8 @@ endif
 
 lua require('opt')
 lua require('builtin-syntax')
+lua require('builtin-plugins')
 lua require('terminal')
-
-" ============================================================================
-" Plugins
-" ============================================================================
-
-" ----------------------------------------------------------------------------
-" Plugins: Disable distributed plugins
-" To re-enable you have to comment them out (checks if defined, not if truthy)
-" ----------------------------------------------------------------------------
-
-let g:loaded_2html_plugin = 1
-let g:loaded_getscriptPlugin = 1
-let g:loaded_gzip = 1
-let g:loaded_man = 1
-let g:loaded_LogiPat = 1
-let g:loaded_tarPlugin = 1
-let g:loaded_tutor_mode_plugin = 1
-let g:loaded_zipPlugin = 1
-
-" % matching replaced by vim-matchup, which sets the following
-"let g:loaded_matchit = 1
-" Upstream matchparen -- it is inaccurate. Replaced by vim-matchup
-let g:loaded_matchparen = 1
-
-" used to download spellfile and enable gx mapping
-"let g:loaded_netrwPlugin = 0
-
-" netrw in details format when no vimfiler
-let g:netrw_liststyle      = 3
-let g:netrw_home           = expand(g:kz#vim_dir . '/.tmp/cache')
-let g:netrw_browsex_viewer = 'kz-open'
 
 " ----------------------------------------------------------------------------
 " Plugins: autoinstall vim-plug, define plugins, install plugins if needed
