@@ -57,7 +57,6 @@ nnoremap  <special>   <BS>  <C-^>
 
 " ============================================================================
 " Window manipulation
-" See init.vim for neovim specific mappings (e.g. using <A-*>)
 " ============================================================================
 
 " ----------------------------------------------------------------------------
@@ -80,6 +79,15 @@ imap      <special>   <S-Right>   <C-o><S-Right>
 
 nnoremap <C-W><C-V>f :exec "vert norm <C-V><C-W>f"<CR>
 nnoremap <C-W><C-V>] :exec "vert norm <C-V><C-W>]"<CR>
+
+" ----------------------------------------------------------------------------
+" Move windows with <A-*> to match terminal keybinds
+" ----------------------------------------------------------------------------
+
+nnoremap <special> <A-Up>     <C-w>k
+nnoremap <special> <A-Down>   <C-w>j
+nnoremap <special> <A-Left>   <C-w>h
+nnoremap <special> <A-Right>  <C-w>l
 
 " ============================================================================
 " Mode and env

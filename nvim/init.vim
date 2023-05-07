@@ -71,36 +71,7 @@ endif
 
 lua require('opt')
 lua require('builtin-syntax')
-
-" ============================================================================
-" :terminal emulator
-" ============================================================================
-
-let g:terminal_scrollback_buffer_size = 100000
-
-" ============================================================================
-" Neovim-only mappings
-" ============================================================================
-
-" Special key to get back to vim
-tnoremap <special> <C-b>      <C-\><C-n>
-
-" Move between windows using Alt-
-" Ctrl- works only outside of terminal buffers
-tnoremap <special> <A-Up>     <C-\><C-n><C-w>k
-tnoremap <special> <A-Down>   <C-\><C-n><C-w>j
-tnoremap <special> <A-Left>   <C-\><C-n><C-w>h
-tnoremap <special> <A-Right>  <C-\><C-n><C-w>l
-nnoremap <special> <A-Up>     <C-w>k
-nnoremap <special> <A-Down>   <C-w>j
-nnoremap <special> <A-Left>   <C-w>h
-nnoremap <special> <A-Right>  <C-w>l
-nnoremap <special> <A-k>      <C-w>k
-nnoremap <special> <A-j>      <C-w>j
-nnoremap <special> <A-h>      <C-w>h
-nnoremap <special> <A-l>      <C-w>l
-
-nnoremap <special> <Leader>vt :<C-U>vsplit term://$SHELL<CR>A
+lua require('terminal')
 
 " ============================================================================
 " Plugins
