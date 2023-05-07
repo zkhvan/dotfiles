@@ -71,38 +71,6 @@ endif
 
 lua require('opt')
 
-" wildignore prevents things from showing up in cmd completion
-" It's for things you'd NEVER open in Vim, like caches and binary files
-" https://github.com/tpope/vim-fugitive/issues/121#issuecomment-38720847
-" https://github.com/kien/ctrlp.vim/issues/63
-" https://github.com/tpope/vim-vinegar/issues/61#issuecomment-167432416
-" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html#comment-1396330403
-"
-" So don't do this! There are cases where you'd edit them or their contents
-"set wildignore+=.git
-"set wildignore+=.hg,.svn
-"set wildignore+=tags
-"set wildignore+=*.manifest
-
-" Binary
-set wildignore+=*.aux,*.out,*.toc
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.jar,*.pyc,*.rbc,*.class
-set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
-set wildignore+=*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm
-set wildignore+=*.eot,*.otf,*.ttf,*.woff
-set wildignore+=*.doc,*.pdf
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-" Cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
-set wildignore+=.sass-cache
-set wildignore+=npm-debug.log
-" Compiled
-set wildignore+=*.marko.js
-set wildignore+=*.min.*,*-min.*
-" Temp/System
-set wildignore+=*.*~,*~
-set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
-
 " ----------------------------------------------------------------------------
 " Syntax
 " Needs to be in vimrc (or ftdetect) since syntax runs before ftplugin
