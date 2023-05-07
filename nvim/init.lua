@@ -25,12 +25,12 @@ vim.g.kz_fzf_float = 1
 -- Settings
 -- ============================================================================
 
-require('providers') -- load providers first
-require('opt')
-require('builtin-syntax')
-require('builtin-plugins')
-require('terminal')
-require('behaviors')
+require('kz.providers') -- load providers first
+require('kz.opt')
+require('kz.builtin-syntax')
+require('kz.builtin-plugins')
+require('kz.terminal')
+require('kz.behaviors')
 
 -- ----------------------------------------------------------------------------
 -- Plugins: autoinstall vim-plug, define plugins, install plugins if needed
