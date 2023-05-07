@@ -265,3 +265,9 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 -- Follow smartcase and ignorecase when doing tag search
 vim.o.tagcase = 'followscs'
+
+local grepper = vim.fn['kz#grepper#Get']()
+if grepper.command then
+  vim.o.grepprg = grepper.command .. ' ' .. vim.fn.join(grepper.options, ' ')
+  vim.o.grepformat = grepper.format
+end

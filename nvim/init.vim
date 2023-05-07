@@ -104,16 +104,6 @@ set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 
 " ----------------------------------------------------------------------------
-" Match and search
-" ----------------------------------------------------------------------------
-
-if !empty(kz#grepper#Get().command)
-  let &g:grepprg = kz#grepper#Get().command . ' '
-        \ . join(kz#grepper#Get().options, ' ')
-  let &g:grepformat = kz#grepper#Get().format
-endif
-
-" ----------------------------------------------------------------------------
 " Syntax
 " Needs to be in vimrc (or ftdetect) since syntax runs before ftplugin
 " ----------------------------------------------------------------------------
@@ -144,15 +134,6 @@ let g:is_bash = 1
 " $VIMRUNTIME/syntax/vim.vim
 " disable mzscheme, tcl highlighting
 let g:vimsyn_embed = 'lpPr'
-
-" ============================================================================
-" Security
-" ============================================================================
-
-" Disallow unsafe local vimrc commands
-" Leave down here since it trims local settings
-set secure
-
 
 " ============================================================================
 " :terminal emulator
@@ -314,7 +295,14 @@ augroup kzxmlfolding
   autocmd FileType xml setlocal foldmethod=syntax
 augroup END
 
+" ============================================================================
+" Security
+" ============================================================================
+
+" Disallow unsafe local vimrc commands
+" Leave down here since it trims local settings
+set secure
+
 " =============================================================================
-"
 
 " vim: sw=2 :
