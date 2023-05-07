@@ -21,13 +21,6 @@ let g:kz_fzf_float = 0 && has('nvim-0.4')
 " Fallback for vims with no env access
 let g:vdotdir = empty($VDOTDIR) ? expand('$XDG_DATA_HOME/nvim') : $VDOTDIR
 
-set clipboard+=unnamedplus
-
-" Bumped '100 to '1000 to save more previous files
-" Bumped <50 to <100 to save more register lines
-" Bumped s10 to s100 for to allow up to 100kb of data per item
-set shada=!,'1000,<100,s100,h
-
 " The default blinking cursor leaves random artifacts in display like "q" in
 " old terminal emulators and some VTEs
 " https://github.com/neovim/neovim/issues?utf8=%E2%9C%93&q=is%3Aissue+cursor+shape+q
@@ -36,16 +29,6 @@ augroup kznvim
   autocmd!
   autocmd OptionSet guicursor noautocmd set guicursor=
 augroup END
-
-" New neovim feature, it's like vim-over but hides the thing being replaced
-" so it is not practical for now (makes it harder to remember what you're
-" replacing/reference previous regex tokens). Default is off, but explicitly
-" disabled here, too.
-" https://github.com/neovim/neovim/pull/5226
-set inccommand=
-
-" Pretty quick... errorprone on old vim so only apply to nvim
-set updatetime=250
 
 " ============================================================================
 
@@ -67,7 +50,6 @@ function! s:FindExecutable(paths) abort
   return ''
 endfunction
 
-
 " disable python 2
 let g:loaded_python_provider = 0
 
@@ -82,73 +64,12 @@ else
   let g:loaded_python3_provider = 2
 endif
 
+
 " ============================================================================
-" My defaults
-" May be overridden by **/plugins, after/plugins and **/ftplugins
+" Settings
 " ============================================================================
 
-" Only check one line
-if exists('+modelines') | set modelines=1 | endif
-
-" Prior versions are super dangerous
-if !has('patch-8.1.1365') && !has('nvim-0.3.6') | set nomodeline | endif
-
-if exists('+pyxversion') && has('python3') | set pyxversion=3 | endif
-
-" ----------------------------------------------------------------------------
-" Display
-" ----------------------------------------------------------------------------
-
-set title                             " wintitle = filename - vim
-
-" no beeps or flashes
-set novisualbell
-set noerrorbells
-
-set number
-set numberwidth=5
-
-" show context around current cursor position
-set scrolloff=8
-set sidescrolloff=16
-
-set textwidth=78
-" the line will be right after column 80, &tw+3
-set colorcolumn=+3
-set colorcolumn+=120
-set cursorline
-
-set synmaxcol=512                     " don't syntax highlight long lines
-
-if exists('+signcolumn')
-  let &signcolumn = has('nvim-0.4') ? 'auto:3' : 'yes'
-endif
-
-set showtabline=0                     " start OFF, toggle =2 to show tabline
-set laststatus=2                      " always show all statuslines
-
-" This is slow on some terminals and often gets hidden by msgs so leave it off
-set noshowcmd
-set noshowmode                        " don't show -- INSERT -- in cmdline
-
-" ----------------------------------------------------------------------------
-" Input
-" ----------------------------------------------------------------------------
-
-" Enable mouse
-set mouse=a
-
-" Typing key combos
-set notimeout
-set ttimeout
-
-" ----------------------------------------------------------------------------
-" Wild and file globbing stuff in command mode
-" ----------------------------------------------------------------------------
-
-set browsedir=buffer                  " browse files in same dir as open file
-set wildmode=list:longest,full
-let &wildignorecase = v:version >= 704
+lua require('opt')
 
 " wildignore prevents things from showing up in cmd completion
 " It's for things you'd NEVER open in Vim, like caches and binary files
@@ -183,188 +104,8 @@ set wildignore+=*.*~,*~
 set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 
 " ----------------------------------------------------------------------------
-" File saving
-" ----------------------------------------------------------------------------
-
-set fileformats=unix,mac,dos
-" Not modifiable if no window (e.g. resourcing vimrc)
-if !&modifiable | set fileformat=unix | endif
-
-" If we have a swap conflict, FZF has issues opening the file (and doesn't
-" prompt correctly)
-set noswapfile
-
-" Use backup files when writing (create new file, replace old one with new
-" one)
-" Disabled for coc.nvim compat
-set nowritebackup
-" but do not leave around backup.xyz~ files after that
-set nobackup
-" backupcopy=yes is the default, just be explicit. We need this for
-" webpack-dev-server and hot module reloading -- preserves special file types
-" like symlinks
-set backupcopy=yes
-
-" don't create backups for these paths
-set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
-" Make Vim able to edit crontab files again.
-set backupskip+=/private/tmp/*"
-set backupskip+=~/.secret/*
-
-" undo files
-" double slash means create dir structure to mirror file's path
-set undofile
-set undolevels=1000
-set undoreload=10000
-
-" ----------------------------------------------------------------------------
-" Built-in completion
-" ----------------------------------------------------------------------------
-
-" Don't consider = symbol as part filename.
-set isfname-==
-
-set complete-=t                       " don't complete tags
-set completeopt-=longest              " ncm2 requirement
-set completeopt-=preview              " don't open scratch (e.g. echodoc)
-set completeopt+=noinsert             " ncm2 requirement
-set completeopt+=noselect             " ncm2 don't select first thing
-set completeopt+=menu,menuone         " show PUM, even for one thing
-
-" ----------------------------------------------------------------------------
-" Message output on vim actions
-" ----------------------------------------------------------------------------
-
-" Some of these are the defaults, but explicitly match vim and nvim-4.0
-set shortmess-=f
-set shortmess+=ilmnrxoOtWI
-" don't flash fileinfo on edit new file
-if v:version >= 704 | set shortmess+=F | endif
-" Disable "Pattern not found" messages
-if has('patch-7.4.314') | set shortmess+=c | endif
-
-" ----------------------------------------------------------------------------
-" Window splitting and buffers
-" ----------------------------------------------------------------------------
-
-set splitbelow
-set splitright
-
-set hidden                            " remember undo after quitting
-
-" reveal already opened files from the quickfix window instead of opening new
-" buffers
-set switchbuf=useopen
-
-set nostartofline                     " don't jump to col1 on switch buffer
-
-" ----------------------------------------------------------------------------
-" Code folding
-" ----------------------------------------------------------------------------
-
-set foldlevel=999                     " very high === all folds open
-set foldlevelstart=99                 " show all folds by default
-set nofoldenable
-
-" ----------------------------------------------------------------------------
-" Trailing whitespace
-" ----------------------------------------------------------------------------
-
-set list
-set listchars=
-set listchars+=tab:→\ 
-set listchars+=trail:·
-set listchars+=extends:»              " show cut off when nowrap
-set listchars+=precedes:«
-set listchars+=nbsp:⣿
-
-" maybe...
-" if has('patch-7.4.785') | set fixendofline | endif
-
-" ----------------------------------------------------------------------------
-" Diffing
-" ----------------------------------------------------------------------------
-
-" Note this is += since fillchars was defined in the window config
-set fillchars+=diff:⣿
-set diffopt=vertical                  " Use in vertical diff mode
-set diffopt+=filler                   " blank lines to keep sides aligned
-set diffopt+=iwhite                   " Ignore whitespace changes
-
-" ----------------------------------------------------------------------------
-" Input auto-formatting (global defaults)
-" Probably need to update these in after/ftplugin too since ftplugins will
-" probably update it.
-" ----------------------------------------------------------------------------
-
-set formatoptions=
-set formatoptions+=r                  " Continue comments by default
-set formatoptions-=o                  " do not continue comment using o or O
-set formatoptions-=a                  " auto-gq on type in comments?
-set formatoptions+=n                  " Recognize numbered lists
-set formatoptions+=2                  " Use indent from 2nd line of a paragraph
-set formatoptions-=l                  " break lines that are already long?
-set formatoptions+=1                  " Break before 1-letter words
-" Vim >=7.4 only: no // comment when joining commented lines. This is not
-" a default neovim setting despite what :help says. Various filetypes override
-" it
-if v:version >= 704 | set formatoptions+=j | endif
-
-" ----------------------------------------------------------------------------
-" Whitespace
-" ----------------------------------------------------------------------------
-
-set nowrap
-set nojoinspaces                      " J command doesn't add extra space
-
-" ----------------------------------------------------------------------------
-" Indenting - overridden by indent plugins
-" ----------------------------------------------------------------------------
-
-" For autoindent, use same spaces/tabs mix as previous line, even if
-" tabs/spaces are mixed. Helps for docblock, where the block comments have a
-" space after the indent to align asterisks
-"
-" The test case what happens when using o/O and >> and << on these:
-"
-"     /**
-"      *
-"
-" Refer also to formatoptions+=o (copy comment indent to newline)
-set nocopyindent
-
-" Try not to change the indent structure on "<<" and ">>" commands. I.e. keep
-" block comments aligned with space if there is a space there.
-set nopreserveindent
-
-" Smart detect when in braces and parens. Has annoying side effect that it
-" won't indent lines beginning with '#'. Relying on syntax indentexpr instead.
-" 'smartindent' in general is a piece of garbage, never turn it on.
-set nosmartindent
-
-" Global setting. I don't edit C-style code all the time so don't default to
-" C-style indenting.
-set nocindent
-
-" ----------------------------------------------------------------------------
-" Tabbing - overridden by editorconfig, after/ftplugin
-" ----------------------------------------------------------------------------
-
-" use multiple of shiftwidth when shifting indent levels.
-" this is OFF so block comments don't get fudged when using ">>" and "<<"
-set noshiftround
-
-" ----------------------------------------------------------------------------
 " Match and search
 " ----------------------------------------------------------------------------
-
-set matchtime=1                       " tenths of a sec
-set noshowmatch                       " briefly jump to matching paren?
-set wrapscan                          " Searches wrap around end of the file.
-set ignorecase
-" Follow smartcase and ignorecase when doing tag search
-if exists('+tagcase') && has('patch-7.4.2230') | set tagcase=followscs | endif
-set smartcase
 
 if !empty(kz#grepper#Get().command)
   let &g:grepprg = kz#grepper#Get().command . ' '
