@@ -94,14 +94,6 @@ autocmd('BufReadPre', {
   group = hugefileGroup,
 })
 
-local helmGroup = augroup('kzhelm')
-autocmd({ 'BufRead', 'BufNewFile' }, {
-  desc = 'Set helm files inside template directories',
-  pattern = '*/template/*.yaml',
-  command = 'set ft=helm',
-  group = helmGroup,
-})
-
 local xmlfoldingGroup = augroup('kzxmlfolding')
 autocmd('FileType', {
   desc = 'Automatic folding for xml files',

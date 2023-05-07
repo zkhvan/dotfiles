@@ -59,6 +59,8 @@ augroup filetypedetect
 
   autocmd! BufNewFile,BufRead *.plist setfiletype xml
 
+  autocmd! BufNewFile,BufRead */template/*.yaml setfiletype helm
+
   " ironic that it doesn't use a .yml/.yaml extension
   autocmd! BufNewFile,BufRead .yamllint setfiletype yaml
 augroup END
