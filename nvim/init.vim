@@ -21,15 +21,6 @@ let g:kz_fzf_float = 0 && has('nvim-0.4')
 " Fallback for vims with no env access
 let g:vdotdir = empty($VDOTDIR) ? expand('$XDG_DATA_HOME/nvim') : $VDOTDIR
 
-" The default blinking cursor leaves random artifacts in display like "q" in
-" old terminal emulators and some VTEs
-" https://github.com/neovim/neovim/issues?utf8=%E2%9C%93&q=is%3Aissue+cursor+shape+q
-set guicursor=
-augroup kznvim
-  autocmd!
-  autocmd OptionSet guicursor noautocmd set guicursor=
-augroup END
-
 " ============================================================================
 
 let g:loaded_ruby_provider = 0
