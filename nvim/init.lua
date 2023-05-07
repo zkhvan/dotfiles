@@ -7,6 +7,7 @@
 
 -- Fallback for vims with no env access
 vim.g.vdotdir = vim.fn.expand(vim.fn.empty('$VDOTDIR') == 1 and '$XDG_CONFIG_DIR/nvim' or '$VDOTDIR')
+vim.g.vdordir = vim.fs.dirname(vim.env.MYVIMRC)
 
 vim.g.kz_runtimepath_default = vim.o.runtimepath
 vim.g.mapleader = '\\'

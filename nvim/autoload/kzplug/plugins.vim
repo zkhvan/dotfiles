@@ -135,8 +135,6 @@ function! kzplug#plugins#LoadAll() abort
 
   Plug 'bootleq/vim-cycle', { 'on': [ '<Plug>Cycle' ] }
 
-  Plug 'machakann/vim-highlightedyank'
-
   Plug 'tpope/vim-repeat'
 
   " []-bindings -- buffer switch, lnext/prev, etc.

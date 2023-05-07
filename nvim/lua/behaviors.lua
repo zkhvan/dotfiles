@@ -104,3 +104,16 @@ autocmd('FileType', {
   ]],
   group = xmlfoldingGroup,
 })
+
+local uiGroup = augroup('kzediting')
+autocmd('TextYankPost', {
+  desc = 'Highlight yanked text after yanking',
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "IncSearch",
+      timeout = 150,
+      on_visual = true,
+    })
+  end,
+  group = uiGroup,
+})
