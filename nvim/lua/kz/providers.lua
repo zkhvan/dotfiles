@@ -2,10 +2,10 @@
 -- Providers
 -- ===========================================================================
 
-vim.g.loaded_node_provider = false
-vim.g.loaded_ruby_provider = false
-vim.g.loaded_perl_provider = false
-vim.g.loaded_python_provider = false -- disable python 2
+vim.g.loaded_node_provider = nil
+vim.g.loaded_ruby_provider = nil
+vim.g.loaded_perl_provider = nil
+vim.g.loaded_python_provider = nil -- disable python 2
 
 -- Skips if python is not installed in a pyenv virtualenv
 local findExecutable = function(paths)
