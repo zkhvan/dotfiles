@@ -23,7 +23,7 @@ export LANG="en_US.UTF-8"
 export DOTFILES="${HOME}/.dotfiles"
 export BDOTDIR="${DOTFILES}/bash"
 export LDOTDIR="${DOTFILES}/local"
-export VDOTDIR="${DOTFILES}/vim"
+export VDOTDIR="${DOTFILES}/nvim"
 export ZDOTDIR="${DOTFILES}/zsh"
 
 # ============================================================================
