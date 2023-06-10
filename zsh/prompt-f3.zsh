@@ -60,5 +60,5 @@ __kz_prompt::f3::auth() {
 }
 
 kz_prompt::f3::init() {
-  __kz_prompt::f3::auth
+  # __kz_prompt::f3::auth
 }
