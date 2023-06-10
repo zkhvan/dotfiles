@@ -40,7 +40,7 @@ vim.cmd([[
   if g:kz_autoinstall_vim_plug
     let s:has_plug = !empty(glob(expand(g:kz#vim_dir . '/autoload/plug.vim')))
     if !s:has_plug && executable('curl')
-    -- Load vim-plug and its plugins?
+      " Load vim-plug and its plugins?
       call kzplug#install#Install()
       let s:has_plug = 1
     endif
