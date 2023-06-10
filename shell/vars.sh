@@ -146,6 +146,9 @@ export JUPYTER_PATH="${XDG_DATA_HOME}/jupyter"
 export NVIM_PYTHON_LOG_FILE="${DOTFILES}/logs/nvim_python.log"
 # export NVIM_LISTEN_ADDRESS=localhost:90210
 
+# next
+export NEXT_TELEMETRY_DISABLED=1
+
 # yarn cache
 export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"
 
