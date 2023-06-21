@@ -18,7 +18,7 @@ source "${DOTFILES}/shell/node.sh"
 #source "${DOTFILES}/shell/php.sh"
 source "${DOTFILES}/shell/python.sh"
 #source "${DOTFILES}/shell/ruby.bash"
-#source "${DOTFILES}/shell/rust.sh"
+source "${DOTFILES}/shell/rust.sh"
 
 # ============================================================================
 # interactive aliases and functions
