@@ -46,6 +46,7 @@
         "debugAdapter": "dlv-dap",
         "request": "launch",
         "program": "${fileDirname}",
+        "cwd": "${fileDirname}",
         "mode": "test",
         "args": ["-test.run", "${TestName}"],
         "dlvToolPath": "dlv"
