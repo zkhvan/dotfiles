@@ -156,7 +156,7 @@ vim.o.hidden = true -- remember undo after quitting
 
 -- reveal already opened files from the quickfix window instead of opening new
 -- buffers
-vim.o.switchbuf = 'useopen'
+vim.o.switchbuf = 'useopen,uselast'
 
 vim.o.startofline = false -- don't jump to col1 on switch buffer
 
