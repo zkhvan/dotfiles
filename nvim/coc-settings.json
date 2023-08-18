@@ -55,8 +55,11 @@
       "command": "terraform-ls",
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
-      "initializationOptions": {},
-      "settings": {}
+      "initializationOptions": {
+        "experimentalFeatures": {
+          "prefillRequiredFields": true
+        },
+      }
     },
     "zk": {
       "command": "zk",
