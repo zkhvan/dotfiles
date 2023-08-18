@@ -345,6 +345,9 @@ if [[ "$0" == *"zsh" ]]; then
 
   # complete .log filenames if redirecting stderr
   zstyle ':completion:*:*:-redirect-,2>,*:*' file-patterns '*.log'
+
+  # complete make targets
+  zstyle ':completion::complete:make:*:targets' call-command true
 fi
 
 # ============================================================================
