@@ -25,7 +25,7 @@ __mac_pyenv_install() {
   product_version="$(sw_vers -productVersion)"
   product_minor="${product_version%.*}"
 
-  SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX${product_minor}.sdk" \
+  SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk" \
     MACOSX_DEPLOYMENT_TARGET="$product_minor" \
     pyenv install "$1"
 }
