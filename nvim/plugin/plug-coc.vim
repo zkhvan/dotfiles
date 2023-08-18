@@ -114,6 +114,10 @@ autocmd kzcoc FileType
       \ nmap <buffer><silent> <A-=>
       \   <Plug>(coc-format)
 
+autocmd kzcoc BufWritePre
+      \ *.go
+      \ :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
 " coc-snippets
 imap <C-f> <Plug>(coc-snippets-expand-jump)
 
