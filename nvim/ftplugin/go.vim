@@ -7,4 +7,5 @@ if kzplug#IsLoaded('nvim-treesitter')
   set foldexpr=nvim_treesitter#foldexpr()
 
   lua vim.api.nvim_set_hl(0, "@constructor.go", { link = "Function" })
+  lua vim.api.nvim_set_hl(0, "@function.builtin.go", { link = "Function" })
 endif
