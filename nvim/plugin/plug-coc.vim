@@ -61,6 +61,7 @@ omap af <Plug>(coc-funcobj-a)
 nmap <silent> <Leader>c= <Plug>(coc-codeaction)
 nmap <silent> <Leader>ca <Plug>(coc-codeaction-cursor)
 vmap <silent> <Leader>ca <Plug>(coc-codeaction-selected)
+nmap <silent> <Leader>cR :<C-U>silent CocRestart<CR>
 
 " Diagnostics
 nmap <silent> <Leader>d <Plug>(coc-diagnostic-info)
