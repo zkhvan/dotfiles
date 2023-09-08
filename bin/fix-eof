@@ -1,0 +1,14 @@
+#/usr/bin/env bash
+
+# ============================================================================
+# Fix no end of file in a repository
+#
+# See https://gist.github.com/jtwalters/11162098
+# See https://unix.stackexchange.com/a/441200
+# ============================================================================
+
+for file in `git ls-files -- ':!:vendor'`; do
+  file "$file" | grep ASCII > /dev/null &&
+    [[ -n "$(tail -c1 "$file")" ]] &&
+      printf '\n' >> "$file"
+done
