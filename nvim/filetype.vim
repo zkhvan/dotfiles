@@ -53,6 +53,8 @@ augroup filetypedetect
 
   autocmd! BufNewFile,BufRead jsconfig.json,tsconfig.json,.vimspector.json setfiletype jsonc
 
+  autocmd! BufNewFile,BufRead Tiltfile setfiletype starlark
+
   autocmd! BufNewFile,BufRead .eslintrc,.stylelintrc call s:SetJSONorYAML()
 
   autocmd! BufNewFile,BufRead */nginx*.conf,/*/nginx*.conf setfiletype nginx

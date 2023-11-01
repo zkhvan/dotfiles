@@ -61,6 +61,12 @@
         },
       }
     },
+    "tilt": {
+      "command": "tilt",
+      "args": ["lsp", "start"],
+      "filetypes": ["starlark"],
+      "rootPatterns": [".git"],
+    },
     "zk": {
       "command": "zk",
       "args": ["lsp"],
@@ -200,6 +206,7 @@
   // =========================================================================
   // coc-yaml
   // =========================================================================
+  "yaml.schemaStore.enable": true,
   "yaml.schemas": {
     "kubernetes": "k8s/*.yaml"
   },
