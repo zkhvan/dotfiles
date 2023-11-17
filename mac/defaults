@@ -88,7 +88,7 @@ sudo pmset -c displaysleep 15
 sudo pmset -b displaysleep 2
 
 # Disable machine sleep while charging
-sudo pmset -c sleep 0
+sudo pmset -c sleep 20
 
 # Set machine sleep to 5 minutes on battery
 sudo pmset -b sleep 5
