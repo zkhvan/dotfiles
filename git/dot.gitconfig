@@ -40,7 +40,7 @@
 # ============================================================================
 
 [init]
-	defaultBranch = develop
+	defaultBranch = main
 
 [blame]
 	date = short
