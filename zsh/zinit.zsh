@@ -6,15 +6,15 @@ export KZ_SOURCE="${KZ_SOURCE} -> zinit.zsh {"
 # Docker
 # ----------------------------------------------------------------------------
 
-zinit lucid has'docker' for \
-  as'completion' is-snippet \
-  'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker' \
-  \
-  as'completion' is-snippet \
-  'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose' \
-  \
-  from'gh-r' as'program' \
-  'jesseduffield/lazydocker' \
+# zinit lucid has'docker' for \
+  # as'completion' is-snippet \
+  # 'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker' \
+  # \
+  # as'completion' is-snippet \
+  # 'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose' \
+  # \
+  # from'gh-r' as'program' \
+  # 'jesseduffield/lazydocker' \
 
 # ----------------------------------------------------------------------------
 # Git
