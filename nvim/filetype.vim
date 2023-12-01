@@ -63,6 +63,8 @@ augroup filetypedetect
 
   autocmd! BufNewFile,BufRead */template/*.yaml setfiletype helm
 
+  autocmd! BufNewFile,BufRead *.tf setfiletype terraform
+
   " ironic that it doesn't use a .yml/.yaml extension
   autocmd! BufNewFile,BufRead .yamllint setfiletype yaml
 augroup END
