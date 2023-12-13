@@ -193,6 +193,7 @@ function! kzplug#plugins#LoadAll() abort
   " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
   let g:coc_global_extensions = [
         \  '@yaegassy/coc-tailwindcss3',
+        \  '@yaegassy/coc-ansible',
         \  'coc-calc',
         \  'coc-css',
         \  'coc-diagnostic',
