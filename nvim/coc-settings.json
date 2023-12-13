@@ -58,14 +58,14 @@
       "initializationOptions": {
         "experimentalFeatures": {
           "prefillRequiredFields": true
-        },
+        }
       }
     },
     "tilt": {
       "command": "tilt",
       "args": ["lsp", "start"],
       "filetypes": ["starlark"],
-      "rootPatterns": [".git"],
+      "rootPatterns": [".git"]
     },
     "zk": {
       "command": "zk",
@@ -208,7 +208,63 @@
   // =========================================================================
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-    "kubernetes": "k8s/*.yaml"
+    "kubernetes": "k8s/*.yaml",
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/execution-environment.json": [
+      "execution-environment.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta-runtime.json": [
+      "meta/runtime.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-navigator/main/src/ansible_navigator/data/ansible-navigator.json": [
+      ".ansible-navigator.yaml",
+      ".ansible-navigator.yml",
+      "ansible-navigator.yaml",
+      "ansible-navigator.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/requirements.json": [
+      "requirements.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta.json": [
+      "meta/main.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/vars.json": [
+      "playbooks/vars/*.yml",
+      "playbooks/vars/*.yaml",
+      "vars/*.yml",
+      "vars/*.yaml",
+      "defaults/*.yml",
+      "defaults/*.yaml",
+      "host_vars/*.yml",
+      "host_vars/*.yaml",
+      "group_vars/*.yml",
+      "group_vars/*.yaml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/playbook.json": [
+      "**/playbooks/*.yml",
+      "**/playbooks/*.yaml",
+      "**/*playbook*.yml",
+      "**/*playbook*.yaml",
+      "site.yml",
+      "site.yaml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/tasks.json": [
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json": [
+      ".ansible-lint",
+      ".config/ansible-lint.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible-community/molecule/main/src/molecule/data/molecule.json": [
+      "molecule/*/molecule.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/galaxy.json": [
+      "galaxy.yml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-rulebook/main/schema/ruleset_schema.json": [
+      "rulebooks/*.yaml",
+      "rulebooks/*.yml"
+    ]
   },
 
   // =========================================================================
@@ -217,4 +273,9 @@
   "sumneko-lua.enableNvimLuaDev": true,
   "sumneko-lua.checkUpdate": false,
   "Lua.workspace.checkThirdParty": false,
+
+  // =========================================================================
+  // coc-ansible
+  // =========================================================================
+  "ansibleServer.trace.server": "verbose"
 }
