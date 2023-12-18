@@ -53,7 +53,7 @@
 [core]
 	compression = -1
 	sharedRepository = 0664
-	commentchar = ";"
+	commentchar = "#"
 	ignorecase = false
 	pager = delta
 	hooksPath = "~/.dotfiles/git/hooks"
