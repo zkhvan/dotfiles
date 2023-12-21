@@ -209,7 +209,9 @@ nnoremap  <special> <F13>       :q<CR>
 " Unfuck my screen
 " ----------------------------------------------------------------------------
 
-nnoremap <silent> U :<C-U>:diffupdate<CR>:syntax sync fromstart<CR><C-L>
+nnoremap <silent> U :<C-U>:diffupdate<CR>
+                    \ :syntax sync fromstart<CR><C-L>
+                    \ :<C-U>:set cmdheight=1<CR>
 
 " ============================================================================
 
