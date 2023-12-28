@@ -47,6 +47,8 @@ __symlink() {
   #[ ! -d "$FNM_DIR" ] &&
   #  kz-symlink "node/default-packages" \
   #  ".config/nvm/default-packages"
+  kz-symlink "k9s" \
+    ".config/k9s"
   kz-symlink "tmux/tmux.conf" \
     ".config/tmux/tmux.conf"
   kz-symlink "local/tmuxp" \
