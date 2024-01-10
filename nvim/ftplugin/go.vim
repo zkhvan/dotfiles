@@ -1,6 +1,7 @@
 " ftplugin/go.vim
 
 call kz#FourTabs()
+set formatoptions+=c
 
 if kzplug#IsLoaded('nvim-treesitter')
   set foldmethod=expr
