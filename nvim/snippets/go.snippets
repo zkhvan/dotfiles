@@ -1,0 +1,26 @@
+snippet stage
+	type ${1:Test}Stage struct {
+		t *testing.T
+	}
+
+	func New${1}Test(t *testing.T) (*${1}Stage, *${1}Stage, *${1}Stage) {
+		stage := &${1}Stage{
+			t: t,
+		}
+
+		return stage, stage, stage
+	}
+
+snippet tests
+	func Test${1}(t *testing.T) {
+		given, when, then := New${2}Test(t)
+
+		given.
+			${3}()
+
+		when.
+			${4}()
+
+		then.
+			${5}()
+	}
