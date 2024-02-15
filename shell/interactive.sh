@@ -20,6 +20,7 @@ source "${DOTFILES}/shell/k8s.sh"
 source "${DOTFILES}/shell/python.sh"
 #source "${DOTFILES}/shell/ruby.bash"
 source "${DOTFILES}/shell/rust.sh"
+source "${DOTFILES}/shell/android.sh"
 
 # ============================================================================
 # interactive aliases and functions
