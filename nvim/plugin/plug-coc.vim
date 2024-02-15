@@ -77,7 +77,7 @@ nmap <silent> <Leader>t <Plug>(coc-type-definition)
 nmap <silent> <Leader>r <Plug>(coc-rename)
 
 autocmd kzcoc FileType
-      \ go,typescript,typescriptreact,terraform
+      \ go,typescript,typescriptreact,terraform,gdscript
       \ nmap <buffer><silent> gd
       \   <C-]>
 

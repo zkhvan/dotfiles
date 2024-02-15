@@ -51,6 +51,11 @@
   // =========================================================================
 
   "languageserver": {
+    "godot": {
+      "host": "127.0.0.1",
+      "filetypes": ["gdscript"],
+      "port": 6005
+    },
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
@@ -249,7 +254,7 @@
     ],
     "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/tasks.json": [
       "**/tasks/*.yml",
-      "**/tasks/*.yaml",
+      "**/tasks/*.yaml"
     ],
     "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible-lint-config.json": [
       ".ansible-lint",
