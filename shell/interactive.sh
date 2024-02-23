@@ -21,6 +21,7 @@ source "${DOTFILES}/shell/python.sh"
 #source "${DOTFILES}/shell/ruby.bash"
 source "${DOTFILES}/shell/rust.sh"
 source "${DOTFILES}/shell/android.sh"
+source "${DOTFILES}/shell/tmux.sh"
 
 # ============================================================================
 # interactive aliases and functions
