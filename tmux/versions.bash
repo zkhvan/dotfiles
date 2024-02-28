@@ -6,6 +6,10 @@ __load() {
   if (( $(echo "$tmux_version >= 2.9" | bc) == 1 )); then
     tmux source-file "${DOTFILES}/tmux/t2.9.conf"
   fi
+
+  if (( $(echo "$tmux_version >= 3.4" | bc) == 1 )); then
+    tmux source-file "${DOTFILES}/tmux/t3.4.conf"
+  fi
 }
 
 __load
