@@ -203,7 +203,8 @@ vnoremap  <Leader>RN   :w !node -p \| pbcopy<CR><CR>
 " Close window with <C-Esc> mapped to <F13>
 " ----------------------------------------------------------------------------
 
-nnoremap  <special> <F13>       :q<CR>
+nnoremap  <special> <F13>         :q<CR>
+nnoremap  <special> <S-F3>        :q<CR>
 
 " ----------------------------------------------------------------------------
 " Unfuck my screen
