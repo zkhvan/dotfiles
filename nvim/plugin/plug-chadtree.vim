@@ -20,6 +20,7 @@ let g:chadtree_settings = {
       \   'options.version_control.enable': v:false,
       \   'options.close_on_open': v:true,
       \   'ignore.name_exact': ['.DS_Store', '.directory', 'thumbs.db', '.git', 'node_modules'],
+      \   'view.sort_by': ['is_folder', 'file_name', 'ext'],
       \   'view.width': 60,
       \ }
 
