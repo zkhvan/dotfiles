@@ -89,6 +89,11 @@ export ANSIBLE_GALAXY_TOKEN_PATH="${ANSIBLE_CONFIG_PATH_DIR}/galaxy_token"
 export ANSIBLE_PERSISTENT_CONTROL_PATH_DIR="${ANSIBLE_CONFIG_PATH_DIR}/pc"
 
 # ----------------------------------------------------------------------------
+# aws
+# ----------------------------------------------------------------------------
+export AWS_CONFIG_FILE="${DOTFILES}/aws/config"
+
+# ----------------------------------------------------------------------------
 # for rsync and cvs
 # ----------------------------------------------------------------------------
 
