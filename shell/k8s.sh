@@ -35,6 +35,7 @@ kn() {
 
 _install_krew_plugins() {
   _plugins=(
+    'ctx'     # easily switch contexts
     'get-all' # get's ALL the resources
   )
 

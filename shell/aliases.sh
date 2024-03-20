@@ -71,6 +71,8 @@ alias grep='grep --color=auto'
 # ----------------------------------------------------------------------------
 
 alias k='kubectl'
+alias kcx='kubectl ctx'
+alias kcn='kubectl ns'
 
 # short alias to set/show context/namespace (only works for bash and bash-compatible shells, current context to be set before using kn to set namespace)
 # alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
