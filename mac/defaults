@@ -27,6 +27,9 @@ done 2>/dev/null &
 # Disable mouse acceleration
 defaults write .GlobalPreferences com.apple.mouse.scaling -1
 
+# cmd + ctrl click anywhere to drag
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
 # ----------------------------------------------------------------------------
 # Keyboard
 # ----------------------------------------------------------------------------
