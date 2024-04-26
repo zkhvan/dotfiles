@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# bin/wezterm-start-scratch
+#
+# $1 - wezterm class id
+# ============================================================================
+
+__get_wezterm_scratch_pid() {
+  local _class_id="${1}"
+
+  wezterm cli --class="${_class_id}" list-clients --format json | jq '.[].pid'
+}
+
+__get_wezterm_scratch_window() {
+  local _pid="${1}"
+
+  yabai -m query --windows | jq "$(printf '.[] | select(.pid == %d) | .id' "${_pid}")"
+}
+
+__wezterm_start_scratch() {
+  local _class_id="${1}"
+
+  wezterm start --class="${_class_id}" &
+
+  counter=0
+  while [ -z "${_window_id}" ]; do
+    _window_id=$(__get_wezterm_scratch_window $(__get_wezterm_scratch_pid "${_class_id}"))
+    if [ -n "${_window_id}" ]; then
+      yabai -m window ${_window_id} --focus
+      yabai -m window ${_window_id} --toggle float --grid 8:8:1:1:6:6
+      yabai -m window ${_window_id} --scratchpad "${_class_id}"
+    fi
+
+    sleep 0.1
+    counter=$((counter + 1))
+    if [ $counter -gt 10 ]; then
+      exit 1
+    fi
+  done
+}
+
+__wezterm_start_scratch "$@"

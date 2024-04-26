@@ -53,6 +53,8 @@ __symlink() {
     ".config/tmux/tmux.conf"
   kz-symlink "bat" \
     ".config/bat"
+  kz-symlink "wezterm" \
+    ".config/wezterm"
 
   # (n)vim / intellij ideavim
   kz-symlink "vim" \
@@ -70,6 +72,10 @@ __symlink() {
       ".hushlogin"
     kz-symlink "./mac/karabiner-elements/karabiner.json" \
       ".config/karabiner/karabiner.json"
+    kz-symlink "yabai" \
+      ".config/yabai"
+    kz-symlink "skhd/skhdrc" \
+      ".config/skhd/skhdrc"
     #kz-symlink "mac/dot.mackup.cfg" \
     #  ".mackup.cfg"
     #kz-symlink "mac/LaunchAgents/dotfiles.plist" \

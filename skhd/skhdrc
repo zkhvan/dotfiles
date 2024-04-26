@@ -1,0 +1,217 @@
+#  NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
+#                     be found at https://github.com/koekeishiya/skhd/issues/1
+#
+#                     A hotkey is written according to the following rules:
+#
+#                       hotkey       = <mode> '<' <action> | <action>
+#
+#                       mode         = 'name of mode' | <mode> ',' <mode>
+#
+#                       action       = <keysym> '[' <proc_map_lst> ']' | <keysym> '->' '[' <proc_map_lst> ']'
+#                                      <keysym> ':' <command>          | <keysym> '->' ':' <command>
+#                                      <keysym> ';' <mode>             | <keysym> '->' ';' <mode>
+#
+#                       keysym       = <mod> '-' <key> | <key>
+#
+#                       mod          = 'modifier keyword' | <mod> '+' <mod>
+#
+#                       key          = <literal> | <keycode>
+#
+#                       literal      = 'single letter or built-in keyword'
+#
+#                       keycode      = 'apple keyboard kVK_<Key> values (0x3C)'
+#
+#                       proc_map_lst = * <proc_map>
+#
+#                       proc_map     = <string> ':' <command> | <string>     '~' |
+#                                      '*'      ':' <command> | '*'          '~'
+#
+#                       string       = '"' 'sequence of characters' '"'
+#
+#                       command      = command is executed through '$SHELL -c' and
+#                                      follows valid shell syntax. if the $SHELL environment
+#                                      variable is not set, it will default to '/bin/bash'.
+#                                      when bash is used, the ';' delimeter can be specified
+#                                      to chain commands.
+#
+#                                      to allow a command to extend into multiple lines,
+#                                      prepend '\' at the end of the previous line.
+#
+#                                      an EOL character signifies the end of the bind.
+#
+#                       ->           = keypress is not consumed by skhd
+#
+#                       *            = matches every application not specified in <proc_map_lst>
+#
+#                       ~            = application is unbound and keypress is forwarded per usual, when specified in a <proc_map>
+#
+#  NOTE(koekeishiya): A mode is declared according to the following rules:
+#
+#                       mode_decl = '::' <name> '@' ':' <command> | '::' <name> ':' <command> |
+#                                   '::' <name> '@'               | '::' <name>
+#
+#                       name      = desired name for this mode,
+#
+#                       @         = capture keypresses regardless of being bound to an action
+#
+#                       command   = command is executed through '$SHELL -c' and
+#                                   follows valid shell syntax. if the $SHELL environment
+#                                   variable is not set, it will default to '/bin/bash'.
+#                                   when bash is used, the ';' delimeter can be specified
+#                                   to chain commands.
+#
+#                                   to allow a command to extend into multiple lines,
+#                                   prepend '\' at the end of the previous line.
+#
+#                                   an EOL character signifies the end of the bind.
+
+# add an on_enter command to the default mode
+# :: default : yabai -m config active_window_border_color 0xff775759
+#
+# defines a new mode 'test' with an on_enter command, that captures keypresses
+# :: test @ : yabai -m config active_window_border_color 0xff24ccaa
+#
+# from 'default' mode, activate mode 'test'
+# cmd - x ; test
+#
+# from 'test' mode, activate mode 'default'
+# test < cmd - x ; default
+#
+# launch a new terminal instance when in either 'default' or 'test' mode
+# default, test < cmd - return : open -na /Applications/Terminal.app
+
+# application specific bindings
+#
+# cmd - n [
+#     "kitty"       : echo "hello kitty"
+#     *             : echo "hello everyone"
+#     "qutebrowser" : echo "hello qutebrowser"
+#     "terminal"    ~
+#     "finder"      : false
+# ]
+
+# specify a file that should be included as an additional config-file.
+# treated as an absolutepath if the filename begins with '/' otherwise
+# the file is relative to the path of the config-file it was loaded from.
+#
+# .load "/Users/Koe/.config/partial_skhdrc"
+# .load "partial_skhdrc"
+
+# prevent skhd from monitoring events for specific applications.
+#
+# .blacklist [
+#    "kitty"
+#    "terminal"
+#    "qutebrowser"
+# ]
+
+##############################################################################
+#
+# yabai
+#
+##############################################################################
+
+ctrl + shift + cmd - r   : source $XDG_CONFIG_HOME/yabai/yabairc
+ctrl + alt + cmd - r     : yabai --restart-service
+
+# focus window
+alt              - h     : yabai -m window --focus west  || yabai -m display --focus west
+alt              - l     : yabai -m window --focus east  || yabai -m display --focus east
+alt              - k     : yabai -m window --focus north || yabai -m display --focus north
+alt              - j     : yabai -m window --focus south || yabai -m display --focus south
+
+# swap : managed window
+alt + shift      - h     : yabai -m window --swap west  || $(yabai -m window --display west;  yabai -m display --focus west)
+alt + shift      - l     : yabai -m window --swap east  || $(yabai -m window --display east;  yabai -m display --focus east)
+alt + shift      - k     : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+alt + shift      - j     : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+
+# swap managed window (arrow keys)
+alt + shift      - right : yabai -m window --swap east  || $(yabai -m window --display east;  yabai -m display --focus east)
+alt + shift      - left  : yabai -m window --swap west  || $(yabai -m window --display west;  yabai -m display --focus west)
+alt + shift      - up    : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+alt + shift      - down  : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+
+# move managed window
+alt + cmd        - h     : yabai -m window --warp west  || $(yabai -m window --display west;  yabai -m display --focus west)
+alt + cmd        - l     : yabai -m window --warp east  || $(yabai -m window --display east;  yabai -m display --focus east)
+alt + cmd        - k     : yabai -m window --warp north || $(yabai -m window --display north; yabai -m display --focus north)
+alt + cmd        - j     : yabai -m window --warp south || $(yabai -m window --display south; yabai -m display --focus south)
+
+# balance the size of the windows
+alt              - 0x18  : yabai -m space --balance
+
+# fast focus desktop
+alt              - 0x32  : yabai -m space --focus recent
+alt              - 1     : yabai -m space --focus 1
+alt              - 2     : yabai -m space --focus 2
+alt              - 3     : yabai -m space --focus 3
+alt              - 4     : yabai -m space --focus 4
+alt              - 5     : yabai -m space --focus 5
+
+# send window to desktop and follow focus
+alt + shift      - 1     : yabai -m window --space 1; yabai -m space --focus 1
+alt + shift      - 2     : yabai -m window --space 2; yabai -m space --focus 2
+alt + shift      - 3     : yabai -m window --space 3; yabai -m space --focus 3
+alt + shift      - 4     : yabai -m window --space 4; yabai -m space --focus 4
+alt + shift      - 5     : yabai -m window --space 5; yabai -m space --focus 5
+
+# focus monitor
+alt              - 0x21  : yabai -m display --focus prev
+alt              - 0x1E  : yabai -m display --focus next
+alt              - 0x2A  : yabai -m display --focus recent
+
+# move window to monitor
+alt + shift      - 0x21  : yabai -m window --display prev   && yabai -m display --focus prev
+alt + shift      - 0x1E  : yabai -m window --display next   && yabai -m display --focus next
+alt + shift      - 0x2A  : yabai -m window --display recent && yabai -m display --focus recent
+
+# make floating window fill screen
+alt + ctrl       - 0     : yabai -m window --grid 1:1:0:0:1:1
+
+# move floating window
+alt + ctrl       - h     : yabai -m window --move rel:-40:0
+alt + ctrl       - l     : yabai -m window --move rel:+40:0
+alt + ctrl       - k     : yabai -m window --move rel:0:-40
+alt + ctrl       - j     : yabai -m window --move rel:0:+40
+
+# resize floating window
+alt + ctrl + cmd - h     : yabai -m window --resize right:-40:0
+alt + ctrl + cmd - l     : yabai -m window --resize right:+40:0
+alt + ctrl + cmd - k     : yabai -m window --resize bottom:0:-40
+alt + ctrl + cmd - j     : yabai -m window --resize bottom:0:+40
+
+# toggle window zoom
+alt              - d     : yabai -m window --toggle zoom-parent
+alt              - f     : yabai -m window --toggle zoom-fullscreen
+
+# toggle window split type
+alt              - e     : yabai -m window --toggle split
+
+# float / unfloat window and center on screen
+alt              - t     : yabai -m window --toggle float --grid 8:8:1:1:6:6
+
+# toggle sticky(+float), picture-in-picture
+alt              - p     : yabai -m window --toggle sticky --toggle pip
+
+# quickly flash the currently focused window
+alt              - 0x2C  : yabai -m window --opacity 0.1 && sleep $(yabai -m config window_opacity_duration) && yabai -m window --opacity 0.0
+
+##############################################################################
+#
+# Applications
+#
+##############################################################################
+
+# open terminal, blazingly fast compared to iTerm/Hyper
+# cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : focus-wezterm
+# fn - space   : focus-wezterm-scratch
+fn - space   : yabai -m window --toggle terminal || wezterm-start-scratch terminal
+fn - n       : yabai -m window --toggle notes || wezterm-start-scratch notes
+
+# open chrome
+cmd + shift - return : open -a "/Applications/Google Chrome.app"
+
+# open bitwarden
+cmd + shift + ctrl - b : open -a Bitwarden

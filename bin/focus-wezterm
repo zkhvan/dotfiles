@@ -1,0 +1,20 @@
+#!/bin/sh
+
+get_wezterm_window() {
+	WINDOWS_JSON=$(yabai -m query --windows)
+	for WINDOW_ID in $(echo $WINDOWS_JSON | jq '.[] | select(.app == "WezTerm" or .app == "wezterm-gui") | .id'); do
+		WINDOW_ID=$(echo $WINDOW_ID | tr -d '"')
+		echo $WINDOW_ID
+	done
+}
+
+WINDOW_ID=$(get_wezterm_window)
+
+if [ -n "$WINDOW_ID" ]; then
+	# if window id is found, focus it
+	yabai -m window $WINDOW_ID --focus
+	exit 0
+else
+	# if no window was found, open wezterm
+	WezTerm &
+fi
