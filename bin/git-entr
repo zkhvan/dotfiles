@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Run the provided command on every change to a potentially Git tracked file.
+#
+# ```
+# git entr make test
+# ```
+
+__git_entr() {
+  git ls-files -cdmo --exclude-standard | entr -d "$@"
+}
+
+__git_entr "$@"
