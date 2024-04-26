@@ -12,9 +12,6 @@ vim.g.vdordir = vim.fs.dirname(vim.env.MYVIMRC)
 vim.g.kz_runtimepath_default = vim.o.runtimepath
 vim.g.mapleader = '\\'
 
--- Flags
-vim.g.kz_is_iterm = vim.fn.getenv('TERM_PROGRAM') ~= 'iTerm.app'
-
 -- Plugin settings
 vim.g.kz_autoinstall_vim_plug = vim.fn.executable('git')
 vim.g.kz_use_completion = vim.fn.executable('node')
