@@ -132,6 +132,7 @@ function! kzplug#plugins#LoadAll() abort
   Plug 'svermeulen/vim-yoink'
 
   Plug 'godlygeek/tabular', { 'on': [ 'Tabularize' ] }
+  Plug 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign' ] }
 
   Plug 'bootleq/vim-cycle', { 'on': [ '<Plug>Cycle' ] }
 
