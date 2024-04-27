@@ -45,5 +45,18 @@ config.enable_scroll_bar = true
 config.scrollback_lines = 9999
 config.hide_tab_bar_if_only_one_tab = true
 
+-- Shortcut to close windows in nvim easily
+config.keys = {
+  {
+    key = 'Escape',
+    mods = 'SHIFT',
+    action = wezterm.action.SendKey {
+      key = 'F13',
+    }
+  }
+}
+
+config.debug_key_events = true
+
 -- and finally, return the configuration to wezterm
 return config
