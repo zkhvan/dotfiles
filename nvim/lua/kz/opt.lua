@@ -1,3 +1,5 @@
+vim.go.termguicolors = vim.env.TERM_PROGRAM ~= "Apple_Terminal"
+
 vim.o.clipboard = 'unnamedplus'
 
 -- Bumped '100 to '1000 to save more previous files
@@ -76,7 +78,6 @@ vim.o.timeout = false
 -- Wild and file globbing stuff in command mode
 -- ===========================================================================
 
-vim.o.browsedir = 'buffer' -- browse files in same dir as open file
 vim.o.wildmode = 'list:longest,full'
 vim.o.wildignorecase = true
 
