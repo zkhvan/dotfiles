@@ -139,7 +139,7 @@ alt + cmd        - k     : yabai -m window --warp north || $(yabai -m window --d
 alt + cmd        - j     : yabai -m window --warp south || $(yabai -m window --display south; yabai -m display --focus south)
 
 # balance the size of the windows
-alt              - 0x18  : yabai -m space --balance
+alt + cmd        - 0x18  : yabai -m space --balance
 
 # fast focus desktop
 alt              - 0x32  : yabai -m space --focus recent
