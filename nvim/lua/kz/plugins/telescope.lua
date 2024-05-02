@@ -16,6 +16,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
       local t = require('telescope')
@@ -39,6 +40,7 @@ return {
       })
 
       t.load_extension('fzf')
+      t.load_extension('ui-select')
 
       require('kz.mappings').bind_telescope()
     end

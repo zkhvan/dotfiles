@@ -72,6 +72,76 @@ M.bind_telescope = function()
 end
 
 -- ===========================================================================
+-- Buffer: LSP integration
+-- ===========================================================================
+
+---@param method string
+---@return boolean -- true if telescope was succesfully called
+local function telescope_builtin(method)
+  local ok, builtin = pcall(require, "telescope.builtin")
+  if ok then
+    builtin[method]({
+      -- always show in picker so i can choose how to open it (e.g. split,
+      -- vsplit)
+      jump_type = "never",
+      layout_strategy = "vertical",
+    })
+    return true
+  end
+  return false
+end
+
+-- LspAttach autocmd callback
+---@param bufnr number
+M.bind_lsp = function(bufnr)
+  ---@param opts table
+  ---@return table opts with silent and buffer set
+  local function lsp_opts(opts)
+    opts.silent = true
+    opts.buffer = bufnr
+    return opts
+  end
+
+  map("n", "gD", function()
+    vim.lsp.buf.declaration()
+  end, lsp_opts({ desc = "LSP declaration" }))
+
+  map("n", "gd", function()
+    return telescope_builtin("lsp_definitions") or vim.lsp.buf.definition()
+  end, lsp_opts({ desc = "LSP definition" }))
+
+  map("n", "gi", function()
+    return telescope_builtin("lsp_implementations")
+      or vim.lsp.buf.implementation()
+  end, lsp_opts({ desc = "LSP implementation" }))
+
+  map({ "n", "i" }, "<C-g>", function()
+    vim.lsp.buf.signature_help()
+  end, lsp_opts({ desc = "LSP signature_help" }))
+
+  map("n", "<Leader>D", function()
+    return telescope_builtin("lsp_type_definitions")
+      or vim.lsp.buf.type_definition()
+  end, lsp_opts({ desc = "LSP type_definition" }))
+
+  map("n", "<Leader>rn", function()
+    vim.lsp.buf.rename()
+  end, lsp_opts({ desc = "LSP rename" }))
+
+  map("n", "<Leader><Leader>", function()
+    -- don't like the UI for lspsaga
+    --vim.cmd.Lspsaga("code_action")
+    vim.lsp.buf.code_action()
+  end, lsp_opts({ desc = "LSP Code Action" }))
+
+  map("n", "gr", function()
+    return telescope_builtin("lsp_references")
+      ---@diagnostic disable-next-line: missing-parameter
+      or vim.lsp.buf.references()
+  end, lsp_opts({ desc = "LSP references" }))
+end
+
+-- ===========================================================================
 -- nvim-tree
 -- ===========================================================================
 
