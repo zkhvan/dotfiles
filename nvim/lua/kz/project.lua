@@ -1,17 +1,17 @@
 local M = {}
 
 M.PROJECT_ROOTS = {
-  ".luarc.json",
-  ".luarc.jsonc",
-  "composer.json",
-  "Gemfile",
-  "justfile",
-  "Makefile",
-  "package.json",
-  "pubspec.yaml", -- flutter / dart
-  "requirements.txt",
-  "stylua.toml",
-  "tsconfig.json",
+  '.luarc.json',
+  '.luarc.jsonc',
+  'composer.json',
+  'Gemfile',
+  'justfile',
+  'Makefile',
+  'package.json',
+  'pubspec.yaml', -- flutter / dart
+  'requirements.txt',
+  'stylua.toml',
+  'tsconfig.json',
 }
 
 --- Look upwards dirs for a file match
@@ -37,23 +37,21 @@ end
 M.get_git_root = function(opts)
   -- naively look upwards (doesn't work on complex things like worktrees or
   -- setting git workdir)
-  local find_opts = vim.tbl_extend("force", {
+  local find_opts = vim.tbl_extend('force', {
     limit = 1,
     upward = true,
-    type = "directory",
+    type = 'directory',
   }, opts or {})
-  local res = vim.fs.find(".git", find_opts)
-  local from_find = res[1] and vim.fn.fnamemodify(res[1], ":h") or nil
+  local res = vim.fs.find('.git', find_opts)
+  local from_find = res[1] and vim.fn.fnamemodify(res[1], ':h') or nil
   if from_find then
     return from_find
   end
 
-  local from_system = vim
-      .fn
-      .system({ "git", "rev-parse", "--show-cdup" })
-      :gsub("\n", "")
+  local from_system =
+    vim.fn.system({ 'git', 'rev-parse', '--show-cdup' }):gsub('\n', '')
   if from_system then
-    return vim.fn.fnamemodify(from_system, ":p:h")
+    return vim.fn.fnamemodify(from_system, ':p:h')
   end
 
   return nil

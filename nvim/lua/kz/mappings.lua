@@ -7,7 +7,6 @@ local map = vim.keymap.set
 -- ===========================================================================
 
 M.bind_telescope = function()
-
   local t = require('telescope')
   local tb = require('telescope.builtin')
 
@@ -78,13 +77,13 @@ end
 ---@param method string
 ---@return boolean -- true if telescope was succesfully called
 local function telescope_builtin(method)
-  local ok, builtin = pcall(require, "telescope.builtin")
+  local ok, builtin = pcall(require, 'telescope.builtin')
   if ok then
     builtin[method]({
       -- always show in picker so i can choose how to open it (e.g. split,
       -- vsplit)
-      jump_type = "never",
-      layout_strategy = "vertical",
+      jump_type = 'never',
+      layout_strategy = 'vertical',
     })
     return true
   end
@@ -102,43 +101,45 @@ M.bind_lsp = function(bufnr)
     return opts
   end
 
-  map("n", "gD", function()
+  map('n', 'gD', function()
     vim.lsp.buf.declaration()
-  end, lsp_opts({ desc = "LSP declaration" }))
+  end, lsp_opts({ desc = 'LSP declaration' }))
 
-  map("n", "gd", function()
-    return telescope_builtin("lsp_definitions") or vim.lsp.buf.definition()
-  end, lsp_opts({ desc = "LSP definition" }))
+  map('n', 'gd', function()
+    return telescope_builtin('lsp_definitions') or vim.lsp.buf.definition()
+  end, lsp_opts({ desc = 'LSP definition' }))
 
-  map("n", "gi", function()
-    return telescope_builtin("lsp_implementations")
+  map('n', 'gi', function()
+    return telescope_builtin('lsp_implementations')
       or vim.lsp.buf.implementation()
-  end, lsp_opts({ desc = "LSP implementation" }))
+  end, lsp_opts({ desc = 'LSP implementation' }))
 
-  map({ "n", "i" }, "<C-g>", function()
+  map({ 'n', 'i' }, '<C-g>', function()
     vim.lsp.buf.signature_help()
-  end, lsp_opts({ desc = "LSP signature_help" }))
+  end, lsp_opts({ desc = 'LSP signature_help' }))
 
-  map("n", "<Leader>D", function()
-    return telescope_builtin("lsp_type_definitions")
+  map('n', '<Leader>D', function()
+    return telescope_builtin('lsp_type_definitions')
       or vim.lsp.buf.type_definition()
-  end, lsp_opts({ desc = "LSP type_definition" }))
+  end, lsp_opts({ desc = 'LSP type_definition' }))
 
-  map("n", "<Leader>rn", function()
+  map('n', '<Leader>rn', function()
     vim.lsp.buf.rename()
-  end, lsp_opts({ desc = "LSP rename" }))
+  end, lsp_opts({ desc = 'LSP rename' }))
 
-  map("n", "<Leader><Leader>", function()
-    -- don't like the UI for lspsaga
-    --vim.cmd.Lspsaga("code_action")
+  map('n', '<Leader><Leader>', function()
     vim.lsp.buf.code_action()
-  end, lsp_opts({ desc = "LSP Code Action" }))
+  end, lsp_opts({ desc = 'LSP Code Action' }))
 
-  map("n", "gr", function()
-    return telescope_builtin("lsp_references")
+  map('n', 'gr', function()
+    return telescope_builtin('lsp_references')
       ---@diagnostic disable-next-line: missing-parameter
       or vim.lsp.buf.references()
-  end, lsp_opts({ desc = "LSP references" }))
+  end, lsp_opts({ desc = 'LSP references' }))
+
+  map('n', '<A-=>', function()
+    vim.lsp.buf.format()
+  end, lsp_opts({ desc = 'LSP format' }))
 end
 
 -- ===========================================================================
@@ -146,8 +147,208 @@ end
 -- ===========================================================================
 
 M.bind_nvimtree = function()
-  map('n', '<Leader>no', '<cmd>NvimTreeFocus<CR>', { desc = 'nvim-tree: focus' })
-  map('n', '<Leader>nf', '<cmd>NvimTreeFindFile<CR>', { desc = 'nvim-tree: find current file' })
+  map(
+    'n',
+    '<Leader>no',
+    '<cmd>NvimTreeFocus<CR>',
+    { desc = 'nvim-tree: focus' }
+  )
+  map(
+    'n',
+    '<Leader>nf',
+    '<cmd>NvimTreeFindFile<CR>',
+    { desc = 'nvim-tree: find current file' }
+  )
+end
+
+-- ===========================================================================
+-- git-signs
+-- ===========================================================================
+
+M.bind_gitsigns = function(bufnr)
+  local gitsigns = require('gitsigns')
+
+  local function bufmap(mode, l, r, opts)
+    opts = opts or {}
+    opts.buffer = bufnr
+    map(mode, l, r, opts)
+  end
+
+  -- Navigation
+  bufmap('n', ']h', function()
+    if vim.wo.diff then
+      return ']h'
+    end
+    vim.schedule(function()
+      gitsigns.next_hunk()
+    end)
+    return '<Ignore>'
+  end, { expr = true, desc = 'Next hunk' })
+
+  bufmap('n', '[h', function()
+    if vim.wo.diff then
+      return '[h'
+    end
+    vim.schedule(function()
+      gitsigns.prev_hunk()
+    end)
+    return '<Ignore>'
+  end, { expr = true, desc = 'Prev hunk' })
+
+  -- Action
+  bufmap('n', 'gb', function()
+    gitsigns.blame_line()
+  end, { desc = 'Popup blame for line' })
+  bufmap('n', 'gB', function()
+    gitsigns.blame_line({ full = true })
+  end, { desc = 'Popup full blame for line' })
+
+  -- Text object
+  bufmap({ 'o', 'x' }, 'ih', '<Cmd>Gitsigns select_hunk<CR>', {
+    desc = 'Select hunk',
+  })
+end
+
+-- ===========================================================================
+-- mini.move
+-- ===========================================================================
+
+M.mini_move = {
+  -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+  left = '<C-h>',
+  right = '<C-l>',
+  down = '<C-j>',
+  up = '<C-k>',
+
+  -- Move current line in Normal mode
+  line_left = '<C-h>',
+  line_right = '<C-l>',
+  line_down = '<C-j>',
+  line_up = '<C-k>',
+}
+
+-- ===========================================================================
+-- urlview
+-- ===========================================================================
+
+M.urlview = {
+  prev = '[u',
+  next = ']u',
+  toggle = '<Leader>gu',
+  toggle_lazy = '<Leader>gU',
+}
+
+M.bind_urlview = function()
+  require('urlview').setup({
+    jump = {
+      prev = M.urlview.prev,
+      next = M.urlview.next,
+    },
+  })
+  map('n', M.urlview.toggle, '<Cmd>UrlView<CR>', { desc = 'Open URLs' })
+  map(
+    'n',
+    M.urlview.toggle_lazy,
+    '<Cmd>UrlView lazy<CR>',
+    { desc = 'Open lazy.nvim URLs' }
+  )
+end
+
+-- ===========================================================================
+-- vim-textobj-user
+-- ===========================================================================
+
+M.bind_textobj = function()
+  local function textobjMap(obj, char)
+    char = char or obj:sub(1, 1)
+    map(
+      { 'o', 'x' },
+      'a' .. char,
+      '<Plug>(textobj-' .. obj .. '-a)',
+      { desc = 'textobj: around ' .. obj }
+    )
+    map(
+      { 'o', 'x' },
+      'i' .. char,
+      '<Plug>(textobj-' .. obj .. '-i)',
+      { desc = 'textobj: inside ' .. obj }
+    )
+  end
+
+  textobjMap('paste', 'P')
+  textobjMap('url')
+end
+
+-- ===========================================================================
+-- nvim-various-textobjs
+-- ===========================================================================
+
+M.bind_nvim_various_textobjs = function()
+  map({ 'o', 'x' }, 'ai', function()
+    ---@type 'inner'|'outer' exclude the startline
+    local START = 'outer'
+    ---@type 'inner'|'outer' exclude the endline
+    local END = 'outer'
+    ---@type 'withBlanks'|'noBlanks'
+    local BLANKS = 'noBlanks'
+    require('various-textobjs').indentation(START, END, BLANKS)
+    vim.cmd.normal('$') -- jump to end of line like vim-textobj-indent
+  end, { desc = 'textobj: indent' })
+
+  map({ 'o', 'x' }, 'ii', function()
+    ---@type 'inner'|'outer' exclude the startline
+    local START = 'inner'
+    ---@type 'inner'|'outer' exclude the endline
+    local END = 'inner'
+    ---@type 'withBlanks'|'noBlanks'
+    local BLANKS = 'noBlanks'
+    require('various-textobjs').indentation(START, END, BLANKS)
+    vim.cmd.normal('$') -- jump to end of line like vim-textobj-indent
+  end, { desc = 'textobj: indent' })
+
+  map(
+    { 'o', 'x' },
+    'ik',
+    "<cmd>lua require('various-textobjs').key(true)<CR>",
+    { desc = 'textobj: object key' }
+  )
+  map(
+    { 'o', 'x' },
+    'iv',
+    "<cmd>lua require('various-textobjs').value(true)<CR>",
+    { desc = 'textobj: object value' }
+  )
+  map(
+    { 'o', 'x' },
+    'is',
+    "<cmd>lua require('various-textobjs').subword(true)<CR>",
+    { desc = 'textobj: camel-_Snake' }
+  )
+
+  -- replaces netrw's gx
+  map('n', 'gx', function()
+    -- -------------------------------------------------------------------------
+    -- otherwise find nearest url
+    -- -------------------------------------------------------------------------
+    require('various-textobjs').url() -- select URL
+    -- this works since the plugin switched to visual mode
+    -- if the textobj has been found
+    local textobj_url = vim.fn.mode():find('v')
+    if textobj_url then
+      vim.print(('found textobj_url %s'):format(textobj_url))
+      -- if not found in proximity, search whole buffer via urlview.nvim instead
+      -- retrieve URL with the z-register as intermediary
+      vim.cmd.normal({ '"zy', bang = true })
+      local url = vim.fn.getreg('z')
+      require('lazy.util').open(url)
+      return
+    end
+
+    -- -------------------------------------------------------------------------
+    -- Popup menu of all urls in buffer
+    -- -------------------------------------------------------------------------
+    vim.cmd.UrlView('buffer')
+  end, { desc = 'Smart URL Opener' })
 end
 
 return M

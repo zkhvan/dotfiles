@@ -25,7 +25,7 @@ return {
         defaults = {
           mappings = {
             i = {
-              ["<Esc>"] = "close",
+              ['<Esc>'] = 'close',
             },
           },
           results_title = false,
@@ -43,6 +43,6 @@ return {
       t.load_extension('ui-select')
 
       require('kz.mappings').bind_telescope()
-    end
-  }
+    end,
+  },
 }

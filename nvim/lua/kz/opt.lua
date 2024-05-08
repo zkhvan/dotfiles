@@ -1,4 +1,4 @@
-vim.go.termguicolors = vim.env.TERM_PROGRAM ~= "Apple_Terminal"
+vim.go.termguicolors = vim.env.TERM_PROGRAM ~= 'Apple_Terminal'
 
 vim.o.clipboard = 'unnamedplus'
 
@@ -58,7 +58,7 @@ vim.o.signcolumn = 'auto:1-4'
 vim.o.synmaxcol = 512 -- don't syntax highlight long lines
 
 vim.o.showtabline = 0 -- start OFF, toggle =2 to show tabline
-vim.o.laststatus = 2  -- always show all statuslines
+vim.o.laststatus = 2 -- always show all statuslines
 
 -- This is slow on some terminals and often gets hidden by msgs so leave it off
 vim.o.showcmd = false
@@ -125,13 +125,12 @@ vim.o.undoreload = 10000
 -- vim.o.isfname-==
 vim.opt.isfname:remove('=')
 
-vim.opt.complete:remove('t')           -- don't complete tags
-vim.opt.completeopt:remove('longest')  -- ncm2 requirement
-vim.opt.completeopt:remove('preview')  -- don't open scratch (e.g. echodoc)
+vim.opt.complete:remove('t') -- don't complete tags
+vim.opt.completeopt:remove('longest') -- ncm2 requirement
+vim.opt.completeopt:remove('preview') -- don't open scratch (e.g. echodoc)
 vim.opt.completeopt:append('noinsert') -- ncm2 requirement
 vim.opt.completeopt:append('noselect') -- ncm2 don't select first thing
-vim.opt.completeopt:append('menuone')  -- show PUM, even for one thing
-
+vim.opt.completeopt:append('menuone') -- show PUM, even for one thing
 
 -- ===========================================================================
 -- Message output on vim actions
@@ -165,7 +164,7 @@ vim.o.startofline = false -- don't jump to col1 on switch buffer
 -- Code folding
 -- ===========================================================================
 
-vim.o.foldlevel = 999     -- very high === all folds open
+vim.o.foldlevel = 999 -- very high === all folds open
 vim.o.foldlevelstart = 99 -- show all folds by default
 vim.o.foldenable = false
 
@@ -175,9 +174,9 @@ vim.o.foldenable = false
 
 vim.o.list = true
 vim.opt.listchars = {
-  tab = '▶ ',   -- this must be two chars, see :h listchars
-  trail = '·',   -- trailing spaces
-  nbsp = '⣿',   -- non-breakable spaces
+  tab = '▶ ', -- this must be two chars, see :h listchars
+  trail = '·', -- trailing spaces
+  nbsp = '⣿', -- non-breakable spaces
   extends = '»', -- show cut off when nowrap
   precedes = '«', -- show cut off when nowrap
 }
@@ -190,8 +189,8 @@ vim.opt.listchars = {
 vim.opt.fillchars = { diff = '⣿' }
 vim.opt.diffopt = {
   vertical = true, -- Use in vertical diff mode
-  filler = true,   -- blank lines to keep sides aligne
-  iwhite = true,   -- Ignore whitespace changes
+  filler = true, -- blank lines to keep sides aligne
+  iwhite = true, -- Ignore whitespace changes
 }
 
 -- ===========================================================================
@@ -201,12 +200,12 @@ vim.opt.diffopt = {
 -- ===========================================================================
 
 vim.opt.formatoptions = {
-  r = true,     -- continue comments by default
-  o = true,     -- continue comment using o or O
-  n = true,     -- recognize numbered lists
-  q = true,     -- allow gq to format comments
-  a = false,    -- auto-gq on type in comments?
-  l = false,    -- break lines that are already long?
+  r = true, -- continue comments by default
+  o = true, -- continue comment using o or O
+  n = true, -- recognize numbered lists
+  q = true, -- allow gq to format comments
+  a = false, -- auto-gq on type in comments?
+  l = false, -- break lines that are already long?
   ['1'] = true, -- Break before 1-letter words
   ['2'] = true, -- Use indent from 2nd line of a paragraph
 }
@@ -259,9 +258,9 @@ vim.o.shiftround = false
 -- Match and search
 -- ===========================================================================
 
-vim.o.matchtime = 1                       -- tenths of a sec
-vim.o.showmatch = true                       -- briefly jump to matching paren?
-vim.o.wrapscan = true                          -- Searches wrap around end of the file.
+vim.o.matchtime = 1 -- tenths of a sec
+vim.o.showmatch = true -- briefly jump to matching paren?
+vim.o.wrapscan = true -- Searches wrap around end of the file.
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- Follow smartcase and ignorecase when doing tag search

@@ -17,6 +17,35 @@ end
 local autocmd = vim.api.nvim_create_autocmd
 
 -- ---------------------------------------------------------------------------
+-- tree-sitter and vim-matchup integration
+-- https://github.com/andymass/vim-matchup?tab=readme-ov-file#tree-sitter-integration
+-- ---------------------------------------------------------------------------
+
+local ENABLE_TREESITTER_MATCHUP = true
+local treesitter_loaded = false
+local matchup_loaded = false
+if ENABLE_TREESITTER_MATCHUP then
+  autocmd('User', {
+    pattern = 'LazyLoad',
+    callback = function(ev)
+      if ev.data == 'nvim-treesitter' then
+        treesitter_loaded = true
+      end
+      if ev.data == 'vim-matchup' then
+        matchup_loaded = true
+      end
+      if treesitter_loaded and matchup_loaded then
+        require('nvim-treesitter.configs').setup({
+          matchup = { enable = true },
+        })
+        return true -- delete this autocmd
+      end
+    end,
+    group = augroup('kzplugins'),
+  })
+end
+
+-- ---------------------------------------------------------------------------
 
 autocmd('VimResized', {
   desc = 'Automatically resize windows when resizing Vim',
@@ -35,13 +64,6 @@ autocmd('BufWinEnter', {
   desc = 'Restore last cursor position when opening file',
   callback = 'kz#RestorePosition',
   group = augroup('kzrestoreposition'),
-})
-
-autocmd('VimEnter', {
-  desc = 'Initialize statusline on VimEnter',
-  nested = true,
-  callback = 'kzline#Init',
-  group = augroup('kzstatusline'),
 })
 
 autocmd({ 'BufNewFile', 'BufRead', 'BufWritePost' }, {
@@ -135,8 +157,8 @@ autocmd('LspAttach', {
     -- First LSP attached
     if not vim.b.has_lsp then
       vim.b.has_lsp = true
-      require("kz.mappings").bind_lsp(bufnr)
+      require('kz.mappings').bind_lsp(bufnr)
     end
   end,
-  group = augroup('kzlsp')
+  group = augroup('kzlsp'),
 })

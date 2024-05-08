@@ -8,14 +8,14 @@
 -- vim-markdown plugin (which is bundled with vim7.4 now) There are more
 -- syntaxes, but checking for them makes editing md very slow
 vim.g.markdown_fenced_languages = {
-  "javascript",
-  "js=javascript",
-  "javascriptreact",
-  "json",
-  "bash=sh",
-  "sh",
-  "vim",
-  "help",
+  'javascript',
+  'js=javascript',
+  'javascriptreact',
+  'json',
+  'bash=sh',
+  'sh',
+  'vim',
+  'help',
 }
 
 -- ===========================================================================
@@ -32,4 +32,4 @@ vim.g.is_bash = 1
 -- ===========================================================================
 
 -- disable mzscheme, tcl highlighting
-vim.g.vimsyn_embed = "lpPr"
+vim.g.vimsyn_embed = 'lpPr'
