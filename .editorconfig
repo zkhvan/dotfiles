@@ -1,0 +1,10 @@
+root = true
+
+[*.lua]
+indent_style = space
+indent_size = 2
+call_arg_parentheses = keep
+call_parentheses = Always
+collapse_simple_statement = Never
+max_line_length = 80
+quote_type = single
