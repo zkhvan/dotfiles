@@ -6,6 +6,11 @@ local kzlsp = require('kz.lsp')
 
 return {
   {
+    'deathbeam/lspecho.nvim',
+    opts = {},
+  },
+
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Provide lua_ls configuration for neovim
