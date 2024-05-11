@@ -52,6 +52,16 @@ map("n", "ss", function()
 end, { desc = "Print treesitter captures under cursor" })
 
 -- ===========================================================================
+-- Buffer: Edit contents
+-- ===========================================================================
+
+for _, v in ipairs({ '=', '-', '*', '#' }) do
+  map('i', '<Leader>f' .. v, function()
+    require('kz.utils.hr').fill(v)
+  end, { desc = 'Fill horizontal line for: ' .. v })
+end
+
+-- ===========================================================================
 -- telescope.nvim
 -- ===========================================================================
 
@@ -160,7 +170,7 @@ M.bind_lsp = function(bufnr)
 
   map('n', 'gi', function()
     return telescope_builtin('lsp_implementations')
-      or vim.lsp.buf.implementation()
+        or vim.lsp.buf.implementation()
   end, lsp_opts({ desc = 'LSP implementation' }))
 
   map({ 'n', 'i' }, '<C-g>', function()
@@ -169,7 +179,7 @@ M.bind_lsp = function(bufnr)
 
   map('n', '<Leader>D', function()
     return telescope_builtin('lsp_type_definitions')
-      or vim.lsp.buf.type_definition()
+        or vim.lsp.buf.type_definition()
   end, lsp_opts({ desc = 'LSP type_definition' }))
 
   map('n', '<Leader>rn', function()
@@ -182,8 +192,8 @@ M.bind_lsp = function(bufnr)
 
   map('n', 'gr', function()
     return telescope_builtin('lsp_references')
-      ---@diagnostic disable-next-line: missing-parameter
-      or vim.lsp.buf.references()
+        ---@diagnostic disable-next-line: missing-parameter
+        or vim.lsp.buf.references()
   end, lsp_opts({ desc = 'LSP references' }))
 
   map('n', '<A-=>', function()
