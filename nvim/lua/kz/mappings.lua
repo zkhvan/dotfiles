@@ -2,6 +2,55 @@ local M = {}
 
 local map = vim.keymap.set
 
+map("n", "<Esc><Esc>", function()
+  vim.cmd.doautoall("User EscEscStart")
+  -- Clear / search term
+  vim.fn.setreg("/", "")
+  -- Stop highlighting searches
+  vim.cmd.nohlsearch()
+  vim.cmd.redraw({ bang = true })
+  vim.cmd.doautoall("User EscEscEnd")
+end, { desc = "Clear UI" })
+
+-- ===========================================================================
+-- Window / Buffer manip
+-- ===========================================================================
+
+map("n", "]t", vim.cmd.tabn, { desc = "Next tab" })
+map("n", "[t", vim.cmd.tabp, { desc = "Prev tab" })
+
+map("n", "<BS>", function()
+  -- only in non-floating
+  if vim.api.nvim_win_get_config(0).relative == "" then
+    return "<C-^>"
+  end
+end, {
+  expr = true,
+  desc = "Prev buffer with <BS> backspace in normal (C-^ is kinda awkward)",
+})
+
+-- ===========================================================================
+-- Diagnostic mappings
+-- ===========================================================================
+
+map("n", "[d", function()
+  vim.diagnostic.goto_prev({})
+end, { desc = "Go to prev diagnostic and open float" })
+map("n", "]d", function()
+  vim.diagnostic.goto_next({})
+end, { desc = "Go to next diagnostic and open float" })
+map("n", "<Leader>d", function()
+  vim.diagnostic.open_float()
+end, { desc = "Open diagnostic float at cursor" })
+
+-- ===========================================================================
+-- Treesitter utils
+-- ===========================================================================
+
+map("n", "ss", function()
+  vim.print(vim.treesitter.get_captures_at_cursor())
+end, { desc = "Print treesitter captures under cursor" })
+
 -- ===========================================================================
 -- telescope.nvim
 -- ===========================================================================
