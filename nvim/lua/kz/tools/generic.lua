@@ -1,6 +1,6 @@
 local tools = require('kz.tools')
 
 tools.register({
-  name = 'gopls',
-  type = 'lsp',
+  name = 'tree-sitter-cli',
+  type = 'tool',
 })

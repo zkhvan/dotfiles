@@ -25,9 +25,11 @@ require('kz.builtin-plugins')
 require('kz.terminal')
 require('kz.behaviors')
 
-require('kz.lazy')
-
 require('kz.tools.lua')
+require('kz.tools.go')
+require('kz.tools.generic')
+
+require('kz.lazy')
 
 require('kz.lsp.floats')
 
