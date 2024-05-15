@@ -33,4 +33,16 @@ return {
       tools.setup_mason_lspconfig()
     end,
   },
+
+  {
+    'creativenull/efmls-configs-nvim',
+    version = 'v1.x.x',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason-lspconfig.nvim',
+    },
+    config = function()
+      tools.setup_efmconfig()
+    end
+  }
 }
