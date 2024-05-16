@@ -1,1 +1,5 @@
 std = "vim"
+
+[rules]
+mixed_table = "allow"
+unused_variable = "allow" # conflicts with luals
