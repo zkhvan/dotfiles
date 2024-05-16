@@ -66,16 +66,7 @@ end
 -- ===========================================================================
 
 M.bind_telescope = function()
-  local t = require('telescope')
   local tb = require('telescope.builtin')
-
-  map('n', '<Leader>ge', function()
-    if t.extensions.file_browser then
-      t.extensions.file_browser.file_browser({
-        hidden = true, -- show hidden
-      })
-    end
-  end, { desc = 'Telescope: open file explorer' })
 
   map('n', '<Leader>gc', function()
     tb.find_files({
@@ -205,20 +196,20 @@ end
 -- nvim-tree
 -- ===========================================================================
 
-M.bind_nvimtree = function()
-  map(
-    'n',
-    '<Leader>no',
-    '<cmd>NvimTreeFocus<CR>',
-    { desc = 'nvim-tree: focus' }
-  )
-  map(
-    'n',
-    '<Leader>nf',
-    '<cmd>NvimTreeFindFile<CR>',
-    { desc = 'nvim-tree: find current file' }
-  )
-end
+-- M.bind_nvimtree = function()
+--   map(
+--     'n',
+--     '<Leader>no',
+--     '<cmd>NvimTreeFocus<CR>',
+--     { desc = 'nvim-tree: focus' }
+--   )
+--   map(
+--     'n',
+--     '<Leader>nf',
+--     '<cmd>NvimTreeFindFile<CR>',
+--     { desc = 'nvim-tree: find current file' }
+--   )
+-- end
 
 -- ===========================================================================
 -- git-signs
@@ -410,6 +401,10 @@ M.bind_nvim_various_textobjs = function()
   end, { desc = 'Smart URL Opener' })
 end
 
+-- ===========================================================================
+-- zk.nvim
+-- ===========================================================================
+
 ---@param client vim.lsp.Client
 ---@param bufnr integer
 ---@diagnostic disable-next-line: unused-local
@@ -435,6 +430,14 @@ function M.bind_zk_lsp(client, bufnr)
     end)
   end)
   map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
+end
+
+-- ===========================================================================
+-- oil.nvim
+-- ===========================================================================
+
+function M.bind_oil()
+  map('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
 end
 
 return M
