@@ -146,6 +146,36 @@ return {
 
     {
       condition = function()
+        return vim.bo.buftype == 'acwrite'
+      end,
+
+      {
+        provider = function(self)
+          local oil = require('oil')
+
+          if self.filepath == '' then
+            return ''
+          end
+
+          local current_dir = oil.get_current_dir()
+          if current_dir == nil then
+            return ''
+          end
+
+          local path = vim.fn.fnamemodify(current_dir, ':~:h')
+          local relative = vim.fn.fnamemodify(path, ':~:.') or ''
+          local final = relative
+
+          return (' in %s%s '):format('%<', final)
+        end,
+        hl = function()
+          return active_highlight('Comment')
+        end,
+      },
+    },
+
+    {
+      condition = function()
         return vim.bo.buftype == '' or vim.bo.buftype == 'help'
       end,
 
@@ -156,6 +186,7 @@ return {
           end
 
           local path = vim.fn.fnamemodify(self.filepath, ':~:h')
+          print(path)
 
           local win_width = vim.api.nvim_win_get_width(0)
           local extrachars = 3 + 3 + self.filetype_text:len()
