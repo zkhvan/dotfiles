@@ -39,5 +39,6 @@
   "vim-sandwich": { "branch": "master", "commit": "74cf93d58ccc567d8e2310a69860f1b93af19403" },
   "vim-textobj-url": { "branch": "master", "commit": "782d5b990caaa4519d5b4f39ca9ec48bd2e4bfc5" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
+  "zk-nvim": { "branch": "main", "commit": "e2b6d62b18a88249016bf917d4e5bb0e417ac974" },
   "zoomwintab.vim": { "branch": "master", "commit": "3b76f740534ecc4114bc8a207ecb0db77b2fb002" }
 }

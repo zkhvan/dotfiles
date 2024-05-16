@@ -2,54 +2,54 @@ local M = {}
 
 local map = vim.keymap.set
 
-map("n", "<Esc><Esc>", function()
-  vim.cmd.doautoall("User EscEscStart")
+map('n', '<Esc><Esc>', function()
+  vim.cmd.doautoall('User EscEscStart')
   -- Clear / search term
-  vim.fn.setreg("/", "")
+  vim.fn.setreg('/', '')
   -- Stop highlighting searches
   vim.cmd.nohlsearch()
   vim.cmd.redraw({ bang = true })
-  vim.cmd.doautoall("User EscEscEnd")
-end, { desc = "Clear UI" })
+  vim.cmd.doautoall('User EscEscEnd')
+end, { desc = 'Clear UI' })
 
 -- ===========================================================================
 -- Window / Buffer manip
 -- ===========================================================================
 
-map("n", "]t", vim.cmd.tabn, { desc = "Next tab" })
-map("n", "[t", vim.cmd.tabp, { desc = "Prev tab" })
+map('n', ']t', vim.cmd.tabn, { desc = 'Next tab' })
+map('n', '[t', vim.cmd.tabp, { desc = 'Prev tab' })
 
-map("n", "<BS>", function()
+map('n', '<BS>', function()
   -- only in non-floating
-  if vim.api.nvim_win_get_config(0).relative == "" then
-    return "<C-^>"
+  if vim.api.nvim_win_get_config(0).relative == '' then
+    return '<C-^>'
   end
 end, {
   expr = true,
-  desc = "Prev buffer with <BS> backspace in normal (C-^ is kinda awkward)",
+  desc = 'Prev buffer with <BS> backspace in normal (C-^ is kinda awkward)',
 })
 
 -- ===========================================================================
 -- Diagnostic mappings
 -- ===========================================================================
 
-map("n", "[d", function()
+map('n', '[d', function()
   vim.diagnostic.goto_prev({})
-end, { desc = "Go to prev diagnostic and open float" })
-map("n", "]d", function()
+end, { desc = 'Go to prev diagnostic and open float' })
+map('n', ']d', function()
   vim.diagnostic.goto_next({})
-end, { desc = "Go to next diagnostic and open float" })
-map("n", "<Leader>d", function()
+end, { desc = 'Go to next diagnostic and open float' })
+map('n', '<Leader>d', function()
   vim.diagnostic.open_float()
-end, { desc = "Open diagnostic float at cursor" })
+end, { desc = 'Open diagnostic float at cursor' })
 
 -- ===========================================================================
 -- Treesitter utils
 -- ===========================================================================
 
-map("n", "ss", function()
+map('n', 'ss', function()
   vim.print(vim.treesitter.get_captures_at_cursor())
-end, { desc = "Print treesitter captures under cursor" })
+end, { desc = 'Print treesitter captures under cursor' })
 
 -- ===========================================================================
 -- Buffer: Edit contents
@@ -170,7 +170,7 @@ M.bind_lsp = function(bufnr)
 
   map('n', 'gi', function()
     return telescope_builtin('lsp_implementations')
-        or vim.lsp.buf.implementation()
+      or vim.lsp.buf.implementation()
   end, lsp_opts({ desc = 'LSP implementation' }))
 
   map({ 'n', 'i' }, '<C-g>', function()
@@ -179,7 +179,7 @@ M.bind_lsp = function(bufnr)
 
   map('n', '<Leader>D', function()
     return telescope_builtin('lsp_type_definitions')
-        or vim.lsp.buf.type_definition()
+      or vim.lsp.buf.type_definition()
   end, lsp_opts({ desc = 'LSP type_definition' }))
 
   map('n', '<Leader>rn', function()
@@ -192,8 +192,8 @@ M.bind_lsp = function(bufnr)
 
   map('n', 'gr', function()
     return telescope_builtin('lsp_references')
-        ---@diagnostic disable-next-line: missing-parameter
-        or vim.lsp.buf.references()
+      ---@diagnostic disable-next-line: missing-parameter
+      or vim.lsp.buf.references()
   end, lsp_opts({ desc = 'LSP references' }))
 
   map('n', '<A-=>', function()
@@ -408,6 +408,33 @@ M.bind_nvim_various_textobjs = function()
     -- -------------------------------------------------------------------------
     vim.cmd.UrlView('buffer')
   end, { desc = 'Smart URL Opener' })
+end
+
+---@param client vim.lsp.Client
+---@param bufnr integer
+---@diagnostic disable-next-line: unused-local
+function M.bind_zk_lsp(client, bufnr)
+  local zk = require('zk')
+
+  map('n', '<Leader>gn', '<cmd>ZkNotes { sort = { "modified" } }<CR>')
+  map('n', '<Leader>gt', '<cmd>ZkTags<CR>')
+  map('n', '<Leader>gb', '<cmd>ZkBacklinks<CR>')
+  map('n', '<Leader>gl', '<cmd>ZkLinks<CR>')
+
+  map('n', '<Leader>zn', function()
+    vim.ui.input({ prompt = 'Title: ' }, function(title)
+      if title == nil then
+        return
+      end
+
+      if #title <= 0 then
+        return
+      end
+
+      zk.new({ title = title })
+    end)
+  end)
+  map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
 end
 
 return M
