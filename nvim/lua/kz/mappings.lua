@@ -143,6 +143,8 @@ end
 -- LspAttach autocmd callback
 ---@param bufnr number
 M.bind_lsp = function(bufnr)
+  local conform = require('conform')
+
   ---@param opts table
   ---@return table opts with silent and buffer set
   local function lsp_opts(opts)
@@ -188,7 +190,7 @@ M.bind_lsp = function(bufnr)
   end, lsp_opts({ desc = 'LSP references' }))
 
   map('n', '<A-=>', function()
-    vim.lsp.buf.format()
+    conform.format()
   end, lsp_opts({ desc = 'LSP format' }))
 end
 
@@ -438,6 +440,17 @@ end
 
 function M.bind_oil()
   map('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+end
+
+-- ===========================================================================
+-- conform.nvim
+-- ===========================================================================
+
+function M.bind_conform()
+  local conform = require('conform')
+  map('n', '<A-=>', function()
+    conform.format()
+  end)
 end
 
 return M

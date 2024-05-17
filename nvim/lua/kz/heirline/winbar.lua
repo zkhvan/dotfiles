@@ -186,7 +186,6 @@ return {
           end
 
           local path = vim.fn.fnamemodify(self.filepath, ':~:h')
-          print(path)
 
           local win_width = vim.api.nvim_win_get_width(0)
           local extrachars = 3 + 3 + self.filetype_text:len()

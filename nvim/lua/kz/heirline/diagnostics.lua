@@ -29,7 +29,6 @@ return {
     self.info =
       get_diagnostic_count({ severity = vim.diagnostic.severity.INFO })
     self.total = self.errors + self.warnings + self.hints + self.info
-    print(self.total)
   end,
 
   update = { 'DiagnosticChanged', 'BufEnter' },

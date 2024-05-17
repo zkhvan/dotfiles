@@ -2,6 +2,7 @@
   "bufferize.vim": { "branch": "main", "commit": "ec7c4445a97f19e5784a6fb6ad3c3d4a8ff505ac" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "committia.vim": { "branch": "master", "commit": "a187b8633694027ab5ef8a834527d33093282f95" },
+  "conform.nvim": { "branch": "master", "commit": "00f9d91391b04b1935e2f15948bd96cc111e7d3a" },
   "efmls-configs-nvim": { "branch": "main", "commit": "479505abe49a554c0d31104a2fee730188240944" },
   "everandever.nvim": { "branch": "main", "commit": "d74a3b6cd57dde1367d40cc9450afd793b3b80bb" },
   "git-messenger.vim": { "branch": "master", "commit": "8a61bdfa351d4df9a9118ee1d3f45edbed617072" },

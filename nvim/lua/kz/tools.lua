@@ -1,4 +1,5 @@
 local lsp = require('kz.lsp')
+local format = require('kz.format')
 
 local M = {}
 
@@ -87,7 +88,8 @@ function M.get_efmconfig(name)
 end
 
 function M.get_efmconfigs()
-  return vim.iter(M.tools)
+  return vim
+    .iter(M.tools)
     :filter(function(_, tool)
       return tool.efmconfig ~= nil
     end)
@@ -151,6 +153,21 @@ function M.setup_efmconfig()
   }
 
   require('lspconfig').efm.setup(efmls_config)
+end
+
+function M.setup_conformconfig()
+  local pipelines = format.pipelines
+
+  require('conform').setup({
+    formatters_by_ft = pipelines,
+    format_on_save = {
+      -- These options will be passed to conform.format()
+      timeout_ms = 500,
+      lsp_fallback = true,
+    },
+  })
+
+  vim.bo.formatexpr = "v:lua.require('conform').formatexpr()"
 end
 
 return M
