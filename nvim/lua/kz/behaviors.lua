@@ -128,6 +128,10 @@ autocmd('TextYankPost', {
 autocmd({ 'BufWritePre', 'FileWritePre' }, {
   desc = 'Create missing parent directories on write',
   callback = function(args)
+    if vim.bo.filetype == 'oil' then
+      return
+    end
+
     local dir = vim.fs.dirname(args.file)
     if vim.fn.isdirectory(dir) == 0 then
       vim.fn.mkdir(dir, 'p')
