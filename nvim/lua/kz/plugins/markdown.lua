@@ -1,6 +1,7 @@
 return {
   {
     'zk-org/zk-nvim',
+    ft = 'markdown',
     dependencies = {
       'nvim-telescope/telescope.nvim',
     },
