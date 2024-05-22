@@ -160,11 +160,17 @@ function M.setup_conformconfig()
 
   require('conform').setup({
     formatters_by_ft = pipelines,
-    format_on_save = {
-      -- These options will be passed to conform.format()
-      timeout_ms = 500,
-      lsp_fallback = true,
-    },
+    format_on_save = function(bufnr)
+      -- Disable with a global or buffer-local variable
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        return
+      end
+
+      return {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      }
+    end,
   })
 
   vim.bo.formatexpr = "v:lua.require('conform').formatexpr()"
