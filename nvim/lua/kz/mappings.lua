@@ -432,6 +432,17 @@ function M.bind_zk_lsp(client, bufnr)
     end)
   end)
   map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
+
+  map('n', '<Leader>mn', function()
+    local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':~')
+    local relative = vim.fn.fnamemodify(path, ':~:.') or ''
+    local url_path = vim.fn.fnamemodify(relative, ':r')
+
+    vim.system({
+      'open',
+      ('http://localhost:3000/%s'):format(url_path),
+    })
+  end)
 end
 
 -- ===========================================================================
