@@ -38,6 +38,9 @@ if ENABLE_TREESITTER_MATCHUP then
         require('nvim-treesitter.configs').setup({
           matchup = { enable = true },
         })
+
+        -- Remove <C-g>% mapping to make LSP signature_help instant
+        vim.keymap.del('i', '<C-g>%')
         return true -- delete this autocmd
       end
     end,
