@@ -45,5 +45,6 @@ yabai -m config                                 \
 yabai -m rule --add app="^(Calculator|System Preferences|System Settings|Archive Utility)$" manage=off sticky=on
 yabai -m rule --add app="^Bitwarden$" manage=off
 yabai -m rule --add app="^Slack$" scratchpad=slack
+yabai -m rule --add app="^Discord$" scratchpad=discord
 
 echo "yabai configuration loaded.."
