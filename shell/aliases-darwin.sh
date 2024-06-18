@@ -31,3 +31,6 @@ alias chrome='open -a "Google Chrome.app"'
 # ----------------------------------------------------------------------------
 
 alias localhost-alias='echo 127.0.{1,2}.{1..8} | xargs -n 1 -I{} sudo ifconfig lo0 alias {} 255.255.255.0'
+alias proxy='export HTTP_PROXY=127.0.0.1:8888; export HTTPS_PROXY=127.0.0.1:8888'
+alias noproxy='unset HTTP_PROXY; unset HTTPS_PROXY'
+alias runproxy='mitmproxy -p 8888'
