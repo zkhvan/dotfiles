@@ -109,7 +109,7 @@ end
 
 function M.get_tools()
   return vim
-    .iter(pairs(M.tools))
+    .iter(M.tools)
     :filter(function(_, v)
       return v.type == 'tool'
     end)
