@@ -2,6 +2,18 @@
 -- nvim-treeitter
 -- ===========================================================================
 
+local FT_TO_LANG_ALIASES = {
+  dotenv = 'bash',
+  tiltfile = 'starlark',
+}
+
+-- blacklist if highlighting doesn't look right or is worse than vim regex
+local HIGHLIGHTING_DISABLED = {
+  -- treesitter language, not ft
+  -- see https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+  'dockerfile',
+}
+
 return {
   -- https://github.com/nvim-treesitter/nvim-treesitter/
   {
@@ -34,8 +46,19 @@ return {
 
         highlight = {
           enable = true,
+          disable = function(lang, bufnr)
+            return (
+              require('kz.utils.buffer').is_huge({ bufnr = bufnr })
+              or vim.tbl_contains(HIGHLIGHTING_DISABLED, lang)
+            )
+          end,
         },
       })
+
+      -- Aliases
+      for ft, parser in pairs(FT_TO_LANG_ALIASES) do
+        vim.treesitter.language.register(parser, ft)
+      end
     end,
   },
 }

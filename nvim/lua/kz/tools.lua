@@ -68,6 +68,12 @@ end
 function M.get_lspconfig_names()
   return vim
     .iter(M.get_lspconfigs())
+    :filter(function(config)
+      if config.mason_lspconfig == nil then
+        return true
+      end
+      return config.mason_lspconfig
+    end)
     :map(function(config)
       return config.name
     end)

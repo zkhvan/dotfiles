@@ -19,6 +19,11 @@ return {
     config = function()
       -- border on :LspInfo window
       require('lspconfig.ui.windows').default_options.border = 'rounded'
+
+      -- TODO: REMOVE
+      -- Need to configure a way to install unmanaged lsps (not in
+      -- mason-lspconfig)
+      require('lspconfig').tilt_ls.setup({})
     end,
   },
 
@@ -43,6 +48,6 @@ return {
     },
     config = function()
       tools.setup_efmconfig()
-    end
-  }
+    end,
+  },
 }
