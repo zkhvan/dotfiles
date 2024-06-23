@@ -76,6 +76,7 @@ return {
     opts = {
       markdown = {
         bullets = {},
+        fat_headlines = false,
       },
     }, -- or `opts = {}`
   },
