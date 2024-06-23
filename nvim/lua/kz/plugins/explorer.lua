@@ -25,7 +25,20 @@ return {
     priority = 1000,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('oil').setup()
+      require('oil').setup({
+        keymaps = {
+          ['<C-x>'] = {
+            'actions.select',
+            opts = { horizontal = true },
+            desc = 'Open the entry in a horizontal split',
+          },
+          ['<C-v>'] = {
+            'actions.select',
+            opts = { vertical = true },
+            desc = 'Open the entry in a vertical split',
+          },
+        },
+      })
       require('kz.mappings').bind_oil()
     end,
   },
