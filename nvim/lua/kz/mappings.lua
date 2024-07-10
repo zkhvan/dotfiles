@@ -192,6 +192,14 @@ M.bind_lsp = function(bufnr)
   map('n', '<A-=>', function()
     conform.format()
   end, lsp_opts({ desc = 'LSP format' }))
+
+  map('n', '<Leader>gt', function()
+    return telescope_builtin('lsp_dynamic_workspace_symbols')
+  end, lsp_opts({ desc = 'LSP dynamic_workspace_symbols' }))
+
+  map('n', '<Leader>gd', function()
+    return telescope_builtin('lsp_document_symbols')
+  end, lsp_opts({ desc = 'LSP document_symbols' }))
 end
 
 -- ===========================================================================
