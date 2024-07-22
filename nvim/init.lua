@@ -29,6 +29,7 @@ require('kz.tools.generic')
 require('kz.tools.go')
 require('kz.tools.lua')
 require('kz.tools.markdown')
+require('kz.tools.terraform')
 require('kz.tools.tiltfile')
 
 require('kz.lazy')
