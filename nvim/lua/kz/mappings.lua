@@ -134,6 +134,7 @@ local function telescope_builtin(method)
       -- vsplit)
       jump_type = 'never',
       layout_strategy = 'vertical',
+      fname_width = 50,
     })
     return true
   end
