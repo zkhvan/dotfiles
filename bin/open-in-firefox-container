@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# bin/open-in-firefox-container
+#
+# opens a link in a firefox container
+# $1 is the container name
+# $2 is the URL
+# ==========================================================================
+
+set -e -u -o pipefail
+
+container_name=$(jq -rn --arg x "$1" '$x|@uri')
+url=$(jq -rn --arg x "$2" '$x|@uri')
+
+open -na "Firefox" --args "ext+container:name=$container_name&url=$url"
