@@ -43,8 +43,10 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 yabai -m rule --add app="^(Calculator|System Preferences|System Settings|Archive Utility)$" manage=off sticky=on
-yabai -m rule --add app="^Bitwarden$" manage=off
+yabai -m rule --add app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Bitwarden$" scratchpad=bitwarden
 yabai -m rule --add app="^Slack$" scratchpad=slack
-yabai -m rule --add app="^Discord$" scratchpad=discord
+yabai -m rule --add app="^Discord$" title!="^Discord Updater$" scratchpad=discord
 
 echo "yabai configuration loaded.."

@@ -84,13 +84,13 @@ sudo pmset -a autorestart 1
 # Restart automatically if the computer freezes
 # sudo systemsetup -setrestartfreeze on
 
-# Sleep the display after 15 minutes
+# Sleep the display after 15 minutes on AC
 sudo pmset -c displaysleep 15
 
 # Sleep the display after 15 minutes
 sudo pmset -b displaysleep 2
 
-# Disable machine sleep while charging
+# Sleep the machine after 20 minutes on AC
 sudo pmset -c sleep 20
 
 # Set machine sleep to 5 minutes on battery

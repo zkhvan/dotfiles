@@ -113,8 +113,8 @@
 
 ctrl + shift + cmd - r   : source $XDG_CONFIG_HOME/yabai/yabairc
 ctrl + alt + cmd - r     : yabai --restart-service
-
 # focus window
+
 alt              - h     : yabai -m window --focus west  || yabai -m display --focus west
 alt              - l     : yabai -m window --focus east  || yabai -m display --focus east
 alt              - k     : yabai -m window --focus north || yabai -m display --focus north
@@ -207,13 +207,14 @@ alt              - 0x2C  : yabai -m window --opacity 0.1 && sleep $(yabai -m con
 # cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 cmd - return : focus-wezterm
 # fn - space   : focus-wezterm-scratch
+meh - space  : yabai -m window --toggle terminal || wezterm-start-scratch terminal
 fn - space   : yabai -m window --toggle terminal || wezterm-start-scratch terminal
+meh - n      : yabai -m window --toggle notes || wezterm-start-scratch notes
 fn - n       : yabai -m window --toggle notes || wezterm-start-scratch notes
 
 # open chrome
 cmd + shift - return : open -a "/Applications/Google Chrome.app"
 
-# open bitwarden
-cmd + shift + ctrl - b : open -a Bitwarden
+cmd + shift + ctrl - b : yabai -m window --toggle bitwarden || open -a Bitwarden
 cmd + shift + ctrl - s : yabai -m window --toggle slack || open -a Slack
 cmd + shift + ctrl - d : yabai -m window --toggle discord || open -a Discord
