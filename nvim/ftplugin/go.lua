@@ -1,5 +1,8 @@
 -- ftplugin/go.lua
 
+local editor = require('kz.editor')
+editor.tab(4)
+
 if package.loaded['nvim-treesitter'] then
   vim.opt.foldmethod = 'expr'
   vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

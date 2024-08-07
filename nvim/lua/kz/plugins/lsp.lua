@@ -2,11 +2,25 @@
 -- LSP
 -- =========================================================================
 local tools = require('kz.tools')
+local lsp = require('kz.lsp')
 
 return {
   {
     'deathbeam/lspecho.nvim',
     opts = {},
+  },
+
+  {
+    'hrsh7th/cmp-nvim-lsp', -- provides some capabilities
+    config = function()
+      local cnl = require('cmp_nvim_lsp')
+      cnl.setup()
+      lsp.base_config.capabilities = vim.tbl_deep_extend(
+        'force',
+        lsp.base_config.capabilities,
+        cnl.default_capabilities()
+      )
+    end,
   },
 
   {
