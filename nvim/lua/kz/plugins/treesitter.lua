@@ -4,7 +4,9 @@
 
 local FT_TO_LANG_ALIASES = {
   dotenv = 'bash',
+  -- javascriptreact = 'jsx',
   tiltfile = 'starlark',
+  -- typescriptreact = 'tsx',
 }
 
 -- blacklist if highlighting doesn't look right or is worse than vim regex

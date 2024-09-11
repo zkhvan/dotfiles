@@ -177,6 +177,9 @@ function M.setup_conformconfig()
         lsp_fallback = true,
       }
     end,
+    default_format_opts = {
+      stop_after_first = true,
+    },
   })
 
   vim.bo.formatexpr = "v:lua.require('conform').formatexpr()"
