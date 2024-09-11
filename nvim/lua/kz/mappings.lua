@@ -62,6 +62,11 @@ for _, v in ipairs({ '=', '-', '*', '#' }) do
 end
 
 -- ===========================================================================
+-- Notes
+-- ===========================================================================
+map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
+
+-- ===========================================================================
 -- telescope.nvim
 -- ===========================================================================
 
@@ -440,6 +445,20 @@ function M.bind_zk_lsp(client, bufnr)
       zk.new({ title = title })
     end)
   end)
+
+  -- Create a new note in the same directory as the current buffer, using the current selection for title.
+  map(
+    'v',
+    '<leader>znt',
+    ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>"
+  )
+  -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
+  map(
+    'v',
+    '<leader>znc',
+    ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>"
+  )
+
   map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
 
   map('n', '<Leader>mn', function()
@@ -449,7 +468,7 @@ function M.bind_zk_lsp(client, bufnr)
 
     vim.system({
       'open',
-      ('http://localhost:3000/%s'):format(url_path),
+      ('http://localhost:8080/%s'):format(url_path),
     })
   end)
 end

@@ -2,6 +2,7 @@ return {
   {
     'zk-org/zk-nvim',
     ft = 'markdown',
+    cmd = 'ZkDaily',
     dependencies = {
       'nvim-telescope/telescope.nvim',
     },
