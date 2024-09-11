@@ -10,6 +10,13 @@ return {
   },
 
   {
+    'tpope/vim-fugitive',
+    dependencies = {
+      'tpope/vim-rhubarb', -- GBrowse for GitHub
+    },
+  },
+
+  {
     'echasnovski/mini.bracketed',
     version = false,
     config = function()
@@ -29,6 +36,14 @@ return {
         window = { suffix = '', options = {} }, -- broken going to unlisted
         yank = { suffix = '', options = {} }, -- confusing
       })
+    end,
+  },
+
+  {
+    'echasnovski/mini.surround',
+    version = false,
+    config = function()
+      require('mini.surround').setup()
     end,
   },
 
@@ -120,6 +135,33 @@ return {
       require('mini.move').setup({
         mappings = require('kz.mappings').mini_move,
       })
+    end,
+  },
+
+  -- split/join
+  -- Alternatives:
+  -- - https://github.com/bennypowers/splitjoin.nvim
+  -- - https://github.com/Wansmer/treesj (requires tree-sitter)
+  -- - https://github.com/echasnovski/mini.splitjoin
+  -- {
+  --   'Wansmer/treesj',
+  --   keys = { '<Leader>m', '<Leader>j', '<Leader>s' },
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --   }, -- if you install parsers with `nvim-treesitter`
+  --   config = function()
+  --     require('treesj').setup({
+  --       use_default_keymaps = false,
+  --     })
+  --     require('kz.mappings').bind_treesj()
+  --   end,
+  -- },
+  {
+    'echasnovski/mini.splitjoin',
+    version = false,
+    keys = 'gS',
+    config = function()
+      require('mini.splitjoin').setup()
     end,
   },
 

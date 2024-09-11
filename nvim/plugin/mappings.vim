@@ -168,10 +168,10 @@ vmap <special> <S-Tab>   <
 " ----------------------------------------------------------------------------
 
 " Auto select paragraph (bounded by blank lines) and sort
-nnoremap  <special> <Leader>s   vip:!sort<CR>
+nnoremap  <special> <Leader>s   vip:sort<CR>
 
 " Sort selection (no clear since in visual)
-xnoremap  <special> <Leader>s   :!sort<CR>
+xnoremap  <special> <Leader>s   :sort<CR>
 
 " ----------------------------------------------------------------------------
 " Clean up whitespace
@@ -205,6 +205,7 @@ vnoremap  <Leader>RN   :w !node -p \| pbcopy<CR><CR>
 
 nnoremap  <special> <F13>         :q<CR>
 nnoremap  <special> <S-F3>        :q<CR>
+nnoremap  <special> <M-S-F3>      :q<CR>
 
 " ----------------------------------------------------------------------------
 " Unfuck my screen

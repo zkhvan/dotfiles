@@ -492,4 +492,23 @@ function M.bind_conform()
   end)
 end
 
+-- ===========================================================================
+-- treesj
+-- ===========================================================================
+
+function M.bind_treesj()
+  local tsj = require('treesj')
+  map('n', '<Leader>jj', function()
+    tsj.join()
+  end)
+
+  map('n', '<Leader>js', function()
+    tsj.split()
+  end)
+
+  map('n', '<Leader>jm', function()
+    tsj.toggle()
+  end)
+end
+
 return M

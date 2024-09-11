@@ -11,9 +11,10 @@ source "${DOTFILES}/lib/helpers.sh"
 # env management -- Node, PHP, Python, Ruby - These add to path
 # ==============================================================================
 
+source "${DOTFILES}/shell/asdf.sh"
+
 source "${DOTFILES}/shell/go.sh"
 #source "${DOTFILES}/shell/java.sh"
-source "${DOTFILES}/shell/asdf.sh"
 source "${DOTFILES}/shell/node.sh"
 source "${DOTFILES}/shell/k8s.sh"
 #source "${DOTFILES}/shell/php.sh"
