@@ -35,6 +35,7 @@ require('kz.tools.markdown')
 require('kz.tools.svelte')
 require('kz.tools.terraform')
 require('kz.tools.tiltfile')
+require('kz.tools.yaml')
 
 require('kz.lazy')
 
