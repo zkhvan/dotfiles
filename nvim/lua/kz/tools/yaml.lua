@@ -12,6 +12,7 @@ tools.register({
             enable = true,
             url = 'https://www.schemastore.org/api/json/catalog.json',
           },
+          -- Add custom schemas like this
           -- schemas = {
           --   ['https://json.schemastore.org/github-action.json'] = {
           --     '/action.yml',
