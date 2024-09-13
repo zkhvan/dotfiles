@@ -1,8 +1,7 @@
 return {
   {
     'zk-org/zk-nvim',
-    ft = 'markdown',
-    cmd = 'ZkDaily',
+    lazy = false,
     dependencies = {
       'nvim-telescope/telescope.nvim',
     },
@@ -29,6 +28,19 @@ return {
         }, options or {})
         zk.new(options)
       end)
+
+      local edit = function(title)
+        zkc.add('Zk' .. title, function()
+          zk.new({
+            title = title,
+          })
+        end)
+      end
+
+      edit('Inbox')
+      edit('Next')
+      edit('Someday')
+      edit('Projects')
     end,
   },
 }

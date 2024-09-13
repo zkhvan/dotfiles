@@ -65,6 +65,10 @@ end
 -- Notes
 -- ===========================================================================
 map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
+map('n', '<Leader>1', '<cmd>ZkInbox<CR>')
+map('n', '<Leader>2', '<cmd>ZkNext<CR>')
+map('n', '<Leader>3', '<cmd>ZkSomeday<CR>')
+map('n', '<Leader>zp', '<cmd>ZkProjects<CR>')
 
 -- ===========================================================================
 -- telescope.nvim
@@ -458,8 +462,6 @@ function M.bind_zk_lsp(client, bufnr)
     '<leader>znc',
     ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>"
   )
-
-  map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
 
   map('n', '<Leader>mn', function()
     local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':~')
