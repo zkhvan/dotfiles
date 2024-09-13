@@ -53,7 +53,7 @@ nnoremap  <silent><special>  <Leader>x
       \ :<C-U>lclose<CR>:bp\|bd #<CR>
 
 " Prev buffer with <BS> backspace in normal (C-^ is kinda awkward)
-nnoremap  <special>   <BS>  <C-^>
+" nnoremap  <special>   <BS>  <C-^>
 
 " ============================================================================
 " Window manipulation
@@ -118,9 +118,9 @@ nnoremap <silent><special>   <Leader>..
 " Helper methods for diff
 " ============================================================================
 
-nnoremap  <special>   <Leader>d0  :<C-U>let buf=bufnr('%') \| exec 'bufdo diffoff' \| exec 'b' buf<CR>
-nnoremap  <special>   <Leader>d1  :<C-U>windo diffthis<CR>
-nnoremap  <special>   <Leader>d2  :<C-U>windo diffupdate<CR>
+" nnoremap  <special>   <Leader>d0  :<C-U>let buf=bufnr('%') \| exec 'bufdo diffoff' \| exec 'b' buf<CR>
+" nnoremap  <special>   <Leader>d1  :<C-U>windo diffthis<CR>
+" nnoremap  <special>   <Leader>d2  :<C-U>windo diffupdate<CR>
 
 " ============================================================================
 " Editing
@@ -168,10 +168,10 @@ vmap <special> <S-Tab>   <
 " ----------------------------------------------------------------------------
 
 " Auto select paragraph (bounded by blank lines) and sort
-nnoremap  <special> <Leader>s   vip:!sort<CR>
+nnoremap  <special> <Leader>s   vip:sort<CR>
 
 " Sort selection (no clear since in visual)
-xnoremap  <special> <Leader>s   :!sort<CR>
+xnoremap  <special> <Leader>s   :sort<CR>
 
 " ----------------------------------------------------------------------------
 " Clean up whitespace
@@ -205,6 +205,7 @@ vnoremap  <Leader>RN   :w !node -p \| pbcopy<CR><CR>
 
 nnoremap  <special> <F13>         :q<CR>
 nnoremap  <special> <S-F3>        :q<CR>
+nnoremap  <special> <M-S-F3>      :q<CR>
 
 " ----------------------------------------------------------------------------
 " Unfuck my screen

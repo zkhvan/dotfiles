@@ -168,13 +168,13 @@ set cpoptions&vim
 " a command is run for the first time
 
 " Bind all navigation commands to <Leader>g prefix
-nnoremap  <silent><special>   <Leader>gb   :<C-U>FZFBuffers<CR>
-nnoremap  <silent><special>   <Leader>gc   :<C-U>FZFCommands<CR>
-nnoremap  <silent><special>   <Leader>gf   :<C-U>FZFFiles<CR>
-nnoremap  <silent><special>   <Leader>gF   :<C-U>FZFGFiles<CR>
-nnoremap  <silent><special>   <Leader>gg   :<C-U>FZFGrepper!<CR>
-nnoremap  <silent><special>   <Leader>gp   :<C-U>FZFProject<CR>
-nnoremap  <silent><special>   <Leader>gv   :<C-U>FZFVim<CR>
+" nnoremap  <silent><special>   <Leader>gb   :<C-U>FZFBuffers<CR>
+" nnoremap  <silent><special>   <Leader>gc   :<C-U>FZFCommands<CR>
+" nnoremap  <silent><special>   <Leader>gf   :<C-U>FZFFiles<CR>
+" nnoremap  <silent><special>   <Leader>gF   :<C-U>FZFGFiles<CR>
+" nnoremap  <silent><special>   <Leader>gg   :<C-U>FZFGrepper!<CR>
+" nnoremap  <silent><special>   <Leader>gp   :<C-U>FZFProject<CR>
+" nnoremap  <silent><special>   <Leader>gv   :<C-U>FZFVim<CR>
 
 let &cpoptions = s:cpo_save
 unlet s:cpo_save

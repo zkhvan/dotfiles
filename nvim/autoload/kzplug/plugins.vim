@@ -23,6 +23,7 @@ function! kzplug#plugins#LoadAll() abort
 
   " Fix CursorHold
   " https://github.com/neovim/neovim/issues/12587
+  " Not needed
   Plug 'antoinemadec/FixCursorHold.nvim', PlugIf(!has('nvim-0.8'))
 
   " ==========================================================================
@@ -30,9 +31,11 @@ function! kzplug#plugins#LoadAll() abort
   " ==========================================================================
 
   " Show slow plugins
+  " Haven't used this
   Plug 'tweekmonster/startuptime.vim', { 'on': [ 'StartupTime' ] }
 
   " `:Bufferize messages` to get messages (or any :command) in a new buffer
+  " Done
   let g:bufferize_command = 'tabnew'
   Plug 'AndrewRadev/bufferize.vim', { 'on': [ 'Bufferize' ] }
 
@@ -40,15 +43,19 @@ function! kzplug#plugins#LoadAll() abort
   " Tree Sitter
   " ==========================================================================
 
+  " Done
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " TODO?
   Plug 'nvim-treesitter/playground'
 
   " ==========================================================================
   " Colorscheme
   " ==========================================================================
 
+  " Don't need
   Plug 'mhartington/oceanic-next'
 
+  " Done
   if isdirectory(g:kz#vim_dir . '/mine/vim-colors-meh')
     Plug g:kz#vim_dir . '/mine/vim-colors-meh'
   else
@@ -60,6 +67,7 @@ function! kzplug#plugins#LoadAll() abort
   " ==========================================================================
 
   " tyru/caw.vim, some others use this to determine inline embedded filetypes
+  " Do I still need after having treesitter?
   Plug 'Shougo/context_filetype.vim'
 
   " ==========================================================================
@@ -68,37 +76,45 @@ function! kzplug#plugins#LoadAll() abort
 
   " Use the repo instead of the version in brew since it includes the help
   " docs for fzf#run()
+  " Done
   Plug 'junegunn/fzf', PlugIf(g:kz_use_fzf)
 
+  " No config, see if I need
   let g:fzf_command_prefix = 'FZF'
   let g:fzf_layout = extend({ 'down': '~40%' }, g:kz_fzf_float
         \   ? { 'window': 'call kz#float#Bordered()' }
         \   : {}
         \ )
   let g:fzf_buffers_jump = 1
+  " Done
   Plug 'junegunn/fzf.vim', PlugIf(g:kz_use_fzf)
 
+  " Done
   let g:git_messenger_max_popup_width = 70
   let g:git_messenger_max_popup_height = 24
   Plug 'rhysd/git-messenger.vim', PlugIf(exists('*nvim_win_set_config'))
 
   " Swap windows without ruining layout
   " <Leader>ww on both windows to swap them
+  " Not doing, this is too slow to use normally
   Plug 'wesQ3/vim-windowswap'
 
   " Add file manip commands like Remove, Move, Rename, SudoWrite
   " Do not lazy load, tracks buffers
+  " I don't use this
   Plug 'tpope/vim-eunuch'
 
   " <C-w>o to zoom in/out of a window
   "Plug 'dhruvasagar/vim-zoom'
   " Better zoom plugin, accounts for command window and doesn't use sessions
+  " Done
   Plug 'troydm/zoomwintab.vim'
 
   " ==========================================================================
   " Navigation
   " ==========================================================================
 
+  " Try switching away from chadtree
   Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': 'python3 -m chadtree deps', 'on': [ 'CHADopen' ] }
 
   " ==========================================================================
@@ -111,12 +127,14 @@ function! kzplug#plugins#LoadAll() abort
   "
   " minimum supported vim version: 7.4.1689
   " https://github.com/andymass/vim-matchup/issues/4
+  " Done
   let g:matchup_delim_noskips = 2
   let g:matchup_matchparen_deferred = 1
   let g:matchup_matchparen_status_offscreen = 0
   Plug 'andymass/vim-matchup', PlugIf(has('patch-7.4.1689'))
 
   " add gS on char to smart split lines at char, like comma lists and html tags
+  " Don't use this?
   let g:splitjoin_trailing_comma = 0
   let g:splitjoin_ruby_trailing_comma = 1
   let g:splitjoin_ruby_hanging_args = 1
@@ -127,13 +145,17 @@ function! kzplug#plugins#LoadAll() abort
   " ==========================================================================
 
   " filetype custom [[ and ]] jumping
+  " Don't think I use this
   Plug 'arp242/jumpy.vim'
 
+  " Don't use?
   Plug 'svermeulen/vim-yoink'
 
+  " Research new options
   Plug 'godlygeek/tabular', { 'on': [ 'Tabularize' ] }
   Plug 'junegunn/vim-easy-align', { 'on': [ 'EasyAlign' ] }
 
+  " Haven't used
   Plug 'bootleq/vim-cycle', { 'on': [ '<Plug>Cycle' ] }
 
   Plug 'tpope/vim-repeat'
