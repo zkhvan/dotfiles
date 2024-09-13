@@ -68,7 +68,7 @@ map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
 map('n', '<Leader>1', '<cmd>ZkInbox<CR>')
 map('n', '<Leader>2', '<cmd>ZkNext<CR>')
 map('n', '<Leader>3', '<cmd>ZkSomeday<CR>')
-map('n', '<Leader>zp', '<cmd>ZkProjects<CR>')
+map('n', '<Leader>4', '<cmd>ZkProjects<CR>')
 
 -- ===========================================================================
 -- telescope.nvim
