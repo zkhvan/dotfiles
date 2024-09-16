@@ -65,10 +65,12 @@ end
 -- Notes
 -- ===========================================================================
 map('n', '<Leader>zd', '<cmd>ZkDaily<CR>')
+map('n', '<Leader>zw', '<cmd>ZkWeekly<CR>')
 map('n', '<Leader>1', '<cmd>ZkInbox<CR>')
 map('n', '<Leader>2', '<cmd>ZkNext<CR>')
-map('n', '<Leader>3', '<cmd>ZkSomeday<CR>')
+map('n', '<Leader>3', '<cmd>ZkWaiting<CR>')
 map('n', '<Leader>4', '<cmd>ZkProjects<CR>')
+map('n', '<Leader>5', '<cmd>ZkSomeday<CR>')
 
 -- ===========================================================================
 -- telescope.nvim
@@ -511,6 +513,58 @@ function M.bind_treesj()
   map('n', '<Leader>jm', function()
     tsj.toggle()
   end)
+end
+
+-- ===========================================================================
+-- mkdnflow.nvim
+-- ===========================================================================
+
+function M.bind_mkdnflow()
+  map('n', '<C-Space>', '<cmd>MkdnToggleToDo<CR>')
+end
+
+-- ===========================================================================
+-- neotest
+-- ===========================================================================
+
+function M.bind_neotest()
+  local neotest = require('neotest')
+
+  map('n', '<Leader>tt', function()
+    neotest.run.stop()
+  end, { desc = 'neotest: test terminate' })
+
+  map('n', '<Leader>tn', function()
+    neotest.run.run()
+  end, { desc = 'neotest: test run nearest' })
+
+  map('n', '<Leader>tl', function()
+    neotest.run.run_last()
+  end, { desc = 'neotest: test run last' })
+
+  map('n', '<Leader>tf', function()
+    neotest.run.run(vim.fn.expand('%'))
+  end, { desc = 'neotest: test run file' })
+
+  map('n', '<Leader>tA', function()
+    neotest.run.run(vim.uv.cwd())
+  end, { desc = 'neotest: test run all files' })
+
+  map('n', '<Leader>tS', function()
+    neotest.run.run({ suite = true })
+  end, { desc = 'neotest: test run suite' })
+
+  map('n', '<Leader>ts', function()
+    neotest.summary.toggle()
+  end, { desc = 'neotest: test summary' })
+
+  map('n', '<Leader>to', function()
+    neotest.output.open({ enter = true, auto_close = true })
+  end, { desc = 'neotest: test output' })
+
+  map('n', '<Leader>tO', function()
+    neotest.output_panel.toggle()
+  end, { desc = 'neotest: test output panel' })
 end
 
 return M
