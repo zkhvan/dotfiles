@@ -17,6 +17,14 @@ return {
   },
 
   {
+    '2kabhishek/co-author.nvim',
+    cmd = { 'CoAuthor' },
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+  },
+
+  {
     'echasnovski/mini.bracketed',
     version = false,
     config = function()
