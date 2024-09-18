@@ -10,10 +10,10 @@ export KZ_SOURCE="${KZ_SOURCE} -> shell/tmux.sh {"
 tmux-default() {
   tmux new-session -d -s dotfiles -c ~/.dotfiles/
   tmux \
-    new-session -d -s notes -c ~/Projects/notes/app/@notes \; \
+    new-session -d -s notes -c ~/Projects/notes/content \; \
     split-window -c ~/Projects/notes -t notes:1 \; \
     send-keys -t notes:1.1 "e" Enter \; \
-    send-keys -t notes:1.2 "pnpm dev" Enter \; \
+    send-keys -t notes:1.2 "npx quartz build --serve" Enter \; \
     resize-pane -Z -t notes:1.1
 }
 
