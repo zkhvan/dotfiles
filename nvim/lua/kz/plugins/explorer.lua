@@ -27,12 +27,14 @@ return {
     config = function()
       require('oil').setup({
         keymaps = {
-          ['<C-x>'] = {
+          ['<C-s>'] = false,
+          ['<C-h>'] = false,
+          ['<C-w><C-s><CR>'] = {
             'actions.select',
             opts = { horizontal = true },
             desc = 'Open the entry in a horizontal split',
           },
-          ['<C-v>'] = {
+          ['<C-w><C-v><CR>'] = {
             'actions.select',
             opts = { vertical = true },
             desc = 'Open the entry in a vertical split',
