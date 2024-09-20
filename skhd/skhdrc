@@ -216,5 +216,9 @@ fn - n       : yabai -m window --toggle notes || wezterm-start-scratch notes
 cmd + shift - return : open -a "/Applications/Google Chrome.app"
 
 cmd + shift + ctrl - b : yabai -m window --toggle bitwarden || open -a Bitwarden
+fn                 - b : yabai -m window --toggle bitwarden || open -a Bitwarden
 cmd + shift + ctrl - s : yabai -m window --toggle slack || open -a Slack
+fn                 - s : yabai -m window --toggle slack || open -a Slack
 cmd + shift + ctrl - d : yabai -m window --toggle discord || open -a Discord
+fn                 - d : yabai -m window --toggle discord || open -a Discord
+
