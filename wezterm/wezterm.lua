@@ -50,9 +50,7 @@ config.keys = {
   {
     key = 'Escape',
     mods = 'SHIFT',
-    action = wezterm.action.SendKey({
-      key = 'F13',
-    }),
+    action = wezterm.action.SendString('\x1b[1;2P'),
   },
 }
 
