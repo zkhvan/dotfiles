@@ -25,6 +25,7 @@ require('kz.builtin-plugins')
 require('kz.terminal')
 require('kz.behaviors')
 
+require('kz.tools.bash')
 require('kz.tools.css')
 require('kz.tools.generic')
 require('kz.tools.go')
