@@ -191,7 +191,7 @@ M.bind_lsp = function(bufnr)
     vim.lsp.buf.rename()
   end, lsp_opts({ desc = 'LSP rename' }))
 
-  map('n', '<Leader><Leader>', function()
+  map({ 'n', 's', 'v' }, '<Leader><Leader>', function()
     vim.lsp.buf.code_action()
   end, lsp_opts({ desc = 'LSP Code Action' }))
 
