@@ -2,6 +2,24 @@ local M = {}
 
 local map = vim.keymap.set
 
+-- Fix common typos
+vim.cmd([[
+    cnoreabbrev W! w!
+    cnoreabbrev Q! q!
+    cnoreabbrev Qa! qa!
+    cnoreabbrev Qall! qall!
+    cnoreabbrev Wa wa
+    cnoreabbrev Wq wq
+    cnoreabbrev wQ wq
+    cnoreabbrev WQ wq
+    cnoreabbrev W w
+    cnoreabbrev Q q
+    cnoreabbrev Qa qa
+    cnoreabbrev Qall qall
+]])
+
+-- ===========================================================================
+
 map('n', '<Esc><Esc>', function()
   vim.cmd.doautoall('User EscEscStart')
   -- Clear / search term
