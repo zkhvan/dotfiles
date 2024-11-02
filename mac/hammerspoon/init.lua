@@ -21,7 +21,7 @@ table.insert(mods, require('window.gridy'))
 table.insert(mods, require('window.throw'))
 table.insert(mods, require('window.split'))
 
-hs.loadSpoon('HCalendar')
+-- hs.loadSpoon('HCalendar')
 
 -- Regenerate lua annotations
 -- hs.loadSpoon("EmmyLua")
