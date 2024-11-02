@@ -32,6 +32,13 @@ alias tree='tree -CF'
 alias a=ansible
 alias ap=ansible-playbook
 
+# --------------------------------------------------------------------------
+# bw
+# --------------------------------------------------------------------------
+# Workaround to disable punycode deprecation logging to stderr
+# https://github.com/bitwarden/clients/issues/6689
+alias bw='NODE_OPTIONS="--no-deprecation" bw'
+
 # ----------------------------------------------------------------------------
 # editors
 # ----------------------------------------------------------------------------
