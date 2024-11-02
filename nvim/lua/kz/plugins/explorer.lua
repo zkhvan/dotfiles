@@ -40,6 +40,7 @@ return {
             desc = 'Open the entry in a vertical split',
           },
         },
+        skip_confirm_for_simple_edits = true,
       })
       require('kz.mappings').bind_oil()
     end,
