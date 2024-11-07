@@ -39,7 +39,7 @@ __symlink() {
 
   # XDG-compatible, not linux specific
   kz-symlink "coc/extensions/dot.npmrc" \
-   ".config/coc/extensions/.npmrc"
+    ".config/coc/extensions/.npmrc"
   kz-symlink "git/dot.gitconfig" \
     ".config/git/config"
   kz-symlink "git/dot.gitignore" \
@@ -76,6 +76,8 @@ __symlink() {
       ".config/yabai"
     kz-symlink "skhd/skhdrc" \
       ".config/skhd/skhdrc"
+    kz-symlink "mac/aerospace/aerospace.toml" \
+      ".config/aerospace/aerospace.toml"
     #kz-symlink "mac/dot.mackup.cfg" \
     #  ".mackup.cfg"
     #kz-symlink "mac/LaunchAgents/dotfiles.plist" \
