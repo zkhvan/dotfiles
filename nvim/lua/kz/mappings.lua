@@ -91,6 +91,22 @@ map('n', '<Leader>4', '<cmd>ZkProjects<CR>')
 map('n', '<Leader>5', '<cmd>ZkSomeday<CR>')
 
 -- ===========================================================================
+-- fugitive
+-- ===========================================================================
+
+vim.cmd([[
+  nnoremap <special>    glx     :0GBrowse<CR>
+  vnoremap <special>    glx     :GBrowse<CR>
+  xnoremap <special>    glx     :GBrowse<CR>
+
+  nnoremap <special>    gly     :<C-U>0GBrowse!<CR>
+  vnoremap <special>    gly     :GBrowse!<CR>
+  xnoremap <special>    gly     :GBrowse!<CR>
+
+  nnoremap <special>    glY     :<C-U>execute 'GBrowse! @:' . expand('%:p:h')<CR>
+]])
+
+-- ===========================================================================
 -- telescope.nvim
 -- ===========================================================================
 
