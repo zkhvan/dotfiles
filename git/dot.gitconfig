@@ -68,7 +68,7 @@
 	conflictstyle = diff3
 
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only --tabs 4
 
 [delta]
 	navigate = true
