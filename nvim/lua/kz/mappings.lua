@@ -599,6 +599,10 @@ function M.bind_neotest()
   map('n', '<Leader>tO', function()
     neotest.output_panel.toggle()
   end, { desc = 'neotest: test output panel' })
+
+  map('n', '<Leader>tc', function()
+    neotest.output_panel.clear()
+  end, { desc = 'neotest: test output panel' })
 end
 
 return M
