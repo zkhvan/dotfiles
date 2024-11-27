@@ -15,6 +15,9 @@ return {
       'tpope/vim-rhubarb', -- GBrowse for GitHub
     },
   },
+  {
+    'tpope/vim-abolish',
+  },
 
   {
     '2kabhishek/co-author.nvim',
