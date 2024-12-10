@@ -126,6 +126,8 @@ function M.setup_mason_lspconfig()
   local lspconfig = require('lspconfig')
   local mason_lspconfig = require('mason-lspconfig')
 
+  vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+
   mason_lspconfig.setup({
     automatic_installation = true,
     ensure_installed = M.get_lspconfig_names(),
