@@ -137,6 +137,24 @@ M.bind_telescope = function()
     end
   end, { desc = 'Telescope: files in git work files or CWD' })
 
+  map('n', '<Leader>gF', function()
+    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+    vim.fn.system({ 'git', 'rev-parse', '--is-inside-work-tree' })
+    local res = vim.v.shell_error == 0
+    if res then
+      tb.git_files({
+        layout_strategy = 'vertical',
+        show_untracked = true,
+        git_command = { 'git', 'ls-files', '--cached' },
+      })
+    else
+      tb.find_files({
+        hidden = true,
+        layout_strategy = 'vertical',
+      })
+    end
+  end, { desc = 'Telescope: files in git work files or CWD' })
+
   map('n', '<Leader>gg', function()
     tb.live_grep({ layout_strategy = 'vertical' })
   end, { desc = 'Telescope: live grep CWD' })
@@ -150,6 +168,18 @@ M.bind_telescope = function()
       hidden = true,
       layout_strategy = 'vertical',
       prompt_title = "Files in buffer's project",
+      cwd = require('kz.project').root(),
+    })
+  end, {
+    desc = 'Telescope: pick from files in current project root',
+  })
+
+  map('n', '<Leader>gP', function()
+    tb.find_files({
+      hidden = true,
+      layout_strategy = 'vertical',
+      prompt_title = "Files in buffer's project",
+      no_ignore = true,
       cwd = require('kz.project').root(),
     })
   end, {
@@ -603,6 +633,37 @@ function M.bind_neotest()
   map('n', '<Leader>tc', function()
     neotest.output_panel.clear()
   end, { desc = 'neotest: test output panel' })
+end
+
+-- ===========================================================================
+-- nvim-snippy
+-- ===========================================================================
+
+function M.bind_snippy()
+  local snippy_ok, snippy = pcall(require, 'snippy')
+  if snippy_ok then
+    local cmp = require('cmp')
+    map({ 'i', 's' }, '<C-b>', function()
+      if snippy.can_jump(-1) then
+        snippy.previous()
+      end
+      -- DO NOT FALLBACK (i.e. do not insert ^B)
+    end, { desc = 'snippy: previous field' })
+
+    map({ 'i', 's' }, '<C-f>', function()
+      -- If a snippet is highlighted in PUM, expand it
+      if cmp.confirm({ select = false }) then
+        return
+      end
+      -- If in a snippet, jump to next field
+      if snippy.can_expand_or_advance() then
+        snippy.expand_or_advance()
+        return
+      end
+    end, {
+      desc = 'snippy: expand or next field',
+    })
+  end
 end
 
 return M
