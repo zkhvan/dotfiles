@@ -205,7 +205,7 @@ alt              - 0x2C  : yabai -m window --opacity 0.1 && sleep $(yabai -m con
 
 # open terminal, blazingly fast compared to iTerm/Hyper
 # cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
-cmd - return : focus-wezterm
+# cmd - return : focus-wezterm
 # fn - space   : focus-wezterm-scratch
 meh - space  : yabai -m window --toggle terminal || wezterm-start-scratch terminal
 fn - space   : yabai -m window --toggle terminal || wezterm-start-scratch terminal
