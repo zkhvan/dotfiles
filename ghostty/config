@@ -1,0 +1,22 @@
+theme = Tomorrow Night
+
+font-family                = Jetbrains Mono
+font-feature               = -calt
+font-feature               = -clig
+font-feature               = -liga
+font-size                  = 14
+adjust-cell-width          = -1
+adjust-cell-height         = 1
+cursor-style               = block
+shell-integration-features = no-cursor
+
+# Use SHIFT+ESCAPE as F13 for a quick-close action in Neovim
+keybind = shift+escape=csi:1;2P
+
+# Toggle a quick terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+macos-titlebar-style              = hidden
+quick-terminal-position           = bottom
+quick-terminal-autohide           = 0
+quick-terminal-animation-duration = 0
