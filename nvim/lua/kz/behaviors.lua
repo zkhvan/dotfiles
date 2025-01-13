@@ -190,3 +190,25 @@ vim.api.nvim_create_user_command('FormatEnable', function()
 end, {
   desc = 'Re-enable autoformat-on-save',
 })
+
+-- ===========================================================================
+-- LSP
+-- ===========================================================================
+
+-- ---------------------------------------------------------------------------
+-- Go
+-- ---------------------------------------------------------------------------
+vim.api.nvim_create_user_command('GoSetBuildTags', function(args)
+  local tags = args.args
+
+  require('lspconfig').gopls.setup({
+    settings = {
+      gopls = {
+        buildFlags = { '-tags=' .. tags },
+      },
+    },
+  })
+end, {
+  desc = 'Re-enable autoformat-on-save',
+  nargs = 1,
+})
