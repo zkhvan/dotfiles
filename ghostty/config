@@ -17,6 +17,6 @@ keybind = shift+escape=csi:1;2P
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 macos-titlebar-style              = hidden
-quick-terminal-position           = bottom
+quick-terminal-position           = center
 quick-terminal-autohide           = 0
 quick-terminal-animation-duration = 0
