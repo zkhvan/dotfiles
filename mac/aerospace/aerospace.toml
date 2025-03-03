@@ -84,10 +84,6 @@ run = 'move-node-to-workspace s'
 if.app-id = 'com.bitwarden.desktop'
 run = 'move-node-to-workspace b'
 
-[[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop'
-run = 'move-node-to-workspace b'
-
 [mode.main.binding]
 
 # All possible keys:
@@ -156,6 +152,10 @@ alt-9 = 'workspace 9'
 ctrl-shift-cmd-s = 'summon-workspace s'
 ctrl-shift-cmd-b = 'summon-workspace b'
 ctrl-shift-cmd-n = 'summon-workspace n'
+
+ctrl-alt-shift-cmd-s = 'move-node-to-workspace s'
+ctrl-alt-shift-cmd-b = 'move-node-to-workspace b'
+ctrl-alt-shift-cmd-n = 'move-node-to-workspace n'
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
