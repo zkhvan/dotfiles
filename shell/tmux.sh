@@ -13,7 +13,7 @@ tmux-default() {
     new-session -d -s notes -c ~/Projects/notes/content \; \
     split-window -c ~/Projects/notes -t notes:1 \; \
     send-keys -t notes:1.1 "e" Enter \; \
-    send-keys -t notes:1.2 "npx quartz build --serve" Enter \; \
+    send-keys -t notes:1.2 "npx quartz build --serve --port 10000" Enter \; \
     resize-pane -Z -t notes:1.1
 }
 

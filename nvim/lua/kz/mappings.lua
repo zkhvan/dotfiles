@@ -536,7 +536,7 @@ function M.bind_zk_lsp(client, bufnr)
 
     vim.system({
       'open',
-      ('http://localhost:8080/%s'):format(url_path),
+      ('http://localhost:10000/%s'):format(url_path),
     })
   end)
 end
