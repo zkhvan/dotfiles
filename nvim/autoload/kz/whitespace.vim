@@ -13,6 +13,9 @@ function! kz#whitespace#clean() abort
   " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
   %s/\r/\r/eg
   %s/\s\+$//e
+  %s/ //eg
+  %s/ / /eg
+
   call winrestview(l:save)
 endfunction
 
