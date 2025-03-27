@@ -25,7 +25,10 @@ done 2>/dev/null &
 # Mouse
 # ----------------------------------------------------------------------------
 # Disable mouse acceleration
-defaults write .GlobalPreferences com.apple.mouse.scaling -1
+defaults write .GlobalPreferences com.apple.mouse.linear 1
+
+# Set mouse speed
+defaults write .GlobalPreferences com.apple.mouse.scaling 0.5
 
 # cmd + ctrl click anywhere to drag
 defaults write -g NSWindowShouldDragOnGesture -bool true
