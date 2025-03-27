@@ -1,3 +1,5 @@
+# https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig
+
 theme = Tomorrow Night
 
 font-family                = Jetbrains Mono
@@ -20,3 +22,6 @@ macos-titlebar-style              = hidden
 quick-terminal-position           = center
 quick-terminal-autohide           = 0
 quick-terminal-animation-duration = 0
+
+# See https://github.com/ghostty-org/ghostty/issues/2384
+# quick-terminal-size               = 70%,70%
