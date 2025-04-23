@@ -16,12 +16,12 @@ shell-integration-features = no-cursor
 keybind = shift+escape=csi:1;2P
 
 # Toggle a quick terminal
-keybind = global:ctrl+grave_accent=toggle_quick_terminal
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 macos-titlebar-style              = hidden
-quick-terminal-position           = center
-quick-terminal-autohide           = 0
-quick-terminal-animation-duration = 0
+# quick-terminal-position           = center
+# quick-terminal-autohide           = 0
+# quick-terminal-animation-duration = 0
 
 # See https://github.com/ghostty-org/ghostty/issues/2384
 # quick-terminal-size               = 70%,70%
