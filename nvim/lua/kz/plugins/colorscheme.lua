@@ -2,6 +2,7 @@
 -- Plugins related to color schemes
 -- ===========================================================================
 
+---@type LazySpec[]
 return {
   {
     'davidosomething/vim-colors-meh',

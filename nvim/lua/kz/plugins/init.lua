@@ -1,5 +1,6 @@
 local SIGNS = require('kz.diagnostic').SIGNS
 
+---@type LazySpec[]
 return {
   {
     'rhysd/git-messenger.vim',

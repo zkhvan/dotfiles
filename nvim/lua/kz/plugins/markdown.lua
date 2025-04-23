@@ -1,4 +1,6 @@
 local mappings = require('kz.mappings')
+
+---@type LazySpec[]
 return {
   {
     'jakewvincent/mkdnflow.nvim',

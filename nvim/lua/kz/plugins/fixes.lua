@@ -2,6 +2,7 @@
 -- fixes / polyfills for neovim behavior
 -- =========================================================================
 
+---@type LazySpec[]
 return {
   -- Disable cursorline when moving, for various perf reasons
   {

@@ -2,6 +2,7 @@
 -- Plugins that aid in the creation of neovim config and plugins
 -- ===========================================================================
 
+---@type LazySpec[]
 return {
   -- https://github.com/AndrewRadev/bufferize.vim
   -- `:Bufferize messages` to get messages (or any :command) in a new buffer

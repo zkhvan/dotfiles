@@ -1,5 +1,6 @@
 local tools = require('kz.tools')
 
+---@type LazySpec[]
 return {
   {
     'williamboman/mason.nvim',

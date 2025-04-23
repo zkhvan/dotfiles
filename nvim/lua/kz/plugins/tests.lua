@@ -1,6 +1,7 @@
 local mappings = require('kz.mappings')
 
 ---@diagnostic disable: missing-fields
+---@type LazySpec[]
 return {
   {
     'nvim-neotest/neotest',

@@ -16,6 +16,7 @@ local HIGHLIGHTING_DISABLED = {
   'dockerfile',
 }
 
+---@type LazySpec[]
 return {
   -- https://github.com/nvim-treesitter/nvim-treesitter/
   {

@@ -1,6 +1,7 @@
 local mappings = require('kz.mappings')
 local tools = require('kz.tools')
 
+---@type LazySpec[]
 return {
   {
     'stevearc/conform.nvim',

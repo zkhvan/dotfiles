@@ -4,6 +4,7 @@
 local tools = require('kz.tools')
 local lsp = require('kz.lsp')
 
+---@type LazySpec[]
 return {
   {
     'deathbeam/lspecho.nvim',

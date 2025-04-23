@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
   'jellydn/hurl.nvim',
   dependencies = {

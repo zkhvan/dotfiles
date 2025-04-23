@@ -4,6 +4,7 @@ local mappings = require('kz.mappings')
 -- Completion
 -- =========================================================================
 
+---@type LazySpec[]
 return {
   {
     'hrsh7th/nvim-cmp',
