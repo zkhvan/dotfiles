@@ -1,0 +1,12 @@
+---
+projects:
+  max_depth: 3
+  root: ~/Projects
+  # Cache remote projects for 1 day
+  ttl: 86400
+  remote_patterns:
+    - zkhvan/* -> ./personal/
+
+    - cli/cli -> ./oss/
+    - junegunn/fzf -> ./oss/
+    - zk-org/zk -> ./oss/

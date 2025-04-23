@@ -57,6 +57,8 @@ __symlink() {
     ".config/wezterm"
   kz-symlink "ghostty" \
     ".config/ghostty"
+  kz-symlink "z" \
+    ".config/z"
 
   # (n)vim / intellij ideavim
   kz-symlink "vim" \
