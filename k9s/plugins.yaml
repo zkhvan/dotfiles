@@ -70,7 +70,7 @@ plugins:
       - -c
       - 'flux --context $CONTEXT reconcile kustomization -n $NAMESPACE $NAME | more'
   trace:
-    shortCut: Shift-A
+    shortCut: Shift-Y
     confirm: false
     description: Flux trace
     scopes:
