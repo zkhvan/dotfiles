@@ -1,6 +1,7 @@
 local M = {}
 
 local map = vim.keymap.set
+local unmap = vim.keymap.del
 
 -- Fix common typos
 vim.cmd([[
@@ -105,6 +106,21 @@ vim.cmd([[
 
   nnoremap <special>    glY     :<C-U>execute 'GBrowse! @:' . expand('%:p:h')<CR>
 ]])
+
+-- ===========================================================================
+-- open in...
+-- ===========================================================================
+
+map('n', 'goc', function()
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.fn.system({
+    'cursor',
+    '--new-window',
+    '--goto',
+    current_file .. ':' .. current_line,
+  })
+end, { desc = 'open in: cursor' })
 
 -- ===========================================================================
 -- telescope.nvim
@@ -229,6 +245,11 @@ M.bind_lsp = function(bufnr)
     return opts
   end
 
+  -- unmap('n', 'grr', lsp_opts({}))
+  -- unmap('n', 'gri', lsp_opts({}))
+  -- unmap({ 'x', 'n' }, 'gra', lsp_opts({}))
+  -- unmap('n', 'grn', lsp_opts({}))
+
   map('n', 'gD', function()
     vim.lsp.buf.declaration()
   end, lsp_opts({ desc = 'LSP declaration' }))
@@ -255,7 +276,7 @@ M.bind_lsp = function(bufnr)
     vim.lsp.buf.rename()
   end, lsp_opts({ desc = 'LSP rename' }))
 
-  map({ 'n', 's', 'v' }, '<Leader><Leader>', function()
+  map({ 'n', 's', 'v', 'x' }, '<Leader><Leader>', function()
     vim.lsp.buf.code_action()
   end, lsp_opts({ desc = 'LSP Code Action' }))
 
@@ -263,7 +284,7 @@ M.bind_lsp = function(bufnr)
     return telescope_builtin('lsp_references')
       ---@diagnostic disable-next-line: missing-parameter
       or vim.lsp.buf.references()
-  end, lsp_opts({ desc = 'LSP references' }))
+  end, lsp_opts({ desc = 'LSP references', nowait = true }))
 
   map('n', '<A-=>', function()
     conform.format()
@@ -664,6 +685,45 @@ function M.bind_snippy()
       desc = 'snippy: expand or next field',
     })
   end
+end
+
+-- ===========================================================================
+-- render-markdown.nvim
+-- ===========================================================================
+
+function M.bind_render_markdown()
+  local rm = require('render-markdown')
+  local rms = require('render-markdown.state')
+  map('n', '<Leader>mr', function()
+    local enabled = rms.enabled
+    if enabled then
+      rm.disable()
+    else
+      rm.enable()
+    end
+  end, { desc = 'render-markdown: toggle' })
+end
+
+-- ===========================================================================
+-- windsurf
+-- ===========================================================================
+
+function M.bind_windsurf()
+  map('i', '<C-enter>', function()
+    return vim.fn['codeium#Accept']()
+  end, { desc = 'codeium: accept', expr = true })
+  map('i', '<C-l>', function()
+    return vim.fn['codeium#AcceptNextWord']()
+  end, { desc = 'codeium: accept', expr = true })
+  map('i', '<c-;>', function()
+    return vim.fn['codeium#CycleCompletions'](1)
+  end, { desc = 'codeium: cycle completions forward' })
+  map('i', '<c-,>', function()
+    return vim.fn['codeium#CycleCompletions'](-1)
+  end, { desc = 'codeium: cycle completions backward' })
+  map('i', '<c-x>', function()
+    return vim.fn['codeium#Clear']()
+  end, { desc = 'codeium: clear' })
 end
 
 return M

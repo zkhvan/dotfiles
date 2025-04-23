@@ -19,7 +19,7 @@ return {
 
       local mr = require('mason-registry')
       vim.iter(tools.get_tools()):each(function(tool_name)
-        local pkg = mr.get_package(tool_name)
+        local pkg = mr.get_package(tool_name[1])
 
         if pkg:is_installed() then
           return

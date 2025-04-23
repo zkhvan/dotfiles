@@ -18,4 +18,5 @@ return {
   -- require("kz.heirline.remote"),
   require('kz.heirline.lazy'),
   require('kz.heirline.doctor'),
+  require('kz.heirline.ai'),
 }

@@ -6,6 +6,6 @@ tools.register({
 })
 
 tools.register({
-  name = 'tsserver',
+  name = 'ts_ls',
   type = 'lsp',
 })

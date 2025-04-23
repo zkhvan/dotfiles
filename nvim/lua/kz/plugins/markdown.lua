@@ -27,6 +27,7 @@ return {
       mappings.bind_mkdnflow()
     end,
   },
+
   {
     'zk-org/zk-nvim',
     lazy = false,

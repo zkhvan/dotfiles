@@ -126,6 +126,7 @@ function M.setup_mason_lspconfig()
   local lspconfig = require('lspconfig')
   local mason_lspconfig = require('mason-lspconfig')
 
+  -- Enable lsp log level
   vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 
   mason_lspconfig.setup({

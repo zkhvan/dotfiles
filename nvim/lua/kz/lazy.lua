@@ -16,33 +16,37 @@ if not vim.uv.fs_stat(lazypath) then
   })
 end
 
----@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('kz.plugins', {
-  change_detection = {
-    enabled = false,
-  },
-  dev = {
-    path = '~/Projects/personal',
-    fallback = true,
-    patterns = { 'zkhvan' },
-  },
-  ui = {
-    border = 'rounded',
-  },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        'gzip',
-        'matchit',
-        'matchparen',
-        'netrwPlugin',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
+require('lazy').setup(
+  'kz.plugins',
+  ---@type LazyConfig
+  {
+    root = vim.fn.stdpath('data') .. '/lazy',
+    change_detection = {
+      enabled = false,
+    },
+    dev = {
+      path = '~/Projects/personal/zkhvan',
+      fallback = true,
+      patterns = { 'zkhvan' },
+    },
+    ui = {
+      border = 'rounded',
+    },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          'gzip',
+          'matchit',
+          'matchparen',
+          'netrwPlugin',
+          'tarPlugin',
+          'tohtml',
+          'tutor',
+          'zipPlugin',
+        },
       },
     },
-  },
-})
+  }
+)

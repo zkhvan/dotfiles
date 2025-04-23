@@ -2,6 +2,41 @@ local SIGNS = require('kz.diagnostic').SIGNS
 
 ---@type LazySpec[]
 return {
+  -- {
+  --   'kawre/leetcode.nvim',
+  --   dependencies = {
+  --     'nvim-telescope/telescope.nvim',
+  --     -- "ibhagwan/fzf-lua",
+  --     'nvim-lua/plenary.nvim',
+  --     'MunifTanjim/nui.nvim',
+  --   },
+  --   cmd = { 'Leet' },
+  --   ---@type lc.UserConfig|{}
+  --   opts = {
+  --     lang = 'golang',
+  --
+  --     injector = {
+  --       ['golang'] = {
+  --         before = {
+  --           'package main',
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+
+  {
+    'Exafunction/windsurf.vim',
+    cmd = { 'CodeiumEnable' },
+    config = function()
+      -- TODO: Add a quick way to enable/disable codeium, and also add it to my
+      -- status line so that I can see if it's enabled or disabled.
+      vim.g.codeium_disable_bindings = 1
+
+      require('kz.mappings').bind_windsurf()
+    end,
+  },
+
   {
     'rhysd/git-messenger.vim',
     config = function()
@@ -115,6 +150,56 @@ return {
       },
     }, -- or `opts = {}`
   },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    tag = 'v8.2.0',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'echasnovski/mini.icons',
+    }, -- if you use the mini.nvim suite
+    ft = 'markdown',
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {
+      heading = {
+        backgrounds = {},
+      },
+      bullet = {
+        icons = { '•', '◦' },
+      },
+      pipe_table = {
+        cell = 'trimmed',
+      },
+    },
+    config = function(_, opts)
+      require('render-markdown').setup(opts)
+      require('kz.mappings').bind_render_markdown()
+    end,
+  },
+
+  -- {
+  --   'OXY2DEV/markview.nvim',
+  --   lazy = false,
+  --   branch = 'dev',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'echasnovski/mini.icons',
+  --   },
+  --   config = function()
+  --     local markview = require('markview')
+  --     local presets = require('markview.presets')
+  --     markview.setup({
+  --       markdown = {
+  --         headings = presets.headings.marker,
+  --         list_items = { enable = false },
+  --         tables = { block_decorator = false },
+  --       },
+  --     })
+  --   end,
+  -- },
 
   {
     'NvChad/nvim-colorizer.lua',
@@ -262,7 +347,11 @@ return {
   {
     'chrisgrieser/nvim-various-textobjs',
     config = function()
-      require('various-textobjs').setup({ useDefaultKeymaps = false })
+      require('various-textobjs').setup({
+        keymaps = {
+          useDefaults = false,
+        },
+      })
       require('kz.mappings').bind_nvim_various_textobjs()
     end,
   },
