@@ -52,7 +52,7 @@ end
 
 autocmd('VimResized', {
   desc = 'Automatically resize windows when resizing Vim',
-  command = 'tabdo wincmd =',
+  command = 'wincmd =',
   group = augroup('kzwindow'),
 })
 
