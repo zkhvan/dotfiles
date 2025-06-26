@@ -717,28 +717,6 @@ function M.bind_render_markdown()
 end
 
 -- ===========================================================================
--- windsurf
--- ===========================================================================
-
-function M.bind_windsurf()
-  map('i', '<C-enter>', function()
-    return vim.fn['codeium#Accept']()
-  end, { desc = 'codeium: accept', expr = true })
-  map('i', '<C-l>', function()
-    return vim.fn['codeium#AcceptNextWord']()
-  end, { desc = 'codeium: accept', expr = true })
-  map('i', '<c-;>', function()
-    return vim.fn['codeium#CycleCompletions'](1)
-  end, { desc = 'codeium: cycle completions forward' })
-  map('i', '<c-,>', function()
-    return vim.fn['codeium#CycleCompletions'](-1)
-  end, { desc = 'codeium: cycle completions backward' })
-  map('i', '<c-x>', function()
-    return vim.fn['codeium#Clear']()
-  end, { desc = 'codeium: clear' })
-end
-
--- ===========================================================================
 -- vim-dadbod-ui
 -- ===========================================================================
 

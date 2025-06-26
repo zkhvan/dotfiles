@@ -2,42 +2,6 @@ local SIGNS = require('kz.diagnostic').SIGNS
 
 ---@type LazySpec[]
 return {
-  -- {
-  --   'kawre/leetcode.nvim',
-  --   dependencies = {
-  --     'nvim-telescope/telescope.nvim',
-  --     -- "ibhagwan/fzf-lua",
-  --     'nvim-lua/plenary.nvim',
-  --     'MunifTanjim/nui.nvim',
-  --   },
-  --   cmd = { 'Leet' },
-  --   ---@type lc.UserConfig|{}
-  --   opts = {
-  --     lang = 'golang',
-  --
-  --     injector = {
-  --       ['golang'] = {
-  --         before = {
-  --           'package main',
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
-
-  {
-    'Exafunction/windsurf.vim',
-    cmd = { 'CodeiumEnable' },
-    enabled = false,
-    config = function()
-      -- TODO: Add a quick way to enable/disable codeium, and also add it to my
-      -- status line so that I can see if it's enabled or disabled.
-      vim.g.codeium_disable_bindings = 1
-
-      require('kz.mappings').bind_windsurf()
-    end,
-  },
-
   {
     'Exafunction/windsurf.nvim',
     -- cmd = { 'Codeium' },
@@ -88,8 +52,6 @@ return {
           },
         },
       })
-
-      -- require('kz.mappings').bind_windsurf()
     end,
   },
 
