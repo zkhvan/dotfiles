@@ -726,4 +726,16 @@ function M.bind_windsurf()
   end, { desc = 'codeium: clear' })
 end
 
+-- ===========================================================================
+-- vim-dadbod-ui
+-- ===========================================================================
+
+---@param args vim.api.keyset.create_autocmd.callback_args
+function M.bind_dadbod_ui(args)
+  map({ 'n', 'v' }, '<CR>', '<Plug>(DBUI_ExecuteQuery)', {
+    buffer = args.buf,
+    desc = 'DBUI: execute query',
+  })
+end
+
 return M

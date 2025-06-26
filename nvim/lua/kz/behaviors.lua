@@ -192,6 +192,18 @@ end, {
 })
 
 -- ===========================================================================
+-- vim-dadbod-ui
+-- ===========================================================================
+autocmd('FileType', {
+  desc = 'Setup buffer-local keymaps for SQL files (vim-dadbod-ui)',
+  pattern = 'sql',
+  callback = function(args)
+    require('kz.mappings').bind_dadbod_ui(args)
+  end,
+  group = augroup('kzdadbodui'),
+})
+
+-- ===========================================================================
 -- LSP
 -- ===========================================================================
 
