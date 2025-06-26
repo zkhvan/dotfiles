@@ -2,7 +2,11 @@
 
 theme = Tomorrow Night
 
-font-family                = Jetbrains Mono
+font-family                = ""
+font-family                = JetBrainsMonoNL Nerd Font Mono
+# charset fallbacks ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ (ﾉಥ益ಥ）ﾉ︵┻━┻
+font-family                = Monaco
+font-family                = Unifont
 font-feature               = -calt
 font-feature               = -clig
 font-feature               = -liga
