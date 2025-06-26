@@ -44,6 +44,7 @@ require('kz.lazy')
 
 require('kz.filetypes')
 
+pcall(require, 'kz.local')
 
 -- ============================================================================
 -- Security
