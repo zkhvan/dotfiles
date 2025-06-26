@@ -44,7 +44,6 @@ require('kz.lazy')
 
 require('kz.filetypes')
 
-require('kz.lsp.floats')
 
 -- ============================================================================
 -- Security

@@ -263,11 +263,23 @@ M.bind_lsp = function(bufnr)
       or vim.lsp.buf.implementation()
   end, lsp_opts({ desc = 'LSP implementation' }))
 
+  map('n', 'K', function()
+    vim.lsp.buf.hover({
+      border = 'rounded',
+      max_width = 80,
+      silent = true,
+    })
+  end, lsp_opts({ desc = 'LSP hover' }))
+
   map({ 'n', 'i' }, '<C-g>', function()
-    vim.lsp.buf.signature_help()
+    vim.lsp.buf.signature_help({
+      border = 'rounded',
+      max_width = 80,
+      silent = true,
+    })
   end, lsp_opts({ desc = 'LSP signature_help' }))
 
-  map('n', '<Leader>D', function()
+  map('n', 'gt', function()
     return telescope_builtin('lsp_type_definitions')
       or vim.lsp.buf.type_definition()
   end, lsp_opts({ desc = 'LSP type_definition' }))
