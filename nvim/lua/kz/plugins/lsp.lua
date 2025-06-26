@@ -44,6 +44,7 @@ return {
 
   {
     'williamboman/mason-lspconfig.nvim',
+    version = 'v1.x',
     dependencies = {
       'williamboman/mason.nvim',
       'neovim/nvim-lspconfig',

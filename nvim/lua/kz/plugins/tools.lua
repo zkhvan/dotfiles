@@ -4,6 +4,7 @@ local tools = require('kz.tools')
 return {
   {
     'williamboman/mason.nvim',
+    version = 'v1.x',
     lazy = false,
     config = function()
       require('mason').setup({

@@ -4,7 +4,7 @@ tools.register({
   name = 'yamlls',
   type = 'lsp',
   lspconfig = function()
-    ---@type lspconfig.Config
+    ---@type lspconfig.Config|{}
     return {
       settings = {
         yaml = {

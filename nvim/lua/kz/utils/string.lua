@@ -4,7 +4,7 @@ local M = {}
 ---@param str string
 ---@param suffix string
 M.endswith = function(str, suffix)
-  return suffix == "" or str:sub(-#suffix) == suffix
+  return suffix == '' or str:sub(-#suffix) == suffix
 end
 
 M.endswithany = function(str, suffixes)

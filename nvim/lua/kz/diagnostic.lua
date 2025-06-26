@@ -5,13 +5,19 @@ local M = {}
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
 M.SIGNS = { Error = '✘', Warn = '', Info = '⚑', Hint = '' }
 M.SEVERITY_TO_SYMBOL = {}
+M.SIGNS_CONFIG = {
+  text = {},
+  linehl = {},
+  numhl = {},
+}
 for type, icon in pairs(M.SIGNS) do
   local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon .. ' ', texthl = hl, numhl = hl })
 
   local key = type:upper()
   local code = vim.diagnostic.severity[key]
   M.SEVERITY_TO_SYMBOL[code] = icon
+  M.SIGNS_CONFIG.text[code] = icon
+  M.SIGNS_CONFIG.numhl[code] = hl
 end
 
 -- ===========================================================================
@@ -55,8 +61,7 @@ local function float_format(diagnostic)
     source = 'NIL.SOURCE'
     vim.print(diagnostic)
   end
-  local source_tag =
-    require('kz.utils.string').smallcaps(('%s'):format(source))
+  local source_tag = require('kz.utils.string').smallcaps(('%s'):format(source))
   local code = diagnostic.code and ('[%s]'):format(diagnostic.code) or ''
   return ('%s %s %s\n%s'):format(symbol, source_tag, code, diagnostic.message)
 end
@@ -66,12 +71,13 @@ vim.diagnostic.config({
   virtual_text = false,
   float = {
     border = 'rounded',
-    header = false, -- remove the line that says 'Diagnostic:'
+    header = '', -- remove the line that says 'Diagnostic:'
     source = false, -- hide it since my float_format will add it
     format = float_format, -- can customize more colors by using prefix/suffix instead
     suffix = '', -- default is error code. Moved to message via float_format
   },
   update_in_insert = false, -- wait until insert leave to check diagnostics
+  signs = M.SIGNS_CONFIG,
 })
 
 return M
