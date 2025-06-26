@@ -53,6 +53,8 @@ __symlink() {
     ".config/tmux/tmux.conf"
   kz-symlink "bat" \
     ".config/bat"
+  kz-symlink "tilt/analytics/user/choice.txt" \
+    ".tilt-dev/analytics/user/choice.txt"
   kz-symlink "wezterm" \
     ".config/wezterm"
   kz-symlink "ghostty" \
