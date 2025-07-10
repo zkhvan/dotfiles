@@ -12,6 +12,15 @@ tools.register({
             enable = true,
             url = 'https://www.schemastore.org/api/json/catalog.json',
           },
+          schemas = {
+            ['https://json.schemastore.org/circleciconfig.json'] = {
+              '/.circleci/*.yaml',
+              '/.circleci/*.yml',
+            },
+            ['https://raw.githubusercontent.com/dbowling/null-schema/refs/heads/main/null.schema.json'] = {
+              '/cluster.yaml',
+            },
+          },
           -- Add custom schemas like this
           -- schemas = {
           --   ['https://json.schemastore.org/github-action.json'] = {
