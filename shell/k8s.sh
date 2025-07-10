@@ -16,6 +16,8 @@ export K9S_CONFIG_DIR=$XDG_CONFIG_HOME/k9s
 kx() {
   if [ "$1" ]; then
     kubectl config use-context $1
+  elif __kz_has kubectl-ctx; then
+    kubectl ctx
   else
     kubectl config current-context
   fi
@@ -24,6 +26,8 @@ kx() {
 kn() {
   if [ "$1" ]; then
     kubectl config set-context --current --namespace $1
+  elif __kz_has kubectl-ns; then
+    kubectl ns
   else
     kubectl config view --minify | grep namespace | cut -d" " -f6
   fi
@@ -36,6 +40,7 @@ kn() {
 _install_krew_plugins() {
   _plugins=(
     'ctx'     # easily switch contexts
+    'ns'      # easily switch namespaces
     'get-all' # get's ALL the resources
   )
 

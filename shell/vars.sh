@@ -116,8 +116,8 @@ export PAGER='less'
 # others
 # ----------------------------------------------------------------------------
 
-# docker
-export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+# docker (kinda breaks things, not all tools work or respect this)
+# export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
 # dotnet
 export DOTNET_INSTALL_DIR="${XDG_DATA_HOME}/dotnet"
