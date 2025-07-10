@@ -6,6 +6,7 @@ projects:
   ttl: 86400
   remote_patterns:
     - zkhvan/* -> ./personal/
+    - gptzero/*
 
     - cli/cli -> ./oss/
     - junegunn/fzf -> ./oss/
