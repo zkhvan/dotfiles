@@ -59,7 +59,6 @@ local function float_format(diagnostic)
     end
   else
     source = 'NIL.SOURCE'
-    vim.print(diagnostic)
   end
   local source_tag = require('kz.utils.string').smallcaps(('%s'):format(source))
   local code = diagnostic.code and ('[%s]'):format(diagnostic.code) or ''
