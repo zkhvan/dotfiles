@@ -9,7 +9,7 @@ tools.register({
       settings = {
         yaml = {
           schemaStore = {
-            enable = true,
+            enable = false,
             url = 'https://www.schemastore.org/api/json/catalog.json',
           },
           schemas = {
