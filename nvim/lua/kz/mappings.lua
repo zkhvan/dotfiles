@@ -53,10 +53,10 @@ end, {
 -- ===========================================================================
 
 map('n', '[d', function()
-  vim.diagnostic.goto_prev({})
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = 'Go to prev diagnostic and open float' })
 map('n', ']d', function()
-  vim.diagnostic.goto_next({})
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = 'Go to next diagnostic and open float' })
 map('n', '<Leader>d', function()
   vim.diagnostic.open_float()
