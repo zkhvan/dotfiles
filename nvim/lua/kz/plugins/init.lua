@@ -3,6 +3,10 @@ local SIGNS = require('kz.diagnostic').SIGNS
 ---@type LazySpec[]
 return {
   {
+    'tpope/vim-scriptease',
+  },
+
+  {
     'Exafunction/windsurf.nvim',
     -- cmd = { 'Codeium' },
     dependencies = {
