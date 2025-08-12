@@ -1,6 +1,6 @@
 ---
 projects:
-  max_depth: 3
+  max_depth: 4
   root: ~/Projects
   # Cache remote projects for 1 day
   ttl: 86400
@@ -11,3 +11,5 @@ projects:
     - cli/cli -> ./oss/
     - junegunn/fzf -> ./oss/
     - zk-org/zk -> ./oss/
+    - terraform-aws-modules/* -> ./oss/
+    - circleci-public/* -> ./oss/
