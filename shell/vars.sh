@@ -159,3 +159,6 @@ export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"
 
 # macos security bypass
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# zk notes
+export ZK_NOTEBOOK_DIR="${HOME}/Projects/personal/zkhvan/notes/content"
