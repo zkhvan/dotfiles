@@ -134,16 +134,10 @@ function M.setup_mason_lspconfig()
     ensure_installed = M.get_lspconfig_names(),
   })
 
-  ---@type table<string, fun(server_name: string)>
-  local handlers = {}
-
-  -- Setup default handler
-  handlers[1] = function(server_name)
-    local config = M.get_lspconfig(server_name)
-    lspconfig[server_name].setup(config)
+  for _, value in ipairs(M.get_lspconfig_names()) do
+    local config = M.get_lspconfig(value)
+    lspconfig[value].setup(config)
   end
-
-  mason_lspconfig.setup_handlers(handlers)
 end
 
 function M.setup_efmconfig()
