@@ -136,7 +136,7 @@ function M.setup_mason_lspconfig()
 
   for _, value in ipairs(M.get_lspconfig_names()) do
     local config = M.get_lspconfig(value)
-    lspconfig[value].setup(config)
+    vim.lsp.config[value] = config
   end
 end
 
