@@ -13,3 +13,7 @@ projects:
     - zk-org/zk -> ./oss/
     - terraform-aws-modules/* -> ./oss/
     - circleci-public/* -> ./oss/
+    - lazyvim/* -> ./oss/
+    - folke/* -> ./oss/
+    - neovim/neovim -> ./oss/
+    - neovim/nvim-lspconfig -> ./oss/
