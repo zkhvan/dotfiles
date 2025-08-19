@@ -3,6 +3,17 @@ local SIGNS = require('kz.diagnostic').SIGNS
 ---@type LazySpec[]
 return {
   {
+    'folke/snacks.nvim',
+    opts = {
+      picker = { enabled = true },
+    },
+    config = function(_, opts)
+      require('snacks').setup(opts)
+      require('kz.mappings').bind_snacks()
+    end,
+  },
+
+  {
     'tpope/vim-scriptease',
   },
 

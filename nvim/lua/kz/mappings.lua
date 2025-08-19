@@ -136,23 +136,6 @@ M.bind_telescope = function()
     })
   end, { desc = 'Telescope: files in cwd' })
 
-  map('n', '<Leader>gf', function()
-    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
-    vim.fn.system({ 'git', 'rev-parse', '--is-inside-work-tree' })
-    local res = vim.v.shell_error == 0
-    if res then
-      tb.git_files({
-        layout_strategy = 'vertical',
-        show_untracked = true,
-      })
-    else
-      tb.find_files({
-        hidden = true,
-        layout_strategy = 'vertical',
-      })
-    end
-  end, { desc = 'Telescope: files in git work files or CWD' })
-
   map('n', '<Leader>gF', function()
     -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
     vim.fn.system({ 'git', 'rev-parse', '--is-inside-work-tree' })
@@ -726,6 +709,17 @@ function M.bind_dadbod_ui(args)
     buffer = args.buf,
     desc = 'DBUI: execute query',
   })
+end
+
+-- ===========================================================================
+-- snacks.nvim
+-- ===========================================================================
+
+function M.bind_snacks()
+  map({ 'n' }, '<leader>gf', function()
+    local Snacks = require('snacks')
+    Snacks.picker.files({ hidden = true })
+  end, { desc = 'Snacks: find files' })
 end
 
 return M
