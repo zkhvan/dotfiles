@@ -25,7 +25,8 @@
 
 	fo          = fetch origin
 	fom         = fetch origin master
-	fop 		= fetch origin --prune
+	fop         = fetch origin --prune
+	fs          = "!f() { git fetch origin --prune && git fetch origin --prune $(git main-branch || echo main):$(git main-branch || echo main) \"$@\"; }; f"
 
 	git         = !exec git
 	g           = grep --break --heading --line-number
@@ -58,6 +59,7 @@
 
 	rb          = rebase
 	rbc         = rebase --continue
+	rbi         = "!f() { git rebase -i $(git main-branch || echo main); }; f"
 
 	unstage     = reset HEAD
 	uncommit    = reset HEAD^
