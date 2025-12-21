@@ -23,6 +23,7 @@ source "${DOTFILES}/shell/python.sh"
 source "${DOTFILES}/shell/rust.sh"
 source "${DOTFILES}/shell/android.sh"
 source "${DOTFILES}/shell/tmux.sh"
+source "${DOTFILES}/shell/orbstack.sh"
 
 # ============================================================================
 # interactive aliases and functions
