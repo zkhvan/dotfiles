@@ -19,6 +19,9 @@ shell-integration-features = no-cursor
 # Use SHIFT+ESCAPE as F13 for a quick-close action in Neovim
 keybind = shift+escape=csi:1;2P
 
+# Allows using alt bindings in terminal programs on MacOS
+macos-option-as-alt = true
+
 # Toggle a quick terminal
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
