@@ -15,6 +15,7 @@ tmux-default() {
     send-keys -t notes:1.1 "e" Enter \; \
     send-keys -t notes:1.2 "npx quartz build --serve --port 10000" Enter \; \
     resize-pane -Z -t notes:1.1
+  tmux new-session -d -s k9s -c ~/Projects/k9s/
 }
 
 # ----------------------------------------------------------------------------
