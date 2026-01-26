@@ -34,5 +34,10 @@
 return {
   cmd = { 'terraform-ls', 'serve' },
   filetypes = { 'terraform', 'terraform-vars' },
-  root_markers = { '.terraform', '.git' },
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local root_files = { 'versions.tf', 'main.tf', 'providers.tf', '.terraform.lock.hcl', '.terraform', '.git' }
+    local root_dir = vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1])
+    on_dir(root_dir)
+  end,
 }
