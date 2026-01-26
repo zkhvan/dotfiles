@@ -1,0 +1,8 @@
+{
+  "name": "personal",
+  "contributes": {
+    "snippets": [
+      { "language": "yaml", "path": "./yaml.json" }
+    ]
+  }
+}

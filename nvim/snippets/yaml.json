@@ -1,0 +1,30 @@
+{
+  "k-kustomization": {
+    "prefix": "k-kustomization",
+    "body": [
+      "# https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/",
+      "apiVersion: kustomize.config.k8s.io/v1beta1",
+      "kind: Kustomization",
+      "",
+      "resources:",
+      "  - ${1:resource.yaml}",
+      "",
+      "${2}"
+    ],
+    "description": "Kubernetes Kustomization manifest"
+  },
+  "k-component": {
+    "prefix": "k-component",
+    "body": [
+      "# https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/components/",
+      "apiVersion: kustomize.config.k8s.io/v1alpha1",
+      "kind: Component",
+      "",
+      "resources:",
+      "  - ${1:resource.yaml}",
+      "",
+      "${2}"
+    ],
+    "description": "Kubernetes Component manifest"
+  }
+}
