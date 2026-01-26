@@ -57,12 +57,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 30
-inner.vertical   = 30
-outer.left       = 30
-outer.bottom     = 30
-outer.top        = 30
-outer.right      = 30
+inner.horizontal = [{ monitor.main = 5 }, 5]
+inner.vertical   = [{ monitor.main = 5 }, 5]
+outer.left       = [{ monitor.main = 5 }, 5]
+outer.bottom     = [{ monitor.main = 5 }, { monitor."LG HDR WQHD+" = 200 }, 5]
+outer.top        = [{ monitor.main = 5 }, 5]
+outer.right      = [{ monitor.main = 5 }, 5]
 
 [workspace-to-monitor-force-assignment]
 1  = 'main'
