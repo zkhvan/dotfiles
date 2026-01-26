@@ -124,6 +124,9 @@ export PAGER='less'
 # docker (kinda breaks things, not all tools work or respect this)
 # export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
+# husky
+export HUSKY=0
+
 # dotnet
 export DOTNET_INSTALL_DIR="${XDG_DATA_HOME}/dotnet"
 export DOTNET_ROOT="${DOTNET_INSTALL_DIR}"
