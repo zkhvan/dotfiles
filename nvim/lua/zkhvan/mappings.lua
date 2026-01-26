@@ -209,7 +209,12 @@ function M.bind_snacks()
     snacks.picker.grep()
   end, { desc = 'Snacks: grep' })
   map('n', '<leader>gG', function()
-    local bufdir = vim.fn.expand('%:p:h')
+    local bufdir
+    if vim.bo.filetype == 'oil' then
+      bufdir = require('oil').get_current_dir()
+    else
+      bufdir = vim.fn.expand('%:p:h')
+    end
     snacks.picker.grep({ cwd = bufdir })
   end, { desc = 'Snacks: grep in buffer directory' })
   map('n', '<leader>g:', function()
