@@ -68,5 +68,43 @@ return {
     'typescriptreact',
     'typescript.tsx',
   },
-  root_markers = { 'tsconfig.json', 'package.json', 'jsconfig.json', '.git' },
+  -- root_markers = { 'tsconfig.json', 'package.json', 'jsconfig.json', '.git' },
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local root_markers =
+      { 'tsconfig.json', 'package.json', 'jsconfig.json', '.git' }
+
+    -- Don't start LSP inside node_modules
+    if fname:match('node_modules') then
+      -- Find the project root by walking up until we're out of node_modules
+      local dir =
+        vim.fs.find({ 'node_modules' }, { path = fname, upward = true })[1]
+
+      -- Now find the actual project root from that directory
+      local root_dir = vim.fs.dirname(
+        vim.fs.find(root_markers, { path = dir, upward = true })[1]
+      )
+
+      on_dir(root_dir)
+      return
+    end
+
+    -- Normal root detection for files outside node_modules
+    local root_dir = vim.fs.dirname(
+      vim.fs.find(root_markers, { path = fname, upward = true })[1]
+    )
+
+    on_dir(root_dir)
+    return
+  end,
+  settings = {
+    vtsls = {
+      tsserver = {
+        log = 'verbose',
+        maxTsServerMemory = 10240,
+        useSeparateSyntaxServer = false,
+        useSyntaxServer = 'never',
+      },
+    },
+  },
 }
