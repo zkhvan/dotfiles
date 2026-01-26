@@ -113,6 +113,8 @@ zmodload -i zsh/complist
 # hooks -- used for prompt too
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
+autoload -Uz edit-command-line
+zle -N edit-command-line
 
 source "${ZDOTDIR}/prompt-vcs.zsh"
 source "${ZDOTDIR}/prompt-vimode.zsh"

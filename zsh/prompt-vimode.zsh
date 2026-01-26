@@ -15,6 +15,11 @@ __kz_prompt_vi_normal='%K{green}%F{black} N %f%k'
 # use vi mode even if EDITOR is emacs
 export KZ_PROMPT_VIMODE="${__kz_prompt_vi_insert}"
 
+# ==========================================================================
+# Edit command with external editor
+# ==========================================================================
+bindkey -M vicmd v edit-command-line
+
 # ============================================================================
 # Show VI mode indicator
 # ============================================================================
