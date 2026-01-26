@@ -83,10 +83,14 @@ run = 'move-node-to-workspace s'
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
-run = 'move-node-to-workspace b'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Chromium'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'KDiff3'
 run = 'layout floating'
 
 [mode.main.binding]
