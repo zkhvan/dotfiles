@@ -71,15 +71,10 @@ outer.right      = [{ monitor.main = 5 }, 5]
 4  = ['secondary', 'main']
 5  = ['secondary', 'main']
 6  = ['secondary', 'main']
-7  = ['secondary', 'main']
-8  = ['secondary', 'main']
-9  = ['secondary', 'main']
-10 = ['secondary', 'main']
-s  = ['secondary', 'main']
 
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace s'
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'
+# run = 'move-node-to-workspace s'
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
@@ -87,6 +82,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Chromium'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'Claude for Chrome'
 run = 'layout floating'
 
 [[on-window-detected]]
