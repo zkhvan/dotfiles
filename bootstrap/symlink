@@ -84,6 +84,8 @@ __symlink() {
       ".config/skhd/skhdrc"
     kz-symlink "mac/aerospace/aerospace.toml" \
       ".config/aerospace/aerospace.toml"
+    kz-symlink "mac/borders/bordersrc" \
+      ".config/borders/bordersrc"
     #kz-symlink "mac/dot.mackup.cfg" \
     #  ".mackup.cfg"
     #kz-symlink "mac/LaunchAgents/dotfiles.plist" \
