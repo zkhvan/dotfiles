@@ -9,7 +9,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0xffccffcc inactive_color=0xffffffcccc width=7.5'
+  'exec-and-forget borders'
 ]
 
 # Start AeroSpace at login
@@ -190,7 +190,7 @@ k     = 'resize height -50'
 j     = 'resize height +50'
 l     = 'resize width +50'
 
-r     = 'exec-and-forget borders active_color=0xffccffcc inactive_color=0xffffffcccc width=7.5'
+r     = 'exec-and-forget borders'
 
 equal = 'balance-sizes'
 enter = 'mode main'
