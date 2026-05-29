@@ -34,6 +34,7 @@ export ZDOTDIR="${DOTFILES}/zsh"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
 
 # ----------------------------------------------------------------------------
 # XDG: user-dirs
@@ -169,4 +170,4 @@ export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # zk notes
-export ZK_NOTEBOOK_DIR="${HOME}/Projects/personal/zkhvan/notes/content"
+export ZK_NOTEBOOK_DIR="${HOME}/Notes"
