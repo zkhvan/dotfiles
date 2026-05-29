@@ -79,6 +79,10 @@ return {
         ['https://coderabbit.ai/integrations/schema.v2.json'] = {
           '.coderabbit.yaml',
         },
+        ['https://json.schemastore.org/github-workflow.json'] = {
+          '.github/workflows/*.yml',
+          '.github/workflows/*.yaml',
+        },
       },
     },
   },

@@ -29,6 +29,52 @@ return {
   },
 
   {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
+    keys = {
+      { '<leader>do', desc = 'Diffview: open' },
+      { '<leader>dc', desc = 'Diffview: close' },
+      { '<leader>dh', desc = 'Diffview: file history' },
+      { '<leader>dH', desc = 'Diffview: repo history' },
+    },
+    opts = {
+      enhanced_diff_hl = true,
+      use_local_fs = true,
+      view = {
+        default = { winbar_info = true },
+        merge_tool = { layout = 'diff3_mixed' },
+      },
+      file_panel = {
+        listing_style = 'tree',
+        tree_options = { flatten_dirs = true, folder_statuses = 'only_folded' },
+      },
+    },
+    config = function(_, opts)
+      require('diffview').setup(opts)
+      require('zkhvan.mappings').bind_diffview()
+    end,
+  },
+
+  {
+    'pwntester/octo.nvim',
+    cmd = 'Octo',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      picker = 'snacks',
+      suppress_missing_scope = {
+        projects_v2 = true,
+      },
+    },
+    config = function(_, opts)
+      require('octo').setup(opts)
+      require('zkhvan.mappings').bind_octo()
+    end,
+  },
+
+  {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {

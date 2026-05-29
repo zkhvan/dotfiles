@@ -25,6 +25,26 @@ vim.cmd('cnoreabbrev Qall qall')
 map('n', 'gs', function() end)
 
 -- ===========================================================================
+-- commands
+-- ===========================================================================
+
+vim.api.nvim_create_user_command('LspRestart', function()
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    vim.lsp.stop_client(client.id, true)
+  end
+  vim.defer_fn(function()
+    vim.cmd('edit')
+  end, 100)
+end, { desc = 'Restart all LSP clients' })
+
+map(
+  'n',
+  '<leader>lR',
+  '<cmd>LspRestart<CR>',
+  { desc = 'Restart all LSP clients' }
+)
+
+-- ===========================================================================
 -- clear search
 -- ===========================================================================
 
@@ -349,6 +369,16 @@ end
 
 function M.bind_oil()
   map('n', '-', '<cmd>Oil<CR>', { desc = 'Open parent directory' })
+  map('n', 'yp', function()
+    local oil = require('oil')
+    local entry = oil.get_cursor_entry()
+    if entry then
+      local dir = oil.get_current_dir()
+      local path = dir .. entry.name
+      vim.fn.setreg('+', path)
+      vim.notify('Copied: ' .. path)
+    end
+  end, { desc = 'Copy file path to clipboard' })
 end
 
 -- ===========================================================================
@@ -426,15 +456,71 @@ function M.bind_zk()
   )
 
   map('n', '<Leader>mn', function()
-    local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':~')
+    local abs_path = vim.api.nvim_buf_get_name(0)
+    local in_notes = vim.startswith(abs_path, vim.fn.expand('~/Notes'))
+    local port = in_notes and 10000 or 10001
+
+    local path = vim.fn.fnamemodify(abs_path, ':~')
     local relative = vim.fn.fnamemodify(path, ':~:.') or ''
-    local url_path = vim.fn.fnamemodify(relative, ':r')
+    local url_path = in_notes and vim.fn.fnamemodify(relative, ':r') or relative
 
     vim.system({
       'open',
-      ('http://localhost:10000/%s'):format(url_path),
+      ('http://127.0.0.1:%d/%s'):format(port, url_path),
     })
   end)
+end
+
+-- ===========================================================================
+-- diffview.nvim
+-- ===========================================================================
+function M.bind_diffview()
+  map('n', '<leader>do', '<cmd>DiffviewOpen<CR>', { desc = 'Diffview: open' })
+  map('n', '<leader>dc', '<cmd>DiffviewClose<CR>', { desc = 'Diffview: close' })
+  map(
+    'n',
+    '<leader>dh',
+    '<cmd>DiffviewFileHistory %<CR>',
+    { desc = 'Diffview: file history' }
+  )
+  map(
+    'n',
+    '<leader>dH',
+    '<cmd>DiffviewFileHistory<CR>',
+    { desc = 'Diffview: repo history' }
+  )
+end
+
+-- ===========================================================================
+-- octo.nvim
+-- ===========================================================================
+function M.bind_octo()
+  map('n', '<leader>opl', '<cmd>Octo pr list<CR>', { desc = 'Octo: list PRs' })
+  map(
+    'n',
+    '<leader>opc',
+    '<cmd>Octo pr checkout<CR>',
+    { desc = 'Octo: checkout PR' }
+  )
+  map(
+    'n',
+    '<leader>opb',
+    '<cmd>Octo pr browser<CR>',
+    { desc = 'Octo: open PR in browser' }
+  )
+  map(
+    'n',
+    '<leader>oil',
+    '<cmd>Octo issue list<CR>',
+    { desc = 'Octo: list issues' }
+  )
+  map(
+    'n',
+    '<leader>oic',
+    '<cmd>Octo issue create<CR>',
+    { desc = 'Octo: create issue' }
+  )
+  map('n', '<leader>os', '<cmd>Octo search<CR>', { desc = 'Octo: search' })
 end
 
 -- ===========================================================================
@@ -558,6 +644,16 @@ function M.bind_neotest()
   map('n', '<Leader>tc', function()
     neotest.output_panel.clear()
   end, { desc = 'neotest: test output panel' })
+end
+
+-- ===========================================================================
+-- toggle-checkbox.nvim
+-- ===========================================================================
+function M.bind_toggle_checkbox(bufnr)
+  local t = require('toggle-checkbox')
+  map('n', '<CR>', function()
+    t.toggle()
+  end, { desc = 'Toggle checkbox', buffer = bufnr })
 end
 
 return M

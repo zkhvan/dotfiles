@@ -19,7 +19,16 @@ return {
         }
       },
       input = { enabled = true },
-      picker = { enabled = true, jump = { jumplist = false } },
+      picker = {
+        enabled = true,
+        jump = { jumplist = false },
+        formatters = {
+          file = {
+            filename_first = true,
+            truncate = 100,
+          },
+        },
+      },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },

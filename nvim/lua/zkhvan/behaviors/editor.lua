@@ -14,3 +14,21 @@ aucmd('BufWritePre', {
   end,
   group = augroup('zkhvan.automkdir'),
 })
+
+-- If FocusGained ever misses events (Ghostty/tmux drops focus, terminal
+-- multiplexer chain, etc.), add 'CursorHold' and 'CursorHoldI' to the event
+-- list — they fire after `updatetime` of idleness and provide a backstop.
+aucmd('FocusGained', {
+  desc = 'Reload buffers when external edits occur (Ghostty, tmux popups)',
+  callback = function()
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+      if
+        vim.api.nvim_buf_is_loaded(bufnr)
+        and vim.bo[bufnr].buftype == ''
+      then
+        vim.cmd('checktime ' .. bufnr)
+      end
+    end
+  end,
+  group = augroup('zkhvan.autoread'),
+})
