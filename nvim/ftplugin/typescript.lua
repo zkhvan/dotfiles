@@ -2,7 +2,13 @@ require('zkhvan.editor').space(2)
 require('zkhvan.format').register({
   filetype = 'typescript',
   pipeline = {
-    'prettierd',
+    'prettier',
+  },
+})
+require('zkhvan.format').register({
+  filetype = 'typescriptreact',
+  pipeline = {
+    'prettier',
   },
 })
 
