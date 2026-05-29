@@ -140,3 +140,15 @@ plugins:
     args:
       - -c
       - 'kubectl get-all -n $NAMESPACE | more'
+  # Force sync ExternalSecret
+  sync-externalsecret:
+    shortCut: Shift-R
+    confirm: false
+    description: Force sync ExternalSecret
+    scopes:
+      - externalsecrets
+    command: sh
+    background: false
+    args:
+      - -c
+      - 'kubectl --context $CONTEXT annotate externalsecret -n $NAMESPACE $NAME force-sync="$(date +%s)" --overwrite && echo "Triggered force-sync for ExternalSecret $NAME" | more'
