@@ -1,0 +1,1003 @@
+openapi: 3.0.3
+info:
+  title: CircleCI REST API
+  version: v1.1
+  description: |
+    The CircleCI API is a RESTful, fully-featured API that allows you to do almost anything in CircleCI.
+    You can access all information and trigger all actions.
+    The only thing we don't provide access to is billing functions, which must be done from the CircleCI web UI.
+  license:
+    name: Attribution-NonCommercial-ShareAlike 4.0 International
+    url: http://creativecommons.org/licenses/by-nc-sa/4.0/
+servers:
+  - url: https://circleci.com/api/v1.1
+security:
+  - apikey: []
+components:
+  securitySchemes:
+    apikey:
+      type: apiKey
+      in: query
+      name: circle-token
+  parameters:
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+    project:
+      name: project
+      in: path
+      required: true
+      schema:
+        type: string
+    build_num:
+      name: build_num
+      in: path
+      required: true
+      schema:
+        type: integer
+    fingerprint:
+      name: fingerprint
+      in: path
+      required: true
+      schema:
+        type: string
+    branch:
+      name: branch
+      description: The branch name should be url-encoded.
+      in: path
+      required: true
+      schema:
+        type: string
+    envvar_name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    limit:
+      name: limit
+      description: The number of builds to return. Maximum 100, defaults to 30.
+      in: query
+      schema:
+        type: integer
+        maximum: 100
+        default: 30
+    offset:
+      name: offset
+      description: The API returns builds starting from this offset, defaults to 0.
+      in: query
+      schema:
+        type: integer
+        default: 0
+    filter:
+      name: filter
+      in: query
+      description: |
+        Restricts which builds are returned.
+        Set to "completed", "successful", "failed", "running", or defaults to no filter.
+      schema:
+        type: string
+        enum:
+          - completed
+          - successful
+          - failed
+          - running
+  schemas:
+    Sha1:
+      type: string
+    Revision:
+      type: string
+      description: |
+        The specific revision to build.
+        Default is null and the head of the branch is used. Cannot be used with tag parameter.
+    Tag:
+      type: string
+      description: |
+        The tag to build. Default is null. Cannot be used with revision parameter.
+    Parallel:
+      type: string
+      description: |
+        The number of containers to use to run the build. Default is null and the project default is used.
+    BuildParameters:
+      type: object
+      description: |
+        Additional environment variables to inject into the build environment. A map of names to values.
+    Keys:
+      type: array
+      items:
+        $ref: '#/components/schemas/Key'
+    Key:
+      type: object
+      properties:
+        public_key:
+          type: string
+        type:
+          type: string
+          description: can be "deploy-key" or "github-user-key"
+          enum:
+            - deploy-key
+            - github-user-key
+        fingerprint:
+          type: string
+        preferred:
+          type: boolean
+        time:
+          description: when the key was issued
+          type: string
+          format: date-time
+    Envvars:
+      type: array
+      items:
+        $ref: '#/components/schemas/Envvar'
+    Envvar:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Tests:
+      type: object
+      properties:
+        tests:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              file:
+                type: string
+              source:
+                type: string
+              run_time:
+                type: number
+              result:
+                $ref: '#/components/schemas/Status'
+              name:
+                type: string
+              classname:
+                type: string
+    Projects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+    Project:
+      type: object
+      properties:
+        reponame:
+          type: string
+        oss:
+          type: boolean
+        username:
+          type: string
+        vcs_type:
+          type: string
+        vcs_url:
+          type: string
+          format: uri
+        followed:
+          type: boolean
+        parallel:
+          type: integer
+        ssh_keys:
+          type: array
+          items:
+            type: string
+        default_branch:
+          type: string
+        branches:
+          type: object
+        dependencies:
+          type: string
+        has_usable_key:
+          type: boolean
+        setup:
+          type: string
+        compile:
+          type: string
+        test:
+          type: string
+        extra:
+          type: string
+        language:
+          type: string
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        irc_server:
+          type: string
+          nullable: true
+        irc_keyword:
+          type: string
+          nullable: true
+        irc_channel:
+          type: string
+          nullable: true
+        irc_username:
+          type: string
+          nullable: true
+        irc_password:
+          type: string
+          nullable: true
+        irc_notify_prefs:
+          type: string
+          nullable: true
+        flowdock_api_token:
+          type: string
+          nullable: true
+        campfire_subdomain:
+          type: string
+          nullable: true
+        campfire_room:
+          type: string
+          nullable: true
+        campfire_token:
+          type: string
+          nullable: true
+        campfire_notify_prefs:
+          type: string
+          nullable: true
+        slack_api_token:
+          type: string
+          nullable: true
+        slack_channel:
+          type: string
+          nullable: true
+        slack_channel_override:
+          type: string
+          nullable: true
+        slack_webhook_url:
+          type: string
+          format: uri
+        slack_subdomain:
+          type: string
+          nullable: true
+        slack_notify_prefs:
+          type: string
+          nullable: true
+        hipchat_notify:
+          type: string
+          nullable: true
+        hipchat_room:
+          type: string
+          nullable: true
+        hipchat_api_token:
+          type: string
+          nullable: true
+        hipchat_notify_prefs:
+          type: string
+          nullable: true
+        aws:
+          $ref: '#/components/schemas/Aws'
+        heroku_deploy_user:
+          type: string
+          nullable: true
+        feature_flags:
+          type: object
+          properties:
+            set-github-status:
+              type: boolean
+            oss:
+              type: boolean
+            build-fork-prs:
+              type: boolean
+            junit:
+              type: boolean
+            osx:
+              type: boolean
+            fleet:
+              type: boolean
+              nullable: true
+            trusty-beta:
+              type: boolean
+    Aws:
+      type: object
+      properties:
+        keypair:
+          type: string
+          nullable: true
+    User:
+      type: object
+      properties:
+        enrolled_betas:
+          type: array
+          items:
+            type: string
+        in_beta_program:
+          type: boolean
+        selected_email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        trial_end:
+          type: string
+          format: date-time
+        admin:
+          type: boolean
+        basic_email_prefs:
+          type: string
+        sign_in_count:
+          type: integer
+        github_oauth_scopes:
+          type: array
+          items:
+            type: string
+        analytics_id:
+          type: string
+        name:
+          type: string
+        gravatar_id:
+          type: integer
+          nullable: true
+        days_left_in_trial:
+          type: integer
+        parallelism:
+          type: integer
+        bitbucket_authorized:
+          type: boolean
+        github_id:
+          type: integer
+          nullable: true
+        bitbucket:
+          type: integer
+          nullable: true
+        dev_admin:
+          type: boolean
+        all_emails:
+          type: array
+          items:
+            type: string
+            format: email
+        created_at:
+          type: string
+          format: date-time
+        plan:
+          type: string
+          nullable: true
+        heroku_api_key:
+          type: string
+          nullable: true
+        projects:
+          type: object
+        login:
+          type: string
+        organization_prefs:
+          type: object
+        containers:
+          type: integer
+        pusher_id:
+          type: string
+    BuildSummary:
+      type: object
+      properties:
+        outcome:
+          $ref: '#/components/schemas/Outcome'
+        status:
+          $ref: '#/components/schemas/Status'
+        build_num:
+          type: integer
+        vcs_revision:
+          $ref: '#/components/schemas/Sha1'
+        pushed_at:
+          type: string
+          format: date-time
+        added_at:
+          type: string
+          format: date-time
+    Builds:
+      type: array
+      items:
+        $ref: '#/components/schemas/Build'
+    Build:
+      type: object
+      properties:
+        vcs_url:
+          type: string
+          format: uri
+        build_url:
+          type: string
+          format: uri
+        branch:
+          type: string
+        committer_name:
+          type: string
+        committer_email:
+          type: string
+          format: email
+        subject:
+          type: string
+        body:
+          type: string
+          description: commit message body
+        why:
+          type: string
+          description: short string explaining the reason we built
+        dont_build:
+          type: string
+          nullable: true
+          description: reason why we didn't build, if we didn't build
+        queued_at:
+          type: string
+          description: time build was queued
+          format: date-time
+        start_time:
+          type: string
+          description: time build started
+          format: date-time
+        stop_time:
+          type: string
+          description: time build finished
+          format: date-time
+        build_time_millis:
+          type: integer
+        username:
+          type: string
+        reponame:
+          type: string
+        lifecycle:
+          $ref: '#/components/schemas/Lifecycle'
+        retry_of:
+          description: build_num of the build this is a retry of
+          type: integer
+          nullable: true
+        previous:
+          $ref: '#/components/schemas/PreviousBuild'
+    BuildDetail:
+      type: object
+      description: Full details for a single build
+      properties:
+        ssh_enabled:
+          type: boolean
+          nullable: true
+        retries:
+          type: boolean
+          nullable: true
+        compare:
+          type: string
+          nullable: true
+          format: uri
+        usage_queued_at:
+          type: string
+          format: date-time
+        node:
+          type: string
+          nullable: true
+        all_commit_details:
+          $ref: '#/components/schemas/CommitDetails'
+        user:
+          $ref: '#/components/schemas/User'
+        job_name:
+          type: string
+        previous_successful_build:
+          $ref: '#/components/schemas/PreviousBuild'
+        timedout:
+          type: boolean
+          nullable: true
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+    Step:
+      type: object
+      properties:
+        name:
+          type: string
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+    Action:
+      type: object
+      properties:
+        name:
+          type: string
+        bash_command:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Status'
+        type:
+          type: string
+        index:
+          type: integer
+        step:
+          type: integer
+        exit_code:
+          type: integer
+          nullable: true
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        run_time_millis:
+          type: integer
+        has_output:
+          type: boolean
+        output_url:
+          type: string
+          format: uri
+          description: Pre-signed S3 URL to the raw log output for this action
+        truncated:
+          type: boolean
+    PreviousBuild:
+      type: object
+      description: previous build
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        build_num:
+          type: integer
+        build_time_millis:
+          type: integer
+    CommitDetail:
+      type: object
+      properties:
+        author_name:
+          type: string
+        commit:
+          $ref: '#/components/schemas/Sha1'
+        author_login:
+          type: string
+        committer_login:
+          type: string
+        committer_name:
+          type: string
+        body:
+          type: string
+        author_date:
+          type: string
+          format: date-time
+        committer_date:
+          type: string
+          format: date-time
+        commit_url:
+          type: string
+          format: uri
+        committer_email:
+          type: string
+          format: email
+        author_email:
+          type: string
+          format: email
+        subject:
+          type: string
+    CommitDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/CommitDetail'
+    Artifact:
+      type: object
+      properties:
+        node_index:
+          type: integer
+        path:
+          type: string
+        pretty_path:
+          type: string
+        url:
+          type: string
+    Artifacts:
+      type: array
+      items:
+        $ref: '#/components/schemas/Artifact'
+    Scope:
+      type: string
+      enum:
+        - write-settings
+        - view-builds
+        - read-settings
+        - trigger-builds
+        - all
+        - status
+        - none
+    Status:
+      type: string
+      enum:
+        - retried
+        - canceled
+        - infrastructure_fail
+        - timedout
+        - not_run
+        - running
+        - failed
+        - queued
+        - scheduled
+        - not_running
+        - no_tests
+        - fixed
+        - success
+    Outcome:
+      type: string
+      enum:
+        - canceled
+        - infrastructure_fail
+        - timedout
+        - failed
+        - no_tests
+        - success
+    Lifecycle:
+      type: string
+      enum:
+        - queued
+        - scheduled
+        - not_run
+        - not_running
+        - running
+        - finished
+paths:
+  /me:
+    get:
+      operationId: getMe
+      description: Provides information about the signed in user.
+      responses:
+        '200':
+          description: signed in user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /projects:
+    get:
+      operationId: listProjects
+      description: List of all the projects you're following on CircleCI, with build information organized by branch.
+      responses:
+        '200':
+          description: List of all the projects you're following on CircleCI
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+  /project/{username}/{project}:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+    get:
+      operationId: listBuilds
+      description: Build summary for each of the last 30 builds for a single git repo.
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: Build summary for each of the last 30 builds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Builds'
+    post:
+      operationId: triggerBuild
+      description: Triggers a new build, returns a summary of the build.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                revision:
+                  $ref: '#/components/schemas/Revision'
+                tag:
+                  $ref: '#/components/schemas/Tag'
+                parallel:
+                  $ref: '#/components/schemas/Parallel'
+                build_parameters:
+                  $ref: '#/components/schemas/BuildParameters'
+      responses:
+        '201':
+          description: returns a summary of the build
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildSummary'
+  /recent-builds:
+    get:
+      operationId: listRecentBuilds
+      description: Build summary for each of the last 30 recent builds, ordered by build_num.
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Build summary for each of the last 30 recent builds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Builds'
+  /project/{username}/{project}/{build_num}:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/build_num'
+    get:
+      operationId: getBuildDetail
+      description: |
+        Full details for a single build. The response includes all of the fields from the build summary.
+        This is also the payload for the notification webhooks, in which case this object is the value to a key named 'payload'.
+      responses:
+        '200':
+          description: Full details for a single build
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildDetail'
+  /project/{username}/{project}/{build_num}/artifacts:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/build_num'
+    get:
+      operationId: listBuildArtifacts
+      description: List the artifacts produced by a given build.
+      responses:
+        '200':
+          description: List the artifacts produced by a given build
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artifacts'
+  /project/{username}/{project}/{build_num}/retry:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/build_num'
+    post:
+      operationId: retryBuild
+      description: Retries the build, returns a summary of the new build.
+      responses:
+        '200':
+          description: returns a summary of the new build
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+  /project/{username}/{project}/{build_num}/cancel:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/build_num'
+    post:
+      operationId: cancelBuild
+      description: Cancels the build, returns a summary of the build.
+      responses:
+        '200':
+          description: returns a summary of the build
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+  /project/{username}/{project}/{build_num}/tests:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/build_num'
+    get:
+      operationId: listBuildTests
+      description: |
+        Provides test metadata for a build.
+        Note: Learn how to set up your builds to collect test metadata at https://circleci.com/docs/test-metadata/
+      responses:
+        '200':
+          description: test metadata for a build
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tests'
+  /project/{username}/{project}/tree/{branch}:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/branch'
+    post:
+      operationId: triggerBranchBuild
+      description: |
+        Triggers a new build, returns a summary of the build.
+        Optional build parameters can be set using an experimental API.
+        Note: For more about build parameters, read about using parameterized builds at https://circleci.com/docs/parameterized-builds/
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parallel:
+                  $ref: '#/components/schemas/Parallel'
+                revision:
+                  $ref: '#/components/schemas/Revision'
+                build_parameters:
+                  $ref: '#/components/schemas/BuildParameters'
+      responses:
+        '201':
+          description: returns a summary of the build
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+  /project/{username}/{project}/ssh-key:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+    post:
+      operationId: createSshKey
+      description: Create an ssh key used to access external systems that require SSH key-based authentication.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hostname:
+                  type: string
+                private_key:
+                  type: string
+      responses:
+        default:
+          description: no response expected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /project/{username}/{project}/checkout-key:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+    get:
+      operationId: listCheckoutKeys
+      description: Lists checkout keys.
+      responses:
+        '200':
+          description: checkout keys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Keys'
+    post:
+      operationId: createCheckoutKey
+      description: Creates a new checkout key. Only usable with a user API token.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              enum:
+                - deploy-key
+                - github-user-key
+      responses:
+        '200':
+          description: checkout key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Key'
+  /project/{username}/{project}/checkout-key/{fingerprint}:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/fingerprint'
+    get:
+      operationId: getCheckoutKey
+      description: Get a checkout key.
+      responses:
+        '200':
+          description: checkout key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Key'
+    delete:
+      operationId: deleteCheckoutKey
+      description: Delete a checkout key.
+      responses:
+        '200':
+          description: status message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                      - OK
+  /project/{username}/{project}/build-cache:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+    delete:
+      operationId: clearBuildCache
+      description: Clears the cache for a project.
+      responses:
+        '200':
+          description: status message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /project/{username}/{project}/envvar:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+    get:
+      operationId: listEnvVars
+      description: Lists the environment variables for the project.
+      responses:
+        '200':
+          description: environment variables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envvars'
+    post:
+      operationId: createEnvVar
+      description: Creates a new environment variable.
+      responses:
+        '200':
+          description: environment variable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envvar'
+  /project/{username}/{project}/envvar/{name}:
+    parameters:
+      - $ref: '#/components/parameters/username'
+      - $ref: '#/components/parameters/project'
+      - $ref: '#/components/parameters/envvar_name'
+    get:
+      operationId: getEnvVar
+      description: Gets the hidden value of environment variable :name.
+      responses:
+        '200':
+          description: environment variable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envvar'
+    delete:
+      operationId: deleteEnvVar
+      description: Deletes the environment variable named ':name'.
+      responses:
+        '200':
+          description: Deletes the environment variable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                      - OK
+  /user/heroku-key:
+    post:
+      operationId: addHerokuKey
+      description: Adds your Heroku API key to CircleCI, takes apikey as form param name.
+      responses:
+        '403':
+          description: Your Heroku API key is invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
