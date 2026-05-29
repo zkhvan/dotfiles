@@ -19,3 +19,6 @@ zsh/.zsh_sessions
 .zsh_history
 .zshrc.zwc
 *.log
+
+# machine-local neovim config
+nvim/after/plugin/local.lua
