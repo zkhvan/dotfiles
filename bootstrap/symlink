@@ -70,6 +70,10 @@ __symlink() {
   kz-symlink "idea/dot.ideavimrc" \
     ".ideavimrc"
 
+  kz-symlink "claude/skills" ".claude/skills"
+  kz-symlink "claude/agents" ".claude/agents"
+  kz-symlink "claude/mcp.json" ".claude/mcp.json"
+
   case "$OSTYPE" in
   *arwin*)
     kz-symlink "mac/hammerspoon" \

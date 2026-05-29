@@ -98,6 +98,7 @@ export AWS_CONFIG_FILE="${DOTFILES}/aws/config"
 # claude code
 # --------------------------------------------------------------------------
 export DISABLE_AUTOUPDATER=1
+export CLAUDE_CODE_NO_FLICKER=1
 
 # ----------------------------------------------------------------------------
 # for rsync and cvs
