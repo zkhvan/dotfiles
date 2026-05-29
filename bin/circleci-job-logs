@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+#
+# circleci-job-logs — Get failure logs for a specific CircleCI job
+#
+# Usage:
+#   circleci-job-logs <job-number>
+#   circleci-job-logs <job-number> [v2-project-slug] [v1-org-id] [v1-project-id]
+#
+# Examples:
+#   circleci-job-logs 580299
+#   circleci-job-logs 580299 circleci/<org-uuid>/<project-uuid>
+#
+# Prerequisites:
+#   - restish CLI with both "circleci" (v2) and "circleciv1" (v1.1) APIs configured
+#   - jq
+#
+# How it works:
+#   1. v2 API (restish circleci get-job-details) to get job metadata, pipeline, workflow
+#   2. v2 API (restish circleci list-workflow-jobs) to list sibling jobs
+#   3. v1.1 API (restish circleciv1 get-build-detail) to get steps with output_url
+#   4. Fetches the actual log output from the pre-signed S3 URLs for failed steps
+#
+# The v2 API does NOT expose step-level logs. The v1.1 API does, via
+# steps[].actions[].output_url (pre-signed S3 links).
+#
+# For GitHub App projects, the v1.1 username is "circleci/{org-uuid}"
+# and the project is the project UUID.
+#
+# Reads CIRCLECI_PROJECT_SLUG, CIRCLECI_V1_ORG, CIRCLECI_V1_PROJECT from env.
+# Override with positional args for other projects.
+
+set -euo pipefail
+
+JOB_NUMBER="${1:?Usage: circleci-job-logs <job-number> [v2-project-slug] [v1-org-id] [v1-project-id]}"
+PROJECT_SLUG="${2:-${CIRCLECI_PROJECT_SLUG:?Set CIRCLECI_PROJECT_SLUG or pass as arg 2}}"
+V1_ORG="${3:-${CIRCLECI_V1_ORG:?Set CIRCLECI_V1_ORG or pass as arg 3}}"
+V1_PROJECT="${4:-${CIRCLECI_V1_PROJECT:?Set CIRCLECI_V1_PROJECT or pass as arg 4}}"
+
+echo "=== Job metadata (v2 API) ==="
+
+JOB_JSON=$(restish circleci get-job-details "$JOB_NUMBER" "$PROJECT_SLUG" -o json -r)
+
+JOB_NAME=$(echo "$JOB_JSON" | jq -r '.name')
+JOB_STATUS=$(echo "$JOB_JSON" | jq -r '.status')
+WORKFLOW_ID=$(echo "$JOB_JSON" | jq -r '.latest_workflow.id')
+WORKFLOW_NAME=$(echo "$JOB_JSON" | jq -r '.latest_workflow.name')
+WEB_URL=$(echo "$JOB_JSON" | jq -r '.web_url')
+DURATION=$(echo "$JOB_JSON" | jq -r '.duration // 0')
+DURATION_S=$((DURATION / 1000))
+
+echo "Job:       $JOB_NAME (#$JOB_NUMBER)"
+echo "Status:    $JOB_STATUS"
+echo "Duration:  ${DURATION_S}s"
+echo "Workflow:  $WORKFLOW_NAME ($WORKFLOW_ID)"
+echo "Web URL:   $WEB_URL"
+echo
+
+echo "=== Sibling jobs in workflow ==="
+
+JOBS_JSON=$(restish circleci list-workflow-jobs "$WORKFLOW_ID" -o json -r)
+echo "$JOBS_JSON" | jq -r --arg num "$JOB_NUMBER" '
+  .items | sort_by(.started_at // "") | .[] |
+  (if .status == "failed" or .status == "error" then "❌"
+   elif .status == "success" then "✅"
+   else "⏳" end) as $icon |
+  (if (.job_number | tostring) == $num then "  <-- THIS JOB" else "" end) as $marker |
+  "  \($icon) \(.name)\t#\(.job_number)\t\(.status)\($marker)"
+' | column -t -s $'\t'
+echo
+
+echo "=== Step logs (v1.1 API) ==="
+echo "   restish circleciv1 get-build-detail circleci/$V1_ORG $V1_PROJECT $JOB_NUMBER"
+echo
+
+BUILD_JSON=$(restish circleciv1 get-build-detail "circleci/$V1_ORG" "$V1_PROJECT" "$JOB_NUMBER" -o json -r)
+
+# List all steps with status
+echo "Steps:"
+echo "$BUILD_JSON" | jq -r '
+  .steps[]? | .name as $name | .actions[]? |
+  (if .status == "failed" then "❌"
+   elif .status == "success" then "✅"
+   else "⏳" end) as $icon |
+  "  \($icon) \($name)\t\(.status)\t\(.run_time_millis // 0)ms"
+' | column -t -s $'\t'
+echo
+
+# Extract output URLs for failed steps
+FAILED_URLS=$(echo "$BUILD_JSON" | jq -r '
+  .steps[]? | .name as $name | .actions[]? |
+  select(.status == "failed" and .output_url != null) |
+  "\($name)\t\(.output_url)"
+')
+
+if [ -z "$FAILED_URLS" ]; then
+  echo "No failed steps with output URLs found."
+  exit 0
+fi
+
+echo "=== Failed step output ==="
+echo
+
+while IFS=$'\t' read -r step_name output_url; do
+  echo "--- $step_name ---"
+  # The output_url returns JSON with a message array containing {type, message} objects
+  curl -sL "$output_url" | jq -r '.[].message // empty' 2>/dev/null | tail -100
+  echo
+done <<< "$FAILED_URLS"
