@@ -1,0 +1,3 @@
+#!/bin/bash
+rate=$(tmux show-environment SPEAK_RATE 2>/dev/null | grep -v '^-' | cut -d= -f2)
+say -r "${rate:-400}"
