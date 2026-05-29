@@ -21,6 +21,16 @@ alias rm="nocorrect rm"
 alias mkdir="nocorrect mkdir"
 
 # ============================================================================
+# Custom completions (must be in fpath before compinit runs)
+# ============================================================================
+
+fpath=("${ZDOTDIR}/completions" $fpath)
+
+# git's bash-style completion dispatches to _git_<subcmd> as a function lookup,
+# not via compinit's #compdef mechanism, so autoload these explicitly.
+autoload -Uz _git_cf
+
+# ============================================================================
 # zinit
 # ============================================================================
 

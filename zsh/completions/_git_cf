@@ -1,0 +1,20 @@
+# Sub-completer for `git cf` (alias for `git commit --fixup`).
+# Called by git's bash-style completion dispatcher when it sees `git cf`.
+# Offers short SHAs as candidates, with the commit subject shown alongside.
+
+# Dispatcher invokes us under `emulate ksh`; force zsh semantics.
+emulate -L zsh
+
+local -a shas descs
+local sha subject main_branch
+
+# Mirror the range that `git new` uses: <main-branch>..HEAD
+main_branch="$(command git main-branch 2>/dev/null)"
+: "${main_branch:=main}"
+
+while IFS=$'\t' read -r sha subject; do
+  shas+=("$sha")
+  descs+=("${sha}  ${subject}")
+done < <(command git log --pretty=$'%h\t%s' "${main_branch}..HEAD" 2>/dev/null)
+
+compadd -V commits -d descs -a shas
