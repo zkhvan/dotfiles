@@ -1,0 +1,13 @@
+# mise global configuration -- https://mise.jdx.dev/configuration.html
+#
+# Tool versions and settings shared across all directories. Project-local
+# mise.toml / .tool-versions files override these per repo.
+
+# https://mise.jdx.dev/configuration/settings.html
+[settings]
+
+[tools]
+# Global tool versions go here, e.g.:
+#   node = "lts"
+#   python = "3.12"
+"aqua:neovim/neovim" = "latest"

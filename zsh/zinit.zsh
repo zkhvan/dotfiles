@@ -2,6 +2,8 @@
 
 export KZ_SOURCE="${KZ_SOURCE} -> zinit.zsh {"
 
+local man1="${ZINIT[MAN_DIR]}/man1"
+
 # ----------------------------------------------------------------------------
 # Docker
 # ----------------------------------------------------------------------------
@@ -69,6 +71,28 @@ zinit lucid from'gh-r' as'program' for \
   mv'zoxide* -> zoxide' \
   atload'eval "$(zoxide init --no-aliases zsh)" && alias j=__zoxide_z && alias ji=__zoxide_zi' \
   'ajeetdsouza/zoxide' \
+
+# ----------------------------------------------------------------------------
+# mise -- runtime version manager
+# ----------------------------------------------------------------------------
+
+# pick the release asset matching this OS/arch
+local mise_bpick="" mise_arch="$(uname -m)"
+[[ $DOTFILES_OS == "Linux" ]] && {
+  mise_bpick="*-linux-x64.tar.gz"
+  [[ $mise_arch == "aarch64" || $mise_arch == "arm64" ]] && mise_bpick="*-linux-arm64.tar.gz"
+}
+[[ $DOTFILES_OS == "Darwin" ]] && {
+  mise_bpick="*-macos-x64.tar.gz"
+  [[ $mise_arch == "arm64" ]] && mise_bpick="*-macos-arm64.tar.gz"
+}
+# no lucid / no wait -- want mise active before the prompt is ready
+zinit ice from'gh-r' as'program' bpick"$mise_bpick" \
+  pick'mise/bin/mise' \
+  atclone"cp -vf **/*.1 \"$man1\"; ./mise/bin/mise completion zsh > _mise" \
+  atpull'%atclone' \
+  atload'eval "$(mise activate zsh)"'
+zinit light 'jdx/mise'
 
 zinit lucid for \
   'OMZP::cp' \

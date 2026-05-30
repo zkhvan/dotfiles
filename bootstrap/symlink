@@ -51,6 +51,8 @@ __symlink() {
     ".config/k9s"
   kz-symlink "tmux/tmux.conf" \
     ".config/tmux/tmux.conf"
+  kz-symlink "mise/config.toml" \
+    ".config/mise/config.toml"
   kz-symlink "bat" \
     ".config/bat"
   kz-symlink "tilt/analytics/user/choice.txt" \
