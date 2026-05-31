@@ -1,0 +1,52 @@
+#cloud-config
+
+# repositories
+apt:
+  preserve_sources_list: true
+
+# required packages
+packages:
+  # core dependencies
+  - ca-certificates
+  - curl
+  - unzip
+  - gnupg
+  - sudo
+  - passwd
+  - zsh
+  - lsb-release
+  - locales
+  - git
+  - build-essential
+  - tmux
+
+# skeleton files for user config (unused)
+write_files:
+  - path: /etc/skel/.zshenv
+    owner: root:root
+    permissions: '0644'
+    content: |
+      # core locale and term environment configurations
+      export TERM='xterm-ghostty'
+      export LANG='en_US.UTF-8'
+      export LC_ALL='en_US.UTF-8'
+
+users:
+  - name: zhenya
+    shell: /usr/bin/zsh
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: [sudo]
+
+# setup commands
+runcmd:
+  # compile the system locale data
+  - locale-gen en_US.UTF-8
+  - update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+  - runuser -l "zhenya" -c '
+      git clone https://github.com/zkhvan/dotfiles ~/.dotfiles &&
+      rm ~/.zshenv ~/.profile &&
+      mkdir -p -- ~/.config/git &&
+      mkdir -p -- ~/.config/tmux &&
+      mkdir -p -- ~/.config/mise &&
+      ~/.dotfiles/bootstrap/symlink'
