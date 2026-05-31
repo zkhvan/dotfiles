@@ -12,3 +12,8 @@
 #   python = "3.12"
 "aqua:neovim/neovim" = "latest"
 go = "1.26.3"
+fzf = "latest"
+pi = "0.78.0"
+npm = "11.16.0"
+node = "26.2.0"
+pnpm = "11.5.0"
