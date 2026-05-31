@@ -1,7 +1,7 @@
 -- opt.lua
 
-vim.g.clipboard = 'osc52'
-vim.o.clipboard = 'unnamedplus'
+-- vim.g.clipboard = 'osc52'
+-- vim.o.clipboard = 'unnamedplus'
 
 -- ===========================================================================
 -- reading
