@@ -102,6 +102,8 @@ if __kz_has "fd"; then
   }
 fi
 
+__kz_has "fzf" && source <(fzf --zsh)
+
 unset grepper
 unset grepargs
 unset fzfopts
