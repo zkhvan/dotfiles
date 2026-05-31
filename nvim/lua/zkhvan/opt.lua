@@ -1,8 +1,5 @@
 -- opt.lua
 
--- vim.g.clipboard = 'osc52'
--- vim.o.clipboard = 'unnamedplus'
-
 -- ===========================================================================
 -- reading
 -- ===========================================================================
@@ -40,6 +37,15 @@ vim.opt.backupskip:append('/private/tmp/*') -- edit crontab files
 vim.opt.backupskip:append('~/.secret/*')
 
 vim.o.updatetime = 250
+
+-- ==========================================================================
+-- clipboard
+-- ==========================================================================
+
+if require('zkhvan.utils.env').is_remote_connection() then
+  vim.g.clipboard = 'osc52'
+  vim.o.clipboard = 'unnamedplus'
+end
 
 vim.o.undofile = true
 vim.o.undolevels = 1000
