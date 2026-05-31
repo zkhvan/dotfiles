@@ -11,3 +11,4 @@
 #   node = "lts"
 #   python = "3.12"
 "aqua:neovim/neovim" = "latest"
+go = "1.26.3"
