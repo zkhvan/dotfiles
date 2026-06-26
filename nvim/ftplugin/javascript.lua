@@ -1,4 +1,6 @@
 require('zkhvan.editor').space(2)
+vim.bo.tabstop = 4
+
 require('zkhvan.format').register({
   filetype = 'javascript',
   pipeline = {
