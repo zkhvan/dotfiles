@@ -24,7 +24,7 @@ return {
           title = date,
           template = 'daily.md',
           group = 'log',
-          dir = 'log',
+          dir = 'journal/daily',
         }, options or {})
         zk.new(options)
       end)
@@ -55,7 +55,7 @@ return {
           title = date .. '-weekly-review',
           template = 'weekly.md',
           group = 'log',
-          dir = 'log',
+          dir = 'journal/reviews',
         }, options or {})
         zk.new(options)
       end)
@@ -64,6 +64,7 @@ return {
         zkc.add('Zk' .. title, function()
           zk.new({
             title = title,
+            dir = 'notes',
           })
         end)
       end
