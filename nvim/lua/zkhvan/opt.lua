@@ -42,9 +42,10 @@ vim.o.updatetime = 250
 -- clipboard
 -- ==========================================================================
 
+vim.o.clipboard = 'unnamedplus'
+
 if require('zkhvan.utils.env').is_remote_connection() then
   vim.g.clipboard = 'osc52'
-  vim.o.clipboard = 'unnamedplus'
 end
 
 vim.o.undofile = true

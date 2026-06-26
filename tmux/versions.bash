@@ -10,6 +10,10 @@ __load() {
   if (( $(echo "$tmux_version >= 3.4" | bc) == 1 )); then
     tmux source-file "${DOTFILES}/tmux/t3.4.conf"
   fi
+
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    tmux source-file "${DOTFILES}/tmux/mac.conf"
+  fi
 }
 
 __load
