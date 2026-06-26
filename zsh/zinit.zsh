@@ -89,7 +89,7 @@ local mise_bpick="" mise_arch="$(uname -m)"
 # no lucid / no wait -- want mise active before the prompt is ready
 zinit ice from'gh-r' as'program' bpick"$mise_bpick" \
   pick'mise/bin/mise' \
-  atclone"cp -vf **/*.1 \"$man1\"; ./mise/bin/mise completion zsh > _mise" \
+  atclone"cp -vf **/*.1 \"$man1\"" \
   atpull'%atclone' \
   atload'eval "$(mise activate zsh)"'
 zinit light 'jdx/mise'
