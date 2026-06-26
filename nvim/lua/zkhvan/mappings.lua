@@ -30,7 +30,7 @@ map('n', 'gs', function() end)
 
 vim.api.nvim_create_user_command('LspRestart', function()
   for _, client in ipairs(vim.lsp.get_clients()) do
-    vim.lsp.stop_client(client.id, true)
+    client:stop(true)
   end
   vim.defer_fn(function()
     vim.cmd('edit')
@@ -189,7 +189,7 @@ function M.bind_lsp(bufnr)
   map('n', '<leader>lr', function()
     local clients = vim.lsp.get_clients({ bufnr = bufnr })
     for _, client in ipairs(clients) do
-      vim.lsp.stop_client(client.id, true)
+      client:stop(true)
     end
     vim.defer_fn(function()
       vim.cmd('edit')
