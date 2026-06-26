@@ -29,6 +29,21 @@ return {
         zk.new(options)
       end)
 
+      zkc.add('ZkMeeting', function(options)
+        local date = os.date('%Y-%m-%d')
+        vim.ui.input({ prompt = 'Title: ' }, function(title)
+          if title == nil or #title == 0 then
+            return
+          end
+          options = vim.tbl_deep_extend('force', {
+            title = date .. ' — ' .. title,
+            template = 'meeting.md',
+            dir = 'journal/meetings',
+          }, options or {})
+          zk.new(options)
+        end)
+      end)
+
       zkc.add('ZkWeekly', function(options)
         -- Use Monday of the current week so the same file is reused all week
         local now = os.time()
