@@ -92,6 +92,10 @@ run = 'layout floating'
 if.app-name-regex-substring = 'KDiff3'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.window-title-regex-substring = 'Shottr'
+run = 'layout floating'
+
 [mode.main.binding]
 
 # All possible keys:
