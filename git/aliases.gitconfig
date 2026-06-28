@@ -43,8 +43,8 @@
 	lbg         = log --abbrev-commit           --decorate --all --graph
 	lu          = lg        @{u}..
 	lus         = lg --stat	@{u}..
-	new         = "!f() { git lg        $(git main-branch || echo main).. \"$@\"; }; f"
-	news        = "!f() { git lg --stat $(git main-branch || echo main).. \"$@\"; }; f"
+	new         = "!f() { m=$(git main-branch || echo main); b=$m; [ \"$(git rev-parse --abbrev-ref HEAD)\" = \"$m\" ] && b='@{u}'; git lg        \"$b\".. \"$@\"; }; f"
+	news        = "!f() { m=$(git main-branch || echo main); b=$m; [ \"$(git rev-parse --abbrev-ref HEAD)\" = \"$m\" ] && b='@{u}'; git lg --stat \"$b\".. \"$@\"; }; f"
 
 	m           = merge
 
