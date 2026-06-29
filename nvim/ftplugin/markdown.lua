@@ -6,3 +6,11 @@ vim.opt_local.breakindentopt = 'list:2'
 -- vim.cmd('Wrapwidth 80')
 
 require('zkhvan.mappings').bind_toggle_checkbox(0)
+
+local ok, zk_util = pcall(require, 'zk.util')
+if ok and zk_util.notebook_root(vim.fn.expand('%:p')) ~= nil then
+  vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, {
+    buffer = true,
+    desc = 'Follow zk wiki link',
+  })
+end
