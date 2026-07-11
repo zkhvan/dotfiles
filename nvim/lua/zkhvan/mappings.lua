@@ -459,20 +459,11 @@ function M.bind_zk()
     ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>"
   )
 
+  -- Preview roots are machine-specific; see nvim/after/plugin/local.lua,
+  -- which registers them via require('zkhvan.preview').add_root().
   map('n', '<Leader>mn', function()
-    local abs_path = vim.api.nvim_buf_get_name(0)
-    local in_notes = vim.startswith(abs_path, vim.fn.expand('~/Notes'))
-    local port = in_notes and 10000 or 10001
-
-    local path = vim.fn.fnamemodify(abs_path, ':~')
-    local relative = vim.fn.fnamemodify(path, ':~:.') or ''
-    local url_path = in_notes and vim.fn.fnamemodify(relative, ':r') or relative
-
-    vim.system({
-      'open',
-      ('http://127.0.0.1:%d/%s'):format(port, url_path),
-    })
-  end)
+    require('zkhvan.preview').open()
+  end, { desc = 'Preview: open note in browser' })
 end
 
 -- ===========================================================================
