@@ -58,6 +58,11 @@ vim.o.undoreload = 10000
 
 vim.o.title = true
 
+-- Encode tab/window in the title so tmux can detect when Neovim changes
+-- splits, enabling seamless Alt+arrow navigation across panes and splits.
+-- Paired with tmux/tmux.conf. Source: https://sunaku.github.io/tmux-select-pane.html
+vim.o.titlestring = 'nvim %f +%l #%{tabpagenr()}.%{winnr()}'
+
 -- no beeps or flashes
 vim.o.visualbell = false
 vim.o.errorbells = false
