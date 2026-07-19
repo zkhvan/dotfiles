@@ -171,4 +171,4 @@ export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # zk notes
-export ZK_NOTEBOOK_DIR="${HOME}/Notes"
+export ZK_NOTEBOOK_DIR="${HOME}/Notes/personal"

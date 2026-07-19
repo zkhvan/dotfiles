@@ -24,7 +24,7 @@ return {
           title = date,
           template = 'daily.md',
           group = 'log',
-          dir = 'journal/daily',
+          dir = 'journal/' .. os.date('%Y/%m'),
         }, options or {})
         zk.new(options)
       end)
@@ -52,10 +52,10 @@ return {
         local monday = now - offset * 86400
         local date = os.date('%Y-%m-%d', monday)
         options = vim.tbl_deep_extend('force', {
-          title = date .. '-weekly-review',
+          title = date .. '-weekly',
           template = 'weekly.md',
           group = 'log',
-          dir = 'journal/reviews',
+          dir = 'journal/' .. os.date('%Y/%m', monday),
         }, options or {})
         zk.new(options)
       end)
