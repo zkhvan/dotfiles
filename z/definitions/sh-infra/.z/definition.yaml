@@ -1,0 +1,31 @@
+# z workspace definition
+version: 1
+
+# Branch name for each member at create time.
+# Placeholders: {instance} = instance name, {repo} = member basename
+branch_pattern: "{instance}"
+
+# Uncommenting an example below is all it takes to add a member.
+members:
+  - repo: Superhuman/gitlab_platform-infrastructure
+    base_ref: master
+  - repo: Superhuman/gitlab_platform-k8s-infra
+    base_ref: main
+  - repo: Superhuman/gitlab_platform-vm
+    base_ref: main
+  - repo: Superhuman/gitlab_platform-terraform-modules
+    base_ref: master
+  - repo: Superhuman/gitlab_eng-shared-control-plane-config
+    base_ref: main
+  - repo: Superhuman/gitlab_eng-shared-helm-charts
+    base_ref: main
+  - repo: Superhuman/gitlab_eng-shared-platform-config
+    base_ref: main
+  - repo: Superhuman/gitlab_eng-shared-platform-plane-config
+    base_ref: main
+  - repo: Superhuman/gitlab_eng-shared-sandbox-config
+    base_ref: main
+  - repo: Superhuman/github_superhumans-org-platform-tools
+    base_ref: main
+  - repo: Superhuman/gitlab_shared-product-infra-terraform-modules
+    base_ref: master

@@ -1,0 +1,29 @@
+#cloud-config
+# Cloud-init user data for the workspace's OrbStack machine. Same format as AWS
+# EC2 and other clouds; see https://cloudinit.readthedocs.io/. This file is
+# synced into every instance and applied on the first 'up'. Edit freely.
+
+# repositories
+apt:
+  preserve_sources_list: true
+
+# required packages
+packages:
+  # core dependencies
+  - ca-certificates
+  - curl
+  - unzip
+  - gnupg
+  - sudo
+  - passwd
+  - zsh
+  - lsb-release
+  - locales
+  - git
+  - build-essential
+  - tmux
+
+write_files:
+  - path: /etc/z-workspace
+    content: |
+      provisioned by z runtime (orbstack)

@@ -1,0 +1,13 @@
+# z workspace definition
+version: 1
+
+# Branch name for each member at create time.
+# Placeholders: {instance} = instance name, {repo} = member basename
+branch_pattern: "{instance}"
+
+# Uncommenting an example below is all it takes to add a member.
+members:
+  - repo: GPTZero/gptzero_monorepo
+    base_ref: master
+  - repo: GPTZero/gitops
+  - repo: GPTZero/infrastructure

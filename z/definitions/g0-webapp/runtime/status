@@ -1,0 +1,12 @@
+#!/bin/sh
+# z runtime (OrbStack): report whether the workspace's machine exists.
+# Exit 0 = present, 3 = absent; z surfaces this exit code as its own. 'orb info'
+# succeeds for a stopped machine too — refine with 'orb list' if you need to
+# tell running from stopped.
+name="z-$Z_INSTANCE_NAME"
+if orb info "$name" >/dev/null 2>&1; then
+	echo "$name: present"
+	exit 0
+fi
+echo "$name: not found"
+exit 3

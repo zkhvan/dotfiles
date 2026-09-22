@@ -1,0 +1,19 @@
+# z workspace definition
+version: 1
+
+# Branch name for each member at create time.
+# Placeholders: {instance} = instance name, {repo} = member basename
+branch_pattern: "{instance}"
+
+# Uncommenting an example below is all it takes to add a member.
+members:
+  # - repo: acme/api
+  #   base_ref: main         # optional; defaults to the repo's default branch
+  # - repo: acme/ui
+
+# Every other file here is copied into each instance and kept in step by
+# `z workspace sync`. Files you edit inside an instance are never overwritten.
+# sync:
+#   ignore:
+#     paths:
+#       - scratch/

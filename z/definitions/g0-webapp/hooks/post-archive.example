@@ -1,0 +1,23 @@
+#!/bin/sh
+# Example z lifecycle hook — a starter that prints the hook environment.
+#
+# To enable, drop the ".example" suffix so the filename is exactly the phase
+# name. It is already executable, and the rename preserves that:
+#
+#     mv post-archive.example post-archive
+#
+# Phases: pre-create, post-create, pre-materialize, post-materialize,
+#         pre-archive, post-archive, pre-delete, post-delete.
+#
+# A pre-* hook that exits non-zero aborts the operation before any change.
+# A post-* hook runs only after the operation succeeds and is never rolled back.
+#
+# cwd is the instance directory, except pre-create and post-delete, which run
+# from the workspaces root because the instance directory does not exist at
+# those phases.
+
+echo "[z hook] phase=${Z_HOOK_PHASE}"
+echo "[z hook] instance=${Z_INSTANCE_NAME}"
+echo "[z hook] instance_path=${Z_INSTANCE_PATH}"
+echo "[z hook] definition_path=${Z_DEFINITION_PATH}"
+echo "[z hook] cwd=$(pwd)"

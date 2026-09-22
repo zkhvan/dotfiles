@@ -71,10 +71,20 @@ outer.right      = [{ monitor.main = 5 }, 5]
 4  = ['secondary', 'main']
 5  = ['secondary', 'main']
 6  = ['secondary', 'main']
+s  = ['secondary', 'main']
+m  = ['secondary', 'main']
 
-# [[on-window-detected]]
-# if.app-id = 'com.tinyspeck.slackmacgap'
-# run = 'move-node-to-workspace s'
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace s'
+
+[[on-window-detected]]
+if.app-id = 'com.superhuman.electron'
+run = 'move-node-to-workspace m'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace t'
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
@@ -170,7 +180,7 @@ alt-cmd-l   = 'split horizontal'
 alt-cmd-j   = 'split vertical'
 
 alt-f       = 'fullscreen'
-alt-s       = 'layout v_accordion' # 'layout stacking' in i3
+alt-d       = 'layout v_accordion' # 'layout stacking' in i3
 alt-e       = 'layout h_accordion' # 'layout tabbed' in i3
 alt-w       = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 alt-shift-f = 'layout floating tiling' # 'floating toggle' in i3
@@ -199,15 +209,11 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-ctrl-shift-cmd-s = 'workspace s'
-ctrl-shift-cmd-b = 'workspace b'
-ctrl-shift-cmd-n = 'workspace n'
-ctrl-shift-cmd-g = 'workspace g'
-
-ctrl-alt-shift-cmd-s = 'move-node-to-workspace s'
-ctrl-alt-shift-cmd-b = 'move-node-to-workspace b'
-ctrl-alt-shift-cmd-n = 'move-node-to-workspace n'
-ctrl-alt-shift-cmd-g = 'move-node-to-workspace g'
+alt-t = 'workspace t'
+alt-s = 'workspace s'
+alt-b = 'workspace b'
+alt-n = 'workspace n'
+alt-m = 'workspace m'
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -218,6 +224,12 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+
+alt-shift-t = 'move-node-to-workspace t'
+alt-shift-s = 'move-node-to-workspace s'
+alt-shift-b = 'move-node-to-workspace b'
+alt-shift-n = 'move-node-to-workspace n'
+alt-shift-m = 'move-node-to-workspace m'
 
 alt-shift-c   = 'reload-config'
 alt-cmd-equal = 'flatten-workspace-tree'

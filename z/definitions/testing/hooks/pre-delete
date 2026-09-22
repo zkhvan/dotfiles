@@ -1,0 +1,5 @@
+#!/bin/sh
+# z lifecycle hook (OrbStack runtime): remove the workspace's machine when the
+# workspace is deleted, so 'z workspace delete' leaves no orphan. 'down' only
+# stops the machine; this deletes it. Best-effort: a missing machine is fine.
+orb delete "z-$Z_INSTANCE_NAME" 2>/dev/null || true

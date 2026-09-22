@@ -1,0 +1,5 @@
+#!/bin/sh
+# z runtime (OrbStack): run a command inside the workspace's machine.
+# stdio and the command's exit code pass straight through.
+set -e
+exec orb -m "z-$Z_INSTANCE_NAME" exec -- "$@"

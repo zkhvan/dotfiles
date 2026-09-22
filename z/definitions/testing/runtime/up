@@ -1,0 +1,24 @@
+#!/bin/sh
+# z runtime (OrbStack): bring the workspace's isolated machine up.
+#
+# Idempotent: start an existing machine, otherwise create a fresh isolated one
+# that mounts the instance directory at /workspace and provisions via cloud-init.
+# The machine name is derived from the instance name, so keep instance names
+# OrbStack-safe (lowercase letters, digits, hyphens) if you rely on the default.
+set -e
+
+name="z-$Z_INSTANCE_NAME"
+
+if orb info "$name" >/dev/null 2>&1; then
+	exec orb start "$name"
+fi
+
+# --isolate-network blocks other machines and the macOS host while keeping
+# internet access. Drop it to reach host services; add --forward-ssh-agent if
+# you need to push over SSH from inside the machine.
+exec orb create \
+	--isolated \
+	--isolate-network \
+	--mount "$Z_INSTANCE_PATH:/workspace" \
+	-c "$Z_INSTANCE_PATH/runtime/user-data.yml" \
+	ubuntu "$name"

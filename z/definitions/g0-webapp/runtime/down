@@ -1,0 +1,6 @@
+#!/bin/sh
+# z runtime (OrbStack): stop the workspace's machine (reversible).
+# The machine and its disk are preserved, so the next 'up' just starts it again.
+# For a full teardown that forces a clean rebuild, replace 'stop' with 'delete'.
+set -e
+exec orb stop "z-$Z_INSTANCE_NAME"
