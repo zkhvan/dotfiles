@@ -217,6 +217,7 @@ fabric.properties
 **/.claude/settings.local.json
 .ai/
 .pi/
+AGENTS.override.md
 
 # --------------------------------------------------------------------------
 # Terraform
