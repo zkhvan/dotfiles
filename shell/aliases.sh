@@ -106,6 +106,11 @@ alias mine='sudo chown -R "$USER"'
 alias root='sudo -s'
 alias se='sudo -e'
 
+# --------------------------------------------------------------------------
+# pi
+# --------------------------------------------------------------------------
+alias pls='pi --print --no-session --offline --no-skills --no-tools --thinking off --model gpt-6-luna --system-prompt "You are a strict CLI utility. Read the user input and output ONLY the raw, valid executable shell command that matches it. No explanations, no markdown blocks, no text formatting."'
+
 # ----------------------------------------------------------------------------
 # terraform
 # ----------------------------------------------------------------------------
