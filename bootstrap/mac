@@ -35,6 +35,7 @@ __kz_require "brew" || {
 }
 
 source "${DOTFILES}/bootstrap/symlink" || exit 1
+source "${DOTFILES}/bootstrap/aws" || exit 1
 
 # ============================================================================
 # Vendor

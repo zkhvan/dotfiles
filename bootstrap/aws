@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# ============================================================================
+# Initialize script and dependencies
+# ============================================================================
+
+if [[ -z "$DOTFILES" ]]; then
+  cd -- "$(dirname "$0")/.." || exit 1
+  DOTFILES="$PWD"
+fi
+
+source "${DOTFILES}/lib/helpers.sh"
+source "${DOTFILES}/lib/pretty.bash"
+export PATH="${DOTFILES}/bin:${PATH}"
+
+# ============================================================================
+# Main
+# ============================================================================
+
+__aws() {
+  __kz_status "Seeding AWS config"
+
+  local _source="${DOTFILES}/aws/config"
+  local _target="${HOME}/.aws/config"
+
+  if [[ -e "${_target}" ]]; then
+    __kz_ok "Existing ${_target}, leaving it alone"
+    return
+  fi
+
+  kz-maybemkdir "$(dirname "${_target}")" || return 1
+  cp -- "${_source}" "${_target}"
+  __kz_ok "Copied ${_source} -> ${_target}"
+}
+
+__aws "$@"
