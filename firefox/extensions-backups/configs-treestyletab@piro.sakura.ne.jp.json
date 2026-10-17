@@ -1,0 +1,69 @@
+{
+  "__ConfigsMigration__userValuesSameToDefaultAreCleared": true,
+  "animationForce": null,
+  "autoAttachOnAnyOtherTrigger": 7,
+  "autoAttachOnContextNewTabCommand": null,
+  "autoAttachOnNewTabCommand": null,
+  "autoAttachOnOpenedFromExternal": 7,
+  "autoAttachOnOpenedWithOwner": 5,
+  "autoCollapseExpandSubtreeOnAttach": false,
+  "autoCollapseExpandSubtreeOnSelect": null,
+  "autoCollapseExpandSubtreeOnSelectExceptActiveTabRemove": null,
+  "autoGroupNewTabsFromFirefoxView": null,
+  "cachedExternalAddons": [
+    "tst-more-tree-commands@piro.sakura.ne.jp",
+    "copy-selected-tabs-to-clipboard@piro.sakura.ne.jp"
+  ],
+  "chunkedUserStyleRules0": "LyogZG9uJ3QgZGlzcGxheSB0b29sdGlwcyBvbiBob3ZlciAqLwojYUhUTUxUb29sdGlwLAojcmVtb3RlQnJvd3NlclRvb2x0aXAgewogIGRpc3BsYXk6IG5vbmUgIWltcG9ydGFudAp9CgovKiBBZGQgcHJpdmF0ZSBicm93c2luZyBpbmRpY2F0b3IgcGVyIHRhYiAqLwp0YWItaXRlbS5wcml2YXRlLWJyb3dzaW5nIHRhYi1sYWJlbDpiZWZvcmUgewogIGNvbnRlbnQ6ICLwn5W2IjsKfQovKiBkaWZmZXJlbnQgY29sb3IgKi8KdGFiLWl0ZW0gdGFiLWl0ZW0tc3Vic3RhbmNlIHsKICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmNzAgIWltcG9ydGFudDsKfQp0YWItaXRlbTpob3ZlciB0YWItaXRlbS1zdWJzdGFuY2UgewogIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDAwMSAhaW1wb3J0YW50Owp9CgovKiBhZGQgZ2FwIGJldHdlZW4gZmF2aWNvbiBhbmQgdGV4dCAqLwp0YWItaXRlbSAubGFiZWwtY29udGVudCB7CiAgbWFyZ2luLWxlZnQ6IDRweDsKfQoKLyogbWFrZSB1bmxvYWRlZCB0YWJzIGZhdmljb25zIGZhaXJseSB0cmFuc3BhcmVudCAqLwp0YWItaXRlbS5kaXNjYXJkZWQgdGFiLWZhdmljb24gewogIG9wYWNpdHk6IDAuNSAhaW1wb3J0YW50Owp9CgovKiBoaWRlIGZhdmljb24gb24gbmV3IHRhYnMgKi8KdGFiLWl0ZW06bm90KC5sb2FkaW5nKTotbW96LWFueShbZGF0YS1jdXJyZW50LXVyaT0iYWJvdXQ6bmV3dGFiIl0sIFtkYXRhLWN1cnJlbnQtdXJpPSJhYm91dDpob21lIl0sIFtkYXRhLWN1cnJlbnQtdXJpPSJhYm91dDpibGFuayJdLCBbZGF0YS1jdXJyZW50LXVyaT0ibW96LWV4dGVuc2lvbjovLzJiNGFiNDVmLWYzNDUtNDA1OS1hOTVlLWUzZTA2ZTlhYzVjZi9pbmRleC5odG1sIl0pIHRhYi1mYXZpY29uIHsKICB2aXNpYmlsaXR5OiBoaWRkZW47Cn0KCi8qIG9ubHkgc2hvdyAiY2xvc2UgdGFiIiBidXR0b24gb24gaG92ZXIgKi8KI3RhYmJhciB0YWItaXRlbSB0YWItaXRlbS1zdWJzdGFuY2U6bm90KDpob3ZlcikgdGFiLWNsb3NlYm94IHsKICBkaXNwbGF5OiBub25lOwp9CgovKiBDb3VudCB0YWJzICovCiN0YWJiYXIgewogIGNvdW50ZXItcmVzZXQ6IHZ0YWJzIGF0YWJzIHRhYnM7CiAgLyogdnRhYnMgdHJhY2tzIHZpc2libGUgdGFicywgYXRhYnMgdHJhY2tzIGFjdGl2ZSB0YWJzLCB0YWJzIHRyYWNrcyBhbGwgdGFicyAqLwp9CnRhYi1pdGVtOm5vdCguY29sbGFwc2VkKTpub3QoLmRpc2NhcmRlZCkgewogIGNvdW50ZXItaW5jcmVtZW50OiB2dGFicyBhdGFicyB0YWJzOwp9CnRhYi1pdGVtOm5vdCguY29sbGFwc2VkKSB7CiAgY291bnRlci1pbmNyZW1lbnQ6IHZ0YWJzIHRhYnM7Cn0KdGFiLWl0ZW06bm90KC5kaXNjYXJkZWQpIHsKICBjb3VudGVyLWluY3JlbWVudDogYXRhYnMgdGFiczsKfQp0YWItaXRlbSB7CiAgY291bnRlci1pbmNyZW1lbnQ6IHRhYnM7Cn0KLm5ld3RhYi1idXR0b24gewogIC0tdGFiLWNvdW50LXRleHQ6IGNvdW50ZXIodGFicykgIiB0YWJzIjsKICBoZWlnaHQ6IDM4cHg7CiAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICMwMDAwMDA1NSAhaW1wb3J0YW50Owp9Cjpyb290LnNpbXVsYXRlLXN2Zy1jb250ZXh0LWZpbGwgLm5ld3RhYi1idXR0b246OmFmdGVyIHsKICBjb250ZW50OiB2YXIoLS10YWItY291bnQtdGV4dCk7CiAgcG9pbnRlci1ldmVudHM6IG5vbmU7CiAgbWFzazogbm9uZSAhaW1wb3J0YW50OwogIHdpZHRoOiBhdXRvOwogIGJhY2tncm91bmQ6IG5vbmUgIWltcG9ydGFudDsKICBtYXJnaW4tdG9wOiA3cHg7Cn0K",
+  "closeParentBehaviorMode": 1,
+  "configsVersion": 34,
+  "context_closeOthers": true,
+  "context_openAllBookmarksWithStructureRecursively": null,
+  "context_topLevel_sendTreeToDevice": null,
+  "context_topLevel_toggleSticky": null,
+  "dropLinksOnTabBehavior": 2,
+  "fadeOutDiscardedTabs": null,
+  "inheritContextualIdentityToChildTabMode": 2,
+  "inheritContextualIdentityToTabsFromAnyOtherTriggerMode": 2,
+  "inheritContextualIdentityToTabsFromExternalMode": 2,
+  "inheritContextualIdentityToUnopenableURLTabs": true,
+  "insertNewChildAt": null,
+  "notifiedFeaturesVersion": 9,
+  "optionsExpandedSections": [
+    "section-appearance",
+    "section-newTab",
+    "section-addons",
+    "section-debug"
+  ],
+  "parentTabOperationBehaviorMode": 1,
+  "renderHiddenTabs": null,
+  "scrollbarMode": 1,
+  "showAutoGroupOptionHint": false,
+  "showExpertOptions": true,
+  "showTreeCommandsInTabsContextMenuGlobally": null,
+  "sidebarPosition": 1,
+  "sidebarWidthInWindow": {
+    "3": 338,
+    "5": 321,
+    "23": 338,
+    "93": 396,
+    "11223": 412,
+    "13050": 412,
+    "15021": 338,
+    "19020": 396,
+    "31458": 396,
+    "45401": 338
+  },
+  "style": "proton",
+  "syncDevices": {
+    "device-1774629124921-62239": {
+      "id": "device-1774629124921-62239",
+      "name": "Firefox on macOS",
+      "icon": "device-desktop",
+      "timestamp": 1786365660764
+    }
+  },
+  "userStyleRules": "",
+  "userStyleRulesFieldHeight": "645px",
+  "warnOnCloseTabsByClosebox": false
+}
