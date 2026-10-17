@@ -1,0 +1,50 @@
+#compdef fnox-run fnox-age
+
+# Completion for the fnox-run / fnox-age helpers in ~/.dotfiles/local/zshrc.
+#   fnox-run <profile> <command> [args...]   -> profile, then normal command completion
+#   fnox-age <profile> <fnox-args...>        -> profile, then fnox's own completion (if installed)
+
+# Supports comma-separated profiles (fnox overlays later ones), e.g. datadog,linear
+_fnox_run_profiles() {
+  local -a profiles chosen
+  local line name
+
+  # Everything up to the last comma is already-chosen profiles; complete after it.
+  if compset -P '*,'; then
+    chosen=(${(s:,:)IPREFIX})
+  fi
+
+  # `fnox profiles` output looks like:
+  #   Available profiles:
+  #     datadog (1 secrets)
+  for line in ${(f)"$(command fnox profiles --no-color 2>/dev/null)"}; do
+    [[ $line =~ '^[[:space:]]+([^[:space:]]+)[[:space:]]*(\((.*)\))?' ]] || continue
+    name=${match[1]}
+    (( ${chosen[(Ie)$name]} )) && continue  # don't offer duplicates
+    profiles+=("${name}:${match[3]}")
+  done
+  # -qS, : append a comma that disappears if you type a space/Enter instead
+  _describe -t fnox-profiles 'fnox profile' profiles -qS,
+}
+
+_fnox-run() {
+  case $service in
+    fnox-age)
+      _arguments \
+        '1:fnox profile:_fnox_run_profiles' \
+        '*:::fnox arguments:->fnox'
+      [[ $state == fnox ]] || return
+      # Re-dispatch as if the user typed `fnox <args...>`.
+      words=(fnox "${words[@]}")
+      (( CURRENT++ ))
+      _normal
+      ;;
+    *)
+      _arguments \
+        '1:fnox profile:_fnox_run_profiles' \
+        '*:::command:_normal'
+      ;;
+  esac
+}
+
+_fnox-run "$@"

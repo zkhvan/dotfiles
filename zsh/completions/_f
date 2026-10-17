@@ -1,0 +1,83 @@
+#compdef f
+
+# Completion for the `f` helper in ~/.dotfiles/local/zshrc:
+#   f [-e] [+profile] [-profile] [@p1,p2] [--] <command> [args...]
+#
+#   +<TAB>   profiles not yet in the list (add)
+#   -<TAB>   profiles currently in the list (remove), plus -e / --
+#   @<TAB>   comma-separated replacement list
+#   <TAB>    once past the modifiers: normal command completion
+
+# Fill `reply` with name:description entries from `fnox profiles`.
+_f_all_profiles() {
+  local line
+  reply=()
+  for line in ${(f)"$(command fnox profiles --no-color 2>/dev/null)"}; do
+    [[ $line =~ '^[[:space:]]+([^[:space:]]+)[[:space:]]*(\((.*)\))?' ]] || continue
+    reply+=("${match[1]}:${match[3]}")
+  done
+}
+
+_f() {
+  local -a current all offer chosen reply
+  local -a opts=('e:edit profile list interactively' '-:end of f options')
+  local i w cmd_idx=0 entry
+
+  # Replay the modifiers already on the line to know the effective list.
+  current=("${F_PROFILES[@]}")
+  for (( i = 2; i < CURRENT; i++ )); do
+    w=${words[i]}
+    case $w in
+      --) cmd_idx=$(( i + 1 )); break ;;
+      -e) ;;
+      +?*) current+=("${w#+}") ;;
+      -?*) current=("${(@)current:#${w#-}}") ;;
+      @?*) current=("${(@s:,:)${w#@}}") ;;
+      *) cmd_idx=$i; break ;;
+    esac
+  done
+
+  # Past the modifiers: complete as if the command were typed directly.
+  if (( cmd_idx )); then
+    words=("${(@)words[cmd_idx,-1]}")
+    (( CURRENT -= cmd_idx - 1 ))
+    _normal
+    return
+  fi
+
+  _f_all_profiles
+  all=("${reply[@]}")
+
+  case $PREFIX in
+    +*)
+      compset -P '+'
+      for entry in "${all[@]}"; do
+        (( ${current[(Ie)${entry%%:*}]} )) || offer+=("$entry")
+      done
+      _describe -t fnox-profiles 'add profile' offer
+      ;;
+    -*)
+      compset -P '-'
+      for entry in "${all[@]}"; do
+        (( ${current[(Ie)${entry%%:*}]} )) && offer+=("$entry")
+      done
+      _alternative \
+        'fnox-profiles:remove profile:{_describe -t fnox-profiles "remove profile" offer}' \
+        'f-options:f option:{_describe -t f-options "f option" opts}'
+      ;;
+    @*)
+      compset -P '@'
+      compset -P '*,' && chosen=(${(s:,:)IPREFIX#@})
+      for entry in "${all[@]}"; do
+        (( ${chosen[(Ie)${entry%%:*}]} )) || offer+=("$entry")
+      done
+      _describe -t fnox-profiles 'replacement profile list' offer -qS,
+      ;;
+    *)
+      # Modifiers are discovered by typing +, - or @ first.
+      _command_names -e
+      ;;
+  esac
+}
+
+_f "$@"
