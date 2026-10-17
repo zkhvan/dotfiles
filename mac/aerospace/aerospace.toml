@@ -83,10 +83,6 @@ if.app-id = 'com.superhuman.electron'
 run = 'move-node-to-workspace m'
 
 [[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace t'
-
-[[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
 run = 'layout floating'
 
@@ -209,7 +205,6 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-alt-t = 'workspace t'
 alt-s = 'workspace s'
 alt-b = 'workspace b'
 alt-n = 'workspace n'
@@ -225,7 +220,6 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
-alt-shift-t = 'move-node-to-workspace t'
 alt-shift-s = 'move-node-to-workspace s'
 alt-shift-b = 'move-node-to-workspace b'
 alt-shift-n = 'move-node-to-workspace n'
