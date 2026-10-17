@@ -147,6 +147,9 @@ export ZSH_BOOKMARKS="${HOME}/.local/zshbookmarks"
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=48
 # as of v4.0 use ZSH/zpty module to async retrieve
 #export ZSH_AUTOSUGGEST_USE_ASYNC=1
+# turn off/on autosuggestions (e.g. for demos/screensharing)
+alias demo='_zsh_autosuggest_disable'
+alias nodemo='_zsh_autosuggest_enable'
 
 # ----------------------------------------------------------------------------
 # Plugins: fzf (package install)
