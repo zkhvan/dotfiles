@@ -1,13 +1,15 @@
---- Opens the current buffer in a locally-served markdown preview.
+--- Opens the current buffer in a markdown preview.
+---
+--- Buffers under a registered root open in that root's external,
+--- long-running preview server. Anything else falls back to
+--- markdown-preview.nvim, which previews the buffer itself (so the file's
+--- location doesn't matter) on an OS-assigned port.
 ---
 --- Roots are machine-specific and registered from the machine-local config
 --- (nvim/after/plugin/local.lua) via M.add_root(). Order matters: more
 --- specific roots should be registered first, since the first matching root
 --- wins.
 local M = {}
-
---- Port used when the buffer doesn't live under any registered root.
-M.default_port = 10001
 
 --- @class zkhvan.preview.Root
 --- @field dir string Absolute, symlink-resolved root directory.
@@ -27,26 +29,24 @@ function M.add_root(root)
   })
 end
 
---- Open the current buffer in the preview server for its root.
+--- Open the current buffer in the preview server for its root, or in
+--- markdown-preview.nvim when it isn't under any registered root.
 function M.open()
   local abs_path = vim.fn.resolve(vim.api.nvim_buf_get_name(0))
 
-  local port = M.default_port
-  local url_path = vim.fn.fnamemodify(abs_path, ':~:.') or ''
-
   for _, root in ipairs(M.roots) do
     if vim.startswith(abs_path, root.dir .. '/') then
-      port = root.port
       -- Path relative to the root, with the extension stripped.
-      url_path = vim.fn.fnamemodify(abs_path:sub(#root.dir + 2), ':r')
-      break
+      local url_path = vim.fn.fnamemodify(abs_path:sub(#root.dir + 2), ':r')
+      vim.system({
+        'open',
+        ('http://127.0.0.1:%d/%s'):format(root.port, url_path),
+      })
+      return
     end
   end
 
-  vim.system({
-    'open',
-    ('http://127.0.0.1:%d/%s'):format(port, url_path),
-  })
+  vim.cmd('MarkdownPreview')
 end
 
 return M

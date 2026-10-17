@@ -84,14 +84,21 @@ return {
     ft = 'markdown',
   },
 
+  -- Buffer-addressed browser preview: renders the current buffer wherever the
+  -- file lives. Used as the <Leader>mn fallback for files outside the
+  -- registered preview roots (see zkhvan.preview). The server runs in-process
+  -- and starts on demand; "multi" + port 0 lets the OS pick a free port each
+  -- time, so it can never collide with anything else listening locally.
   {
-    'brianhuster/live-preview.nvim',
-    enabled = true,
-    event = 'VeryLazy',
-    config = function()
-      require('livepreview.config').set({
-        port = 10001,
-      })
+    'selimacerbas/markdown-preview.nvim',
+    dependencies = { 'selimacerbas/live-server.nvim' },
+    cmd = { 'MarkdownPreview', 'MarkdownPreviewRefresh', 'MarkdownPreviewStop' },
+    opts = {
+      instance_mode = 'multi',
+      port = 0,
+    },
+    config = function(_, opts)
+      require('markdown_preview').setup(opts)
     end,
   },
 }
