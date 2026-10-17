@@ -35,6 +35,9 @@ export ZDOTDIR="${${(%):-%N}:A:h}"
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME}/zshcache"
 export HISTFILE="${HOME}/.local/zsh_history"
 
+# Let zinit own compinit.
+skip_global_compinit=1
+
 # ============================================================================
 
 KZ_SOURCE="${KZ_SOURCE} }"
