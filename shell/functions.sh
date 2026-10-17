@@ -60,6 +60,52 @@ gitexport() {
 }
 
 # ============================================================================
+# AWS
+# ============================================================================
+
+# Pick an AWS_PROFILE from ~/.aws/config using fzf.
+# Usage:
+#   awsp           -> pick a profile interactively
+#   awsp <name>    -> set profile directly (no fzf)
+#   awsp -u        -> unset AWS_PROFILE
+awsp() {
+  local config="${AWS_CONFIG_FILE:-$HOME/.aws/config}"
+
+  if [ "$1" = "-u" ] || [ "$1" = "--unset" ]; then
+    unset AWS_PROFILE
+    echo "AWS_PROFILE unset"
+    return 0
+  fi
+
+  if [ ! -f "$config" ]; then
+    echo >&2 "awsp: no config found at $config"
+    return 1
+  fi
+
+  # Extract profile names: "[profile foo]" -> foo, plus "[default]".
+  local profiles
+  profiles=$(sed -n -E 's/^\[profile[[:space:]]+(.+)\]$/\1/p; s/^\[(default)\]$/\1/p' "$config")
+
+  if [ -z "$profiles" ]; then
+    echo >&2 "awsp: no profiles found in $config"
+    return 1
+  fi
+
+  local choice
+  if [ -n "$1" ]; then
+    choice="$1"
+  else
+    choice=$(printf '%s\n' "$profiles" | fzf --height=40% --reverse \
+      --prompt="AWS_PROFILE> " --query="${AWS_PROFILE:-}") || return 0
+  fi
+
+  [ -z "$choice" ] && return 0
+
+  export AWS_PROFILE="$choice"
+  echo "AWS_PROFILE=$AWS_PROFILE"
+}
+
+# ============================================================================
 # Network tools
 # ============================================================================
 

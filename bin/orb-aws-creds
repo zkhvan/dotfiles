@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+#
+# orb-aws-creds — mint short-lived AWS creds from the current $AWS_PROFILE and
+# push them into an OrbStack VM's ~/.aws/credentials. Run with --help for usage.
+
+set -euo pipefail
+
+__usage() {
+  cat <<'EOF'
+Usage:
+  orb-aws-creds [machine]
+
+  machine      OrbStack machine name (default: dev)
+
+The profile (account + role) comes from $AWS_PROFILE, which must be set:
+  AWS_PROFILE=prod orb-aws-creds
+
+Creds are written to the VM under the same profile name. They last as long
+as the role's SSO session duration; re-run to refresh. Only that profile's
+section is replaced; others are kept.
+EOF
+}
+
+__die() {
+  echo >&2 "orb-aws-creds: $*"
+  exit 1
+}
+
+# Script run inside the VM as `bash -c <script> _ <profile>`, new section on
+# stdin. Drops any existing [<profile>] section, appends the new one, and swaps
+# the file in atomically. Blank lines are normalised.
+__merge_script() {
+  cat <<'EOF'
+set -eu
+umask 077
+mkdir -p ~/.aws
+f=~/.aws/credentials
+tmp=$(mktemp "$f.XXXXXX")
+new=$(cat)
+
+if [ -f "$f" ]; then
+  awk -v p="[$1]" '
+    { t = $0; gsub(/^[ \t]+|[ \t]+$/, "", t) }
+    t == ""   { next }
+    t ~ /^\[/ { skip = (t == p); if (!skip && n++) print "" }
+    !skip     { print }
+  ' "$f" >"$tmp"
+fi
+
+if [ -s "$tmp" ]; then echo >>"$tmp"; fi
+printf '%s\n' "$new" >>"$tmp"
+mv "$tmp" "$f"
+EOF
+}
+
+__main() {
+  case "${1:-}" in
+    -h | --help)
+      __usage
+      exit 0
+      ;;
+  esac
+
+  [[ -n ${AWS_PROFILE:-} ]] || __die "AWS_PROFILE is not set"
+
+  local profile="$AWS_PROFILE"
+  local machine="${1:-dev}"
+
+  # Log in only if the SSO token is missing/expired.
+  if ! aws sts get-caller-identity --profile "$profile" >/dev/null 2>&1; then
+    aws sso login --profile "$profile"
+  fi
+
+  local creds
+  creds="$(aws configure export-credentials --profile "$profile" --format env-no-export)"
+
+  local k v key_id='' secret='' token='' expiry=''
+  while IFS='=' read -r k v; do
+    case "$k" in
+      AWS_ACCESS_KEY_ID) key_id="$v" ;;
+      AWS_SECRET_ACCESS_KEY) secret="$v" ;;
+      AWS_SESSION_TOKEN) token="$v" ;;
+      AWS_CREDENTIAL_EXPIRATION) expiry="$v" ;;
+    esac
+  done <<<"$creds"
+
+  [[ -n $key_id && -n $secret && -n $token ]] ||
+    __die "failed to export credentials for '$profile'"
+
+  orb -m "$machine" bash -c "$(__merge_script)" _ "$profile" <<EOF
+[${profile}]
+aws_access_key_id = ${key_id}
+aws_secret_access_key = ${secret}
+aws_session_token = ${token}
+EOF
+
+  echo "Pushed '${profile}' -> ${machine}:~/.aws/credentials [${profile}], expires ${expiry:-unknown}"
+}
+
+__main "$@"
