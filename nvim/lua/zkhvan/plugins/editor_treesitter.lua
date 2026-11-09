@@ -8,6 +8,10 @@ local ENSURE_INSTALLED = {
   'luadoc',
   'vim',
   'vimdoc',
+  -- required by neotest-vitest
+  'javascript',
+  'typescript',
+  'tsx',
 }
 
 -- blacklist if highlighting doesn't look right or is worse than vim regex

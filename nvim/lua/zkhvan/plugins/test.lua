@@ -6,7 +6,9 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-neotest/nvim-nio',
+      'nvim-treesitter/nvim-treesitter',
       'fredrikaverpil/neotest-golang',
+      'marilari88/neotest-vitest',
     },
     config = function()
       require('neotest').setup(
@@ -37,6 +39,12 @@ return {
                 '-race',
                 '-coverprofile=' .. vim.fn.getcwd() .. '/coverage.out',
               },
+            }),
+            require('neotest-vitest')({
+              -- Don't search for tests inside node_modules
+              filter_dir = function(name)
+                return name ~= 'node_modules'
+              end,
             }),
           },
         }
