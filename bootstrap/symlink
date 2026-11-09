@@ -112,6 +112,8 @@ __symlink() {
   #  ".bash_profile"
   kz-symlink "zsh/dot.zshenv" \
     ".zshenv"
+  kz-symlink "zsh/dot.zshenv" \
+    "${DOTFILES#"${HOME}/"}/zsh/.zshenv"
 
   __kz_status "Done! [symlink.sh]"
 }
