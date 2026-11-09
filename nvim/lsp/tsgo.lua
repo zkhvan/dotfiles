@@ -15,5 +15,15 @@ return {
     'typescriptreact',
     'typescript.tsx',
   },
-  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+  root_dir = function(bufnr, on_dir)
+    -- Skip non-file buffers (e.g. diffview://, fugitive://, oil://)
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    if name:match('^%a[%w+.-]*://') then
+      return
+    end
+    local root = vim.fs.root(bufnr, { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' })
+    if root then
+      on_dir(root)
+    end
+  end,
 }
