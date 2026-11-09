@@ -167,3 +167,13 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # zk notes
 export ZK_NOTEBOOK_DIR="${HOME}/Notes/personal"
+
+# Keep it POSIX (dot.profile sources this too) and idempotent (sourced repeatedly).
+for _kz_dir in "${XDG_DATA_HOME}/mise/shims" "${HOME}/.local/bin"; do
+  case ":${PATH}:" in
+    *":${_kz_dir}:"*) ;;
+    *) PATH="${_kz_dir}:${PATH}" ;;
+  esac
+done
+unset _kz_dir
+export PATH
