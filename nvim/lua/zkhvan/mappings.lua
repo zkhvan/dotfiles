@@ -119,9 +119,16 @@ map('n', '<leader>..', function()
 end, { desc = 'cd to parent directory' })
 
 map('n', '<leader>cd', function()
-  local path = vim.api.nvim_buf_get_name(0)
-  local dir = vim.fs.dirname(path)
-  vim.api.nvim_set_current_dir(dir)
+  local dir
+  if vim.bo.filetype == 'oil' then
+    dir = require('oil').get_current_dir()
+  else
+    dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+  end
+  if dir then
+    vim.api.nvim_set_current_dir(dir)
+    vim.notify('cwd changed to ' .. vim.fn.getcwd())
+  end
 end, { desc = 'cd to current buffer path' })
 
 -- ===========================================================================
